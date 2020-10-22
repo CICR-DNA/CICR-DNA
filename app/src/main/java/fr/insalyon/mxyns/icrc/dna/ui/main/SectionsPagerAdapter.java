@@ -1,4 +1,4 @@
-package fr.insalyon.mxyns.cicr.dna.ui.main;
+package fr.insalyon.mxyns.icrc.dna.ui.main;
 
 import android.content.Context;
 
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import fr.insalyon.mxyns.cicr.dna.R;
+import fr.insalyon.mxyns.icrc.dna.R;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

@@ -1,4 +1,4 @@
-package fr.insalyon.mxyns.cicr.dna.ui.main;
+package fr.insalyon.mxyns.icrc.dna.ui.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import fr.insalyon.mxyns.cicr.dna.R;
+import fr.insalyon.mxyns.icrc.dna.R;
 
 /**
  * A placeholder fragment containing a simple view.

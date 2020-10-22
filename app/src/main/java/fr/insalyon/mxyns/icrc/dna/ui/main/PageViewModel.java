@@ -1,4 +1,4 @@
-package fr.insalyon.mxyns.cicr.dna.ui.main;
+package fr.insalyon.mxyns.icrc.dna.ui.main;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

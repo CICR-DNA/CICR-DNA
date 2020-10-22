@@ -1,4 +1,4 @@
-package fr.mxyns.cicr;
+package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("fr.insalyon.mxyns.cicr.dna", appContext.getPackageName());
+        assertEquals("fr.insalyon.mxyns.icrc.dna", appContext.getPackageName());
     }
 }

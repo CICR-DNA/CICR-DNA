@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.insalyon.mxyns.cicr.dna">
+    package="fr.insalyon.mxyns.icrc.dna">
 
     <application
         android:allowBackup="true"
@@ -8,20 +8,20 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CICR_DNA">
+        android:theme="@style/Theme.ICRC_DNA">
         <activity
-            android:name="fr.insalyon.mxyns.cicr.dna.ResultActivity"
+            android:name="fr.insalyon.mxyns.icrc.dna.ResultActivity"
             android:label="@string/title_activity_result"
-            android:theme="@style/Theme.CICR_DNA.NoActionBar" />
+            android:theme="@style/Theme.ICRC_DNA.NoActionBar" />
         <activity
-            android:name="fr.insalyon.mxyns.cicr.dna.DataGatheringActivity"
+            android:name="fr.insalyon.mxyns.icrc.dna.DataGatheringActivity"
             android:label="@string/title_activity_data_gathering"
-            android:theme="@style/Theme.CICR_DNA.NoActionBar" />
+            android:theme="@style/Theme.ICRC_DNA.NoActionBar" />
         <activity
-            android:name="fr.insalyon.mxyns.cicr.dna.MainActivity"
+            android:name="fr.insalyon.mxyns.icrc.dna.MainActivity"
             android:noHistory = "true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.CICR_DNA.NoActionBar">
+            android:theme="@style/Theme.ICRC_DNA.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

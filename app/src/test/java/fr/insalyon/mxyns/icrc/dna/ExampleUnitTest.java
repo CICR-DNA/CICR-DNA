@@ -1,4 +1,4 @@
-package fr.mxyns.cicr;
+package fr.insalyon.mxyns.icrc.dna;
 
 import org.junit.Test;
 

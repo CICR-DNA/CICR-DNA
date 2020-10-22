@@ -6,7 +6,7 @@ android {
     compileSdkVersion 29
 
     defaultConfig {
-        applicationId "fr.mxyns.cicr"
+        applicationId "fr.insalyon.mxyns.icrc.dna"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1

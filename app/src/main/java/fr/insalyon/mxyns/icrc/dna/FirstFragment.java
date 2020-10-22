@@ -1,4 +1,4 @@
-package fr.insalyon.mxyns.cicr.dna;
+package fr.insalyon.mxyns.icrc.dna;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

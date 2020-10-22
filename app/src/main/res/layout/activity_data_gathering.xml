@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fr.insalyon.mxyns.cicr.dna.DataGatheringActivity">
+    tools:context="fr.insalyon.mxyns.icrc.dna.DataGatheringActivity">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -15,7 +15,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.CICR_DNA.AppBarOverlay">
+        android:theme="@style/Theme.ICRC_DNA.AppBarOverlay">
 
         <TextView
             android:id="@+id/title"

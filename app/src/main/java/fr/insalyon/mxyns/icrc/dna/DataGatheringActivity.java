@@ -1,4 +1,4 @@
-package fr.insalyon.mxyns.cicr.dna;
+package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View;
 
-import fr.insalyon.mxyns.cicr.dna.ui.main.SectionsPagerAdapter;
+import fr.insalyon.mxyns.icrc.dna.ui.main.SectionsPagerAdapter;
 
 public class DataGatheringActivity extends AppCompatActivity {
 
