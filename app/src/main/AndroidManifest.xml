@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.insalyon.mxyns.cicr.dna">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CICR_DNA">
+        <activity
+            android:name="fr.insalyon.mxyns.cicr.dna.ResultActivity"
+            android:label="@string/title_activity_result"
+            android:theme="@style/Theme.CICR_DNA.NoActionBar" />
+        <activity
+            android:name="fr.insalyon.mxyns.cicr.dna.DataGatheringActivity"
+            android:label="@string/title_activity_data_gathering"
+            android:theme="@style/Theme.CICR_DNA.NoActionBar" />
+        <activity
+            android:name="fr.insalyon.mxyns.cicr.dna.MainActivity"
+            android:noHistory = "true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.CICR_DNA.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
