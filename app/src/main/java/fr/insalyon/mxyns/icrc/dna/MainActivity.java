@@ -24,11 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.confirm);
-        fab.setOnClickListener(view -> {
-            Snackbar.make(view, R.string.open_data_gathering_button, Snackbar.LENGTH_LONG).show();
-
-            startActivity(new Intent(MainActivity.this, DataGatheringActivity.class));
-        });
+        fab.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, DataGatheringActivity.class)));
     }
 
     @Override

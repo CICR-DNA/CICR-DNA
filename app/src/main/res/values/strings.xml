@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ICRC DNA</string>
+    <string name="app_name">BRSSA</string>
     <string name="action_settings">Settings</string>
 
     <!-- Strings used for fragments for navigation -->
@@ -12,10 +12,15 @@
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_result">ResultActivity</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <string name="tier_one_screen_1_title">Parents</string>
+    <string name="tier_one_screen_1_description"><b>Can BRS be collected from the <u>biological</u> father and/or mother of the missing person?</b></string>
+    <string name="tier_one_screen_1_option_1">Mother</string>
+    <string name="tier_one_screen_1_option_2">Father</string>
+
+    <string name="tier_one_screen_3_title">Parents</string>
+    <string name="tier_one_screen_3_description"><b>Can BRS be collected from the spouse of the missing person (other <u>biological</u> parent of the children)?</b></string>
+    <string name="tier_one_screen_3_option_1">Wife</string>
+    <string name="tier_one_screen_3_option_2">Husband</string>
 
 </resources>

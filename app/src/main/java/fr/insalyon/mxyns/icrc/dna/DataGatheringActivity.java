@@ -10,9 +10,7 @@ import com.google.android.material.tabs.TabLayout;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-import fr.insalyon.mxyns.icrc.dna.ui.main.SectionsPagerAdapter;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.SectionsPagerAdapter;
 
 public class DataGatheringActivity extends AppCompatActivity {
 
