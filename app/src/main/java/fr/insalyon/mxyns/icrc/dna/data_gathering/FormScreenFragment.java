@@ -1,25 +1,23 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.StringRes;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.res.Resources;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 
@@ -73,6 +71,7 @@ public class FormScreenFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewModel = new ViewModelProvider(this).get(FormScreenFragmentViewModel.class);
+
         int index = 1, title = -1, description = -1, image = -1;
 
         if (getArguments() != null) {
@@ -109,15 +108,8 @@ public class FormScreenFragment extends Fragment {
         FragmentManager fragMan = getChildFragmentManager();
         FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
-        // add or replace fragment depending on if it's already present or not
-        String tag;
         for (int i = 0; i < inputFragments.size(); ++i) {
-            tag = "input_" + i;
-            if (fragMan.findFragmentByTag(tag) != null) {
-                fragTransaction.replace(form.getId(), inputFragments.get(i), tag);
-            } else {
-                fragTransaction.add(form.getId(), inputFragments.get(i), tag);
-            }
+            fragTransaction.add(form.getId(), inputFragments.get(i), "input_" + i);
         }
 
         fragTransaction.commit();

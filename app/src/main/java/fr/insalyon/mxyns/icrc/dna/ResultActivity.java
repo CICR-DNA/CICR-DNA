@@ -21,7 +21,6 @@ public class ResultActivity extends AppCompatActivity {
         FloatingActionButton confirm_fab = findViewById(R.id.confirm);
         confirm_fab.setOnClickListener(view -> {
 
-
             Snackbar snackbar = Snackbar.make(view, "Enregistré ✓", Snackbar.LENGTH_LONG)
                     .setAction("FIN", e -> startMainActivity());
             snackbar.show();
@@ -34,9 +33,11 @@ public class ResultActivity extends AppCompatActivity {
     private void startMainActivity() {
 
         Intent intent = new Intent(ResultActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP // Clear back stack, MainActivity included
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK // Clear task (destroy every activity)
+                        | Intent.FLAG_ACTIVITY_NEW_TASK // Start new task
+        );
 
         startActivity(intent);
         finish();

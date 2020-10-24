@@ -23,8 +23,8 @@ import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputDescription;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final ArrayList<Integer> TAB_TITLES = new ArrayList<>();
-    private static final ArrayList<Fragment> TABS = new ArrayList<>();
+    private final ArrayList<Integer> tab_titles = new ArrayList<>();
+    private final ArrayList<Fragment> tabs = new ArrayList<>();
 
     private final Context mContext;
 
@@ -62,10 +62,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             @DrawableRes int image,
             InputDescription... inputs_desc) {
 
-        TAB_TITLES.add(title);
-
-        FormScreenFragment fragment = FormScreenFragment.newInstance(TABS.size(), title, description, image, inputs_desc);
-        TABS.add(fragment);
+        tab_titles.add(title);
+        tabs.add(FormScreenFragment.newInstance(tabs.size(), title, description, image, inputs_desc));
     }
 
     @NotNull
@@ -73,18 +71,18 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return TABS.get(position);
+        return tabs.get(position);
     }
 
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return mContext.getResources().getString(TAB_TITLES.get(position));
+        return mContext.getResources().getString(tab_titles.get(position));
     }
 
     @Override
     public int getCount() {
         // Show 2 total pages.
-        return TABS.size();
+        return tabs.size();
     }
 }

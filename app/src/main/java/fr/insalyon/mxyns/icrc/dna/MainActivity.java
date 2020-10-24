@@ -2,17 +2,13 @@ package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-
-import android.view.Menu;
-import android.view.MenuItem;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +20,21 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.confirm);
-        fab.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, DataGatheringActivity.class)));
+        fab.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, DataGatheringActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(intent);
+        });
+
+        // Part of back button behaviour
+        fab.setOnLongClickListener(view -> {
+
+            Intent intent = new Intent(MainActivity.this, DataGatheringActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            intent.putExtra("plsreset", true); // ask for fields reset
+            startActivity(intent);
+            return true;
+        });
     }
 
     @Override
@@ -47,5 +57,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // Back button behaviour
+    @Override
+    public void onBackPressed() {
+
+        moveTaskToBack(true); // move app to background
     }
 }
