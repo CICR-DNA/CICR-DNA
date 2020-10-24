@@ -2,25 +2,10 @@
     <string name="app_name">BRSSA</string>
     <string name="action_settings">Settings</string>
 
-    <!-- Strings used for fragments for navigation -->
-    <string name="button_first">Button first fragment</string>
-    <string name="first_fragment_label">First Fragment</string>
     <string name="open_data_gathering_button">Open Data Gathering</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="title_activity_data_gathering">DataGatheringActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_result">ResultActivity</string>
-
-    <string name="tier_one_screen_1_title">Parents</string>
-    <string name="tier_one_screen_1_description"><b>Can BRS be collected from the <u>biological</u> father and/or mother of the missing person?</b></string>
-    <string name="tier_one_screen_1_option_1">Mother</string>
-    <string name="tier_one_screen_1_option_2">Father</string>
-
-    <string name="tier_one_screen_3_title">Parents</string>
-    <string name="tier_one_screen_3_description"><b>Can BRS be collected from the spouse of the missing person (other <u>biological</u> parent of the children)?</b></string>
-    <string name="tier_one_screen_3_option_1">Wife</string>
-    <string name="tier_one_screen_3_option_2">Husband</string>
 
 </resources>

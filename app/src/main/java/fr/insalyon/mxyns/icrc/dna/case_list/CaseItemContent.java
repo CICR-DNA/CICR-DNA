@@ -29,7 +29,6 @@ public class CaseItemContent {
         // Add some sample items.
         for (int i = 1; i <= COUNT; i++) {
             addItem(createDummyItem(i));
-            System.out.println("added " + i);
         }
     }
 

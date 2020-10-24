@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
 import fr.insalyon.mxyns.icrc.dna.R;
-import fr.insalyon.mxyns.icrc.dna.data_gathering.TierOneFragment;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputDescription;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -22,7 +24,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
     private static final ArrayList<Integer> TAB_TITLES = new ArrayList<>();
-    private static final ArrayList<TierOneFragment> TABS = new ArrayList<>();
+    private static final ArrayList<Fragment> TABS = new ArrayList<>();
 
     private final Context mContext;
 
@@ -30,37 +32,43 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         super(fm);
         mContext = context;
 
-        registerTierOneFragments();
+        registerFragments();
     }
 
-    private void registerTierOneFragments() {
+    // TODO read from json
+    private void registerFragments() {
 
-        registerTierOneFragment(R.string.tier_one_screen_1_title,
+        registerFormFragment(R.string.tier_one_screen_1_title,
                 R.string.tier_one_screen_1_description,
                 R.drawable.ic_baseline_crop_square_24,
-                R.string.tier_one_screen_1_option_1,
-                R.string.tier_one_screen_1_option_2);
+                new InputDescription("checkbox", R.string.tier_one_screen_1_option_1),
+                new InputDescription("checkbox", R.string.tier_one_screen_1_option_2),
+                new InputDescription("integer", R.string.tier_one_screen_1_option_2)
 
-        registerTierOneFragment(R.string.tier_one_screen_3_title,
+        );
+
+        registerFormFragment(R.string.tier_one_screen_3_title,
                 R.string.tier_one_screen_3_description,
                 R.drawable.ic_baseline_double_check_24,
-                R.string.tier_one_screen_3_option_1,
-                R.string.tier_one_screen_3_option_2);
+                new InputDescription("checkbox", R.string.tier_one_screen_1_option_1),
+                new InputDescription("checkbox", R.string.tier_one_screen_1_option_2),
+                new InputDescription("checkbox", R.string.tier_one_screen_1_option_1),
+                new InputDescription("checkbox", R.string.tier_one_screen_1_option_2));
     }
 
-    private void registerTierOneFragment(
+    private void registerFormFragment(
             @StringRes int title,
             @StringRes int description,
             @DrawableRes int image,
-            @StringRes int option1,
-            @StringRes int option2) {
+            InputDescription... inputs_desc) {
 
         TAB_TITLES.add(title);
 
-        TierOneFragment fragment = TierOneFragment.newInstance(TABS.size(), title, description, image, option1, option2);
+        FormScreenFragment fragment = FormScreenFragment.newInstance(TABS.size(), title, description, image, inputs_desc);
         TABS.add(fragment);
     }
 
+    @NotNull
     @Override
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.

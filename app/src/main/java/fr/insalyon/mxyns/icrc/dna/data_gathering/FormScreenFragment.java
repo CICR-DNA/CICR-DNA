@@ -2,6 +2,8 @@ package fr.insalyon.mxyns.icrc.dna.data_gathering;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,32 +17,36 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import fr.insalyon.mxyns.icrc.dna.R;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputDescription;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
 
-public class TierOneFragment extends Fragment {
+public class FormScreenFragment extends Fragment {
 
-    private TierOneFragmentViewModel viewModel;
+    private FormScreenFragmentViewModel viewModel;
 
     private static final String ARG_INDEX = "tab_index";
     private static final String ARG_TITLE = "title";
     private static final String ARG_DESCRIPTION = "description";
     private static final String ARG_IMAGE = "image";
-    private static final String ARG_OPTION_1_TEXT = "option_1_text";
-    private static final String ARG_OPTION_2_TEXT = "option_2_text";
 
-    public static TierOneFragment newInstance(
+    private final ArrayList<InputTemplateFragment> inputFragments = new ArrayList<>();
+
+    public static FormScreenFragment newInstance(
             int index,
             @StringRes int title,
             @StringRes int description,
             @DrawableRes int image,
-            @StringRes int option1_text,
-            @StringRes int option2_text) {
+            InputDescription... inputs_desc
+    ) {
 
-        TierOneFragment fragment = new TierOneFragment();
+        FormScreenFragment fragment = new FormScreenFragment();
 
         Bundle bundle = new Bundle();
 
@@ -48,10 +54,17 @@ public class TierOneFragment extends Fragment {
         bundle.putInt(ARG_TITLE, title);
         bundle.putInt(ARG_DESCRIPTION, description);
         bundle.putInt(ARG_IMAGE, image);
-        bundle.putInt(ARG_OPTION_1_TEXT, option1_text);
-        bundle.putInt(ARG_OPTION_2_TEXT, option2_text);
 
         fragment.setArguments(bundle);
+
+        for (InputDescription inputDescription : inputs_desc) {
+            try {
+                fragment.inputFragments.add(inputDescription.make());
+            } catch (IllegalAccessException | java.lang.InstantiationException e) {
+                System.out.println("Unable to create input : " + inputDescription);
+                e.printStackTrace();
+            }
+        }
 
         return fragment;
     }
@@ -59,16 +72,14 @@ public class TierOneFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        viewModel = new ViewModelProvider(this).get(TierOneFragmentViewModel.class);
-        int index = 1, title = -1, description = -1, option1_text = -1, option2_text = -1, image = -1;
+        viewModel = new ViewModelProvider(this).get(FormScreenFragmentViewModel.class);
+        int index = 1, title = -1, description = -1, image = -1;
 
         if (getArguments() != null) {
             index = getArguments().getInt(ARG_INDEX);
             title = getArguments().getInt(ARG_TITLE);
             description = getArguments().getInt(ARG_DESCRIPTION);
             image = getArguments().getInt(ARG_IMAGE);
-            option1_text = getArguments().getInt(ARG_OPTION_1_TEXT);
-            option2_text = getArguments().getInt(ARG_OPTION_2_TEXT);
         }
 
         Resources res = getResources();
@@ -76,32 +87,45 @@ public class TierOneFragment extends Fragment {
         viewModel.setTitle(res.getString(title));
         viewModel.setDescription(res.getString(description));
         viewModel.setImageId(image);
-        viewModel.setOption1Text(res.getString(option1_text));
-        viewModel.setOption2Text(res.getString(option2_text));
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.tier_one_fragment, container, false);
+        View root = inflater.inflate(R.layout.form_screen_fragment, container, false);
 
         final LifecycleOwner lifecycleOwner = getViewLifecycleOwner();
+
         final TextView descView = root.findViewById(R.id.description);
         viewModel.getDescription().observe(lifecycleOwner, descView::setText);
-
-        final CheckBox option1 = root.findViewById(R.id.firstOption);
-        viewModel.getOption1Text().observe(lifecycleOwner, option1::setText);
-        viewModel.getOption1Value().observe(lifecycleOwner, option1::setChecked);
-
-        final CheckBox option2 = root.findViewById(R.id.secondOption);
-        viewModel.getOption2Text().observe(lifecycleOwner, option2::setText);
-        viewModel.getOption2Value().observe(lifecycleOwner, option2::setChecked);
 
         final ImageView imageView = root.findViewById(R.id.relationshipRepresentation);
         viewModel.getImageId().observe(lifecycleOwner, imageView::setImageResource);
 
         // TODO set title
 
+        LinearLayout form = root.findViewById(R.id.input_list_lin_layout);
+
+        FragmentManager fragMan = getChildFragmentManager();
+        FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+        // add or replace fragment depending on if it's already present or not
+        String tag;
+        for (int i = 0; i < inputFragments.size(); ++i) {
+            tag = "input_" + i;
+            if (fragMan.findFragmentByTag(tag) != null) {
+                fragTransaction.replace(form.getId(), inputFragments.get(i), tag);
+            } else {
+                fragTransaction.add(form.getId(), inputFragments.get(i), tag);
+            }
+        }
+
+        fragTransaction.commit();
+
         return root;
+    }
+
+    public FormScreenFragmentViewModel getViewModel() {
+        return viewModel;
     }
 }

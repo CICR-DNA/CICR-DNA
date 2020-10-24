@@ -2,14 +2,17 @@ package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
+import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenFragment;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.SectionsPagerAdapter;
 
 public class DataGatheringActivity extends AppCompatActivity {
