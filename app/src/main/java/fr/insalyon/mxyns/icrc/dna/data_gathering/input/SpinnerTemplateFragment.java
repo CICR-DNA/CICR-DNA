@@ -1,6 +1,8 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,9 +30,33 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
         root = inflater.inflate(R.layout.fragment_integer_input_template, container, false);
 
         EditText intField = root.findViewById(R.id.input_template_integer_field);
+
         TextView textView = root.findViewById(R.id.input_template_integer_text);
         getViewModel().text.observe(owner, textView::setText);
-        getViewModel().value.observe(owner, val -> intField.setText(String.valueOf(val)));
+
+        intField.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                int val;
+                try {
+                    val = Integer.parseInt(s.toString());
+                } catch (NumberFormatException ignored) {
+                    val = 0;
+                    intField.setError(getResources().getString(R.string.wrong_integer_input_error));
+                }
+
+                updateViewModelValue(val);
+            }
+        });
 
         // Inflate the layout for this fragment
         return root;
@@ -48,5 +74,10 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
             value = ((EditText) root.findViewById(R.id.input_template_integer_field)).getText().toString();
 
         bundle.putInt(ARG_VALUE, Integer.parseInt(value));
+    }
+
+    @Override
+    protected float valueToScore(Integer value, float unit_score) {
+        return value * unit_score;
     }
 }

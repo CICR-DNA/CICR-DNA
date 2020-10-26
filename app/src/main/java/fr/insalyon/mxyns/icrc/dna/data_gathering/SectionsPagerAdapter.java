@@ -38,39 +38,62 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     // TODO read from json
     private void registerFragments() {
 
-        registerFormFragment(R.string.tier_one_screen_1_title,
-                R.string.tier_one_screen_1_description,
+        registerFormFragment(1, R.string.tier_1_screen_1_title,
+                R.string.tier_1_screen_1_description,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("checkbox", R.string.tier_one_screen_1_option_1),
-                new InputDescription("checkbox", R.string.tier_one_screen_1_option_2),
-                new InputDescription("integer", R.string.tier_one_screen_1_option_2)
+                new InputDescription("checkbox", R.string.tier_1_screen_1_option_1),
+                new InputDescription("checkbox", R.string.tier_1_screen_1_option_2),
+                new InputDescription("integer", R.string.tier_1_screen_1_option_2)
 
         );
 
-        registerFormFragment(R.string.tier_one_screen_3_title,
-                R.string.tier_one_screen_3_description,
+        registerFormFragment(1, R.string.tier_1_screen_3_title,
+                R.string.tier_1_screen_3_description,
                 R.drawable.ic_baseline_double_check_24,
-                new InputDescription("checkbox", R.string.tier_one_screen_1_option_1),
-                new InputDescription("checkbox", R.string.tier_one_screen_1_option_2),
-                new InputDescription("checkbox", R.string.tier_one_screen_1_option_1),
-                new InputDescription("checkbox", R.string.tier_one_screen_1_option_2));
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_3),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_4));
+
+        registerFormFragment(1, R.string.tier_1_screen_3_title,
+                R.string.tier_1_screen_3_description,
+                R.drawable.ic_baseline_double_check_24,
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_3),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_4));
+
+        registerFormFragment(1, R.string.tier_1_screen_3_title,
+                R.string.tier_1_screen_3_description,
+                R.drawable.ic_baseline_double_check_24,
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_3),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_4));
+
+        registerFormFragment(1, R.string.tier_1_screen_3_title,
+                R.string.tier_1_screen_3_description,
+                R.drawable.ic_baseline_double_check_24,
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_3),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_4));
     }
 
     private void registerFormFragment(
+            int tier,
             @StringRes int title,
             @StringRes int description,
             @DrawableRes int image,
             InputDescription... inputs_desc) {
 
         tab_titles.add(title);
-        tabs.add(FormScreenFragment.newInstance(tabs.size(), title, description, image, inputs_desc));
+        tabs.add(FormScreenFragment.newInstance(tier, title, description, image, inputs_desc));
     }
 
     @NotNull
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
         return tabs.get(position);
     }
 
@@ -82,7 +105,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        // Show 2 total pages.
         return tabs.size();
+    }
+
+    public ArrayList<Fragment> getTabs() {
+        return tabs;
     }
 }

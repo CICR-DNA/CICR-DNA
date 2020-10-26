@@ -2,6 +2,7 @@ package fr.insalyon.mxyns.icrc.dna.data_gathering;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,14 @@ import java.util.ArrayList;
 
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputDescription;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
 
 public class FormScreenFragment extends Fragment {
 
     private FormScreenFragmentViewModel viewModel;
 
-    private static final String ARG_INDEX = "tab_index";
+    private static final String ARG_TIER = "tier";
     private static final String ARG_TITLE = "title";
     private static final String ARG_DESCRIPTION = "description";
     private static final String ARG_IMAGE = "image";
@@ -37,7 +39,7 @@ public class FormScreenFragment extends Fragment {
     private final ArrayList<InputTemplateFragment> inputFragments = new ArrayList<>();
 
     public static FormScreenFragment newInstance(
-            int index,
+            int tier,
             @StringRes int title,
             @StringRes int description,
             @DrawableRes int image,
@@ -48,7 +50,7 @@ public class FormScreenFragment extends Fragment {
 
         Bundle bundle = new Bundle();
 
-        bundle.putInt(ARG_INDEX, index);
+        bundle.putInt(ARG_TIER, tier);
         bundle.putInt(ARG_TITLE, title);
         bundle.putInt(ARG_DESCRIPTION, description);
         bundle.putInt(ARG_IMAGE, image);
@@ -75,14 +77,14 @@ public class FormScreenFragment extends Fragment {
         int index = 1, title = -1, description = -1, image = -1;
 
         if (getArguments() != null) {
-            index = getArguments().getInt(ARG_INDEX);
+            index = getArguments().getInt(ARG_TIER);
             title = getArguments().getInt(ARG_TITLE);
             description = getArguments().getInt(ARG_DESCRIPTION);
             image = getArguments().getInt(ARG_IMAGE);
         }
 
         Resources res = getResources();
-        viewModel.setIndex(index);
+        viewModel.setTier(index);
         viewModel.setTitle(res.getString(title));
         viewModel.setDescription(res.getString(description));
         viewModel.setImageId(image);
@@ -109,7 +111,8 @@ public class FormScreenFragment extends Fragment {
         FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
         for (int i = 0; i < inputFragments.size(); ++i) {
-            fragTransaction.add(form.getId(), inputFragments.get(i), "input_" + i);
+            if (fragMan.findFragmentByTag("input_" + i) == null)
+                fragTransaction.add(form.getId(), inputFragments.get(i), "input_" + i);
         }
 
         fragTransaction.commit();
@@ -119,5 +122,18 @@ public class FormScreenFragment extends Fragment {
 
     public FormScreenFragmentViewModel getViewModel() {
         return viewModel;
+    }
+
+    public ArrayList<InputResult> getValues() {
+
+        ArrayList<InputResult> input_values = new ArrayList<>();
+
+        for (InputTemplateFragment input : inputFragments) {
+            InputResult value = input.getValue();
+            Log.d("fragment-values", value.toString());
+            input_values.add(value);
+        }
+
+        return input_values;
     }
 }

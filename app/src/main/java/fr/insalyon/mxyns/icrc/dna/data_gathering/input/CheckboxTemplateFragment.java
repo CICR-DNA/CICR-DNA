@@ -30,6 +30,8 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
         getViewModel().text.observe(owner, checkbox::setText);
         getViewModel().value.observe(owner, checkbox::setChecked);
 
+        checkbox.setOnCheckedChangeListener((a, isChecked) -> updateViewModelValue(isChecked));
+
         return root;
     }
 
@@ -45,5 +47,11 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
             value = ((CheckBox) root.findViewById(R.id.input_template_checkbox)).isChecked();
 
         bundle.putBoolean(ARG_VALUE, value);
+    }
+
+    @Override
+    protected float valueToScore(Boolean value, float unit_score) {
+
+        return value ? unit_score : 0;
     }
 }

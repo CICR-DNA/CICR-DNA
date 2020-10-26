@@ -1,6 +1,8 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.util.TypedValue;
 
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
@@ -18,9 +20,9 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     public InputTemplateFragment() {
     }
 
-    public abstract T getValueFromBundle(Bundle bundle);
+    protected abstract T getValueFromBundle(Bundle bundle);
 
-    public abstract void putValueToBundle(Bundle bundle);
+    protected abstract void putValueToBundle(Bundle bundle);
 
     public InputTemplateFragment<T> init(InputDescription inputDescription) {
 
@@ -49,10 +51,44 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         }
 
         viewModel.text.setValue(getResources().getString(text_id));
+        viewModel.text_id.setValue(text_id);
+
+        // on text_id change, change displayed text
+        viewModel.text_id.observe(this, newId -> viewModel.text.setValue(getResources().getString(newId)));
         viewModel.value.setValue(value);
     }
+
+    protected void updateViewModelValue(T value) {
+
+        if (viewModel == null)
+            return;
+
+        viewModel.value.setValue(value);
+    }
+
+    public InputResult<T> getValue() {
+
+        int id = viewModel.getTextId();
+        String name = getResources().getResourceEntryName(id);
+
+        TypedValue unit_score_holder = new TypedValue();
+        try {
+            getResources().getValue(getResources().getIdentifier(name, "dimen", requireActivity().getPackageName()), unit_score_holder, true);
+        } catch (Exception e) {
+            Log.d("result-calc", "error while looking for unit_score " + name + " for Input " + viewModel.text.getValue());
+        }
+
+        return new InputResult<>(id,
+                name,
+                viewModel.text.getValue(),
+                viewModel.value.getValue(),
+                valueToScore(viewModel.value.getValue(), unit_score_holder.getFloat()));
+    }
+
+    protected abstract float valueToScore(T value, float unit_score);
 
     public InputTemplateViewModel<T> getViewModel() {
         return viewModel;
     }
+
 }

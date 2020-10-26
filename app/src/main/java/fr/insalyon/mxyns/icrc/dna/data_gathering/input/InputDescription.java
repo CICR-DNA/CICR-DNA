@@ -13,7 +13,6 @@ public class InputDescription {
     public final Integer viewTextId;
 
     private static final Map<String, Class> viewTemplatesMap;
-    private static Integer count = 0;
 
     private final Class input_template_class;
 
@@ -33,8 +32,6 @@ public class InputDescription {
     public InputTemplateFragment make() throws InstantiationException, IllegalAccessException {
 
         InputTemplateFragment inputFragment = (InputTemplateFragment) input_template_class.newInstance();
-
-        count += 1;
 
         return inputFragment.init(this);
     }
