@@ -1,9 +1,10 @@
 package fr.insalyon.mxyns.icrc.dna.case_list;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
+import fr.insalyon.mxyns.icrc.dna.DataGatheringActivity;
+import fr.insalyon.mxyns.icrc.dna.MainActivity;
 import fr.insalyon.mxyns.icrc.dna.R;
 
 public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerViewAdapter.ViewHolder> {
@@ -55,15 +58,17 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
 
         public ViewHolder(View view) {
             super(view);
+
             mView = view;
-            mContentView = view.findViewById(R.id.content);
-            caseStatus = view.findViewById(R.id.case_status);
+
+            mContentView = view.findViewById(R.id.case_item_name);
+            caseStatus = view.findViewById(R.id.case_item_status);
 
             defaultBackground = mContentView.getBackground();
             mContentView.setInputType(InputType.TYPE_NULL);
             mContentView.setBackground(null);
 
-            mEdit = view.findViewById(R.id.edit);
+            mEdit = view.findViewById(R.id.case_item_edit);
 
             // on click on edit => can edit text
             // on click on confirm => save text

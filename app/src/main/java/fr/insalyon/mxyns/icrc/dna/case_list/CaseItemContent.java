@@ -17,24 +17,6 @@ import fr.insalyon.mxyns.icrc.dna.Constants;
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
-/**
- * JsonFile:
- *
-     {
-          "displayName": "Case 10/10/2020",
-          "score": "",
-          "entries": {
-              "father": 1,
-              "mother": 1,
-              "daugther": 2,
-              "grand-parents": {
-                  "father": 2,
-                  "mother": 1
-              }
-          }
-     }
- *
- */
 
 public class CaseItemContent {
     public final transient String path;

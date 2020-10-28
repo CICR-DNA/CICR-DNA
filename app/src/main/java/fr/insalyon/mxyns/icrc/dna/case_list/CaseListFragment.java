@@ -39,6 +39,7 @@ public class CaseListFragment extends Fragment {
 
         String dir_path = activity.getFilesDir().getPath() + activity.getResources().getString(R.string.files_path);
         Log.d("loading-json", "loading files in dir " + dir_path);
+
         for (File file : FileUtils.listFiles(dir_path)) {
             try {
                 items.add(CaseItemContent.fromFile(getContext(), file));
