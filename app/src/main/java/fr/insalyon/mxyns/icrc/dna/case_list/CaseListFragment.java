@@ -1,5 +1,6 @@
 package fr.insalyon.mxyns.icrc.dna.case_list;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -7,36 +8,44 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.Objects;
 
 import fr.insalyon.mxyns.icrc.dna.R;
+import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
-/**
- * A fragment representing a list of Items.
- */
 public class CaseListFragment extends Fragment {
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
-    public CaseListFragment() {
-    }
+    ArrayList<CaseItemContent> items = new ArrayList<>();
 
-    // TODO: Customize parameter initialization
-    public static CaseListFragment newInstance() {
-        CaseListFragment fragment = new CaseListFragment();
-        // insert data using Bundle
-        return fragment;
-    }
+    public CaseListFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // load infos using getArguments()
+        items.clear();
+        Activity activity = requireActivity();
+
+        String dir_path = activity.getFilesDir().getPath() + activity.getResources().getString(R.string.files_path);
+        Log.d("loading-json", "loading files in dir " + dir_path);
+        for (File file : FileUtils.listFiles(dir_path)) {
+            try {
+                items.add(CaseItemContent.fromFile(getContext(), file));
+            } catch (Exception ignored) {
+                Log.d("loading-json", "error while loading file : " + file);
+            }
+        }
     }
 
     @Override
@@ -49,7 +58,7 @@ public class CaseListFragment extends Fragment {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            recyclerView.setAdapter(new CaseRecyclerViewAdapter(CaseItemContent.ITEMS));
+            recyclerView.setAdapter(new CaseRecyclerViewAdapter(items));
         }
         return view;
     }

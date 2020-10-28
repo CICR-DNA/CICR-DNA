@@ -1,26 +1,27 @@
 package fr.insalyon.mxyns.icrc.dna.case_list;
 
-import androidx.recyclerview.widget.RecyclerView;
-
+import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.EditText;
 
-import fr.insalyon.mxyns.icrc.dna.R;
-import fr.insalyon.mxyns.icrc.dna.case_list.CaseItemContent.DummyItem;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
- */
+import fr.insalyon.mxyns.icrc.dna.R;
+
 public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<CaseItemContent> mValues;
 
-    public CaseRecyclerViewAdapter(List<DummyItem> items) {
+    public CaseRecyclerViewAdapter(List<CaseItemContent> items) {
         mValues = items;
     }
 
@@ -34,8 +35,9 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+
+        holder.mContentView.setText(mValues.get(position).displayName);
+        holder.caseStatus.setBackgroundTintList(ColorStateList.valueOf(holder.mItem.getColor()));
     }
 
     @Override
@@ -45,15 +47,44 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final EditText mContentView;
+        public final MaterialButton mEdit;
+        public final View caseStatus;
+        private final Drawable defaultBackground;
+        public CaseItemContent mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
+            mContentView = view.findViewById(R.id.content);
+            caseStatus = view.findViewById(R.id.case_status);
+
+            defaultBackground = mContentView.getBackground();
+            mContentView.setBackground(null);
+
+            mEdit = view.findViewById(R.id.edit);
+
+            // on click on edit => can edit text
+            // on click on confirm => save text
+            mEdit.setOnClickListener(e -> {
+
+                if (mEdit.getTag().toString().equalsIgnoreCase("edit")) {
+                    mContentView.setInputType(InputType.TYPE_CLASS_TEXT);
+                    mContentView.setBackground(defaultBackground);
+
+                    mEdit.setTag("confirm");
+                    mEdit.setIconResource(R.drawable.ic_baseline_check_24);
+                } else {
+                    mContentView.setInputType(InputType.TYPE_NULL);
+                    mContentView.setBackground(null);
+
+
+                    mContentView.setText(mItem.setDisplayName(mContentView.getText().toString()));
+
+                    mEdit.setTag("edit");
+                    mEdit.setIconResource(R.drawable.ic_baseline_edit_24);
+                }
+            });
         }
 
         @Override

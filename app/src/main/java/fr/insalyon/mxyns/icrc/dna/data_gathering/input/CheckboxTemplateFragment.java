@@ -50,8 +50,8 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
     }
 
     @Override
-    protected float valueToScore(Boolean value, float unit_score) {
+    protected int valueToCount(Boolean value) {
 
-        return value ? unit_score : 0;
+        return value ? 1 : 0;
     }
 }

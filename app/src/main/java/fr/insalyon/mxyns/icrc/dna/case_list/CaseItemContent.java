@@ -1,72 +1,82 @@
 package fr.insalyon.mxyns.icrc.dna.case_list;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import android.content.Context;
+import android.util.Log;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonPrimitive;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import fr.insalyon.mxyns.icrc.dna.Constants;
+import fr.insalyon.mxyns.icrc.dna.R;
+import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
 /**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- * <p>
- * TODO: Replace all uses of this class before publishing your app.
+ * JsonFile:
+ *
+     {
+          "displayName": "Case 10/10/2020",
+          "score": "",
+          "entries": {
+              "father": 1,
+              "mother": 1,
+              "daugther": 2,
+              "grand-parents": {
+                  "father": 2,
+                  "mother": 1
+              }
+          }
+     }
+ *
  */
+
 public class CaseItemContent {
+    public final transient String path;
+    public final transient int color;
+    public final transient JsonObject json;
 
-    /**
-     * An array of sample (dummy) items.
-     */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public String displayName;
+    public final float score;
 
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public CaseItemContent(Context context, String path, JsonObject json) {
+        this.path = path;
+        this.json = json;
 
-    private static final int COUNT = 25;
+        this.displayName = json.get("displayName").getAsString();
+        this.score = json.get("score").getAsFloat();
 
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
-        }
+        this.color = context.getResources().getColor(score >= Constants.SECOND_THRESHOLD ?
+                            R.color.status_ok
+                    : score >= Constants.FIRST_THRESHOLD ?
+                            R.color.status_medium
+                    : R.color.status_bad);
     }
 
-    private static void addItem(DummyItem item) {
-        ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+    public static CaseItemContent fromFile(Context context, File file) throws FileNotFoundException {
+
+        JsonElement json = new JsonParser().parse(new FileReader(file));
+        Log.d("loading-json", file.getPath() + " => " + json.toString());
+        return new CaseItemContent(context, file.getPath(), json.getAsJsonObject());
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    @Override
+    public String toString() {
+        return displayName;
     }
 
-    private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
-        }
-        return builder.toString();
+    public int getColor() {
+
+        return this.color;
     }
 
-    /**
-     * A dummy item representing a piece of content.
-     */
-    public static class DummyItem {
-        public final String id;
-        public final String content;
-        public final String details;
+    public String setDisplayName(String text) {
 
-        public DummyItem(String id, String content, String details) {
-            this.id = id;
-            this.content = content;
-            this.details = details;
-        }
-
-        @Override
-        public String toString() {
-            return content;
-        }
+        return this.displayName = FileUtils.alterProperty(json, path, "displayName", new JsonPrimitive(text)).getAsString();
     }
 }

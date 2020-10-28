@@ -77,7 +77,7 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
     }
 
     @Override
-    protected float valueToScore(Integer value, float unit_score) {
-        return value * unit_score;
+    protected int valueToCount(Integer value) {
+        return value;
     }
 }

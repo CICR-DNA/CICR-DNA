@@ -70,6 +70,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
         int id = viewModel.getTextId();
         String name = getResources().getResourceEntryName(id);
+        String path = "";
 
         TypedValue unit_score_holder = new TypedValue();
         try {
@@ -78,14 +79,25 @@ public abstract class InputTemplateFragment<T> extends Fragment {
             Log.d("result-calc", "error while looking for unit_score " + name + " for Input " + viewModel.text.getValue());
         }
 
+        try {
+            path = getResources().getString(getResources().getIdentifier(name + "_path","string", requireActivity().getPackageName()));
+        } catch (Exception e ) {
+            Log.d("result-calc", "error while looking for jsonpath " + name + " for Input " + viewModel.text.getValue());
+        }
+
         return new InputResult<>(id,
+                path,
                 name,
                 viewModel.text.getValue(),
                 viewModel.value.getValue(),
+                valueToCount(viewModel.value.getValue()),
                 valueToScore(viewModel.value.getValue(), unit_score_holder.getFloat()));
     }
 
-    protected abstract float valueToScore(T value, float unit_score);
+    protected float valueToScore(T value, float unit_score) {
+        return valueToCount(value) * unit_score;
+    }
+    protected abstract int valueToCount(T value);
 
     public InputTemplateViewModel<T> getViewModel() {
         return viewModel;
