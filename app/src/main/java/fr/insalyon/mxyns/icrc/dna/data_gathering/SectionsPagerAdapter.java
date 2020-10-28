@@ -53,7 +53,8 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
                 new InputDescription("checkbox", R.string.tier_1_screen_3_option_1),
                 new InputDescription("checkbox", R.string.tier_1_screen_3_option_2),
                 new InputDescription("checkbox", R.string.tier_1_screen_3_option_3),
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_4));
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_4)
+        );
 
         registerFormFragment(1, R.string.tier_1_screen_3_title,
                 R.string.tier_1_screen_3_description,

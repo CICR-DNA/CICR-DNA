@@ -10,12 +10,22 @@
     <string name="tier_1_screen_1_option_2">Father</string>
     <string name="tier_1_screen_1_option_2_path">father</string>
 
-    <string name="tier_1_screen_3_title">Parents</string>
+
+    <string name="tier_1_screen_3_title">Grandparents</string>
     <string name="tier_1_screen_3_description"><b>Can BRS be collected from the spouse of the missing person (other <u>biological</u> parent of the children)?</b></string>
-    <string name="tier_1_screen_3_option_1">Wife</string>
-    <string name="tier_1_screen_3_option_2">Husband</string>
-    <string name="tier_1_screen_3_option_3">2nd Wife</string>
-    <string name="tier_1_screen_3_option_4">2nd Husband</string>
+
+    <string name="tier_1_screen_3_option_1">Paternal Grandfather</string>
+    <string name="tier_1_screen_3_option_1_path">grandparents.paternal.grandpa</string>
+    <string name="tier_1_screen_3_option_2">Paternal grandmother</string>
+    <string name="tier_1_screen_3_option_2_path">grandparents.paternal.grandma</string>
+
+
+    <string name="tier_1_screen_3_option_3">Maternal grandfather</string>
+    <string name="tier_1_screen_3_option_3_path">grandparents.maternal.grandpa</string>
+    <string name="tier_1_screen_3_option_4">Maternal grandmother</string>
+    <string name="tier_1_screen_3_option_4_path">grandparents.maternal.grandma</string>
+
+    <string name="tier_1_screen_3_option_5">2nd Husband</string>
 
     <string name="wrong_integer_input_error">please enter a valid integer value</string>
 </resources>

@@ -60,6 +60,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             caseStatus = view.findViewById(R.id.case_status);
 
             defaultBackground = mContentView.getBackground();
+            mContentView.setInputType(InputType.TYPE_NULL);
             mContentView.setBackground(null);
 
             mEdit = view.findViewById(R.id.edit);
@@ -77,7 +78,6 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
                 } else {
                     mContentView.setInputType(InputType.TYPE_NULL);
                     mContentView.setBackground(null);
-
 
                     mContentView.setText(mItem.setDisplayName(mContentView.getText().toString()));
 

@@ -35,6 +35,7 @@ public class FileUtils {
         ArrayList<File> list = new ArrayList<>(Arrays.asList(dir.listFiles()));
 
         Collections.sort(list, (a, b) -> a.getPath().compareTo(b.getPath()));
+        Collections.reverse(list);
 
         return list;
     }
@@ -122,7 +123,7 @@ public class FileUtils {
 
         JsonObject prev = root;
         int i = 1;
-        while (i++ < shards.length - 1) {
+        while (i < shards.length - 1) {
 
             JsonObject tmp;
             if (prev.has(shards[i]))
@@ -131,6 +132,7 @@ public class FileUtils {
                 prev.add(shards[i], tmp = new JsonObject());
 
             prev = tmp;
+            i++;
         }
 
         prev.add(shards[shards.length - 1], value);
