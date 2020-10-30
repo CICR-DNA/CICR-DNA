@@ -5,10 +5,14 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,6 +24,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 
@@ -152,5 +157,64 @@ public class FileUtils {
             i++;
 
         return "case-"+i+".json";
+    }
+
+    public static JsonObject loadJsonFromFile(String path) {
+
+        if (path == null)
+            return null;
+
+        return loadJsonFromFile(new File(path));
+    }
+    public static JsonObject loadJsonFromFile(File file) {
+
+        if (!file.exists())
+            return null;
+
+        try {
+            return new JsonParser().parse(new FileReader(file)).getAsJsonObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static ArrayList<String> findAll(String tag, JsonObject data) {
+
+        Log.d("find-json-tag", "start findAll(" + tag + ") in : \n " + data.toString());
+        ArrayList<String> matches;
+        find(tag, ".", data, "", matches = new ArrayList<>());
+        Log.d("find-json-tag", "result => " + Arrays.toString(matches.toArray()));
+
+        return matches;
+    }
+
+    private static void find(String tag, String sep, JsonObject data, String current, ArrayList<String> matches) {
+
+        Log.d("find-json-tag", "   => " + current);
+        for (Map.Entry<String, JsonElement> entry : data.entrySet()) {
+            if (entry.getKey().equalsIgnoreCase(tag)) {
+                matches.add(current + tag);
+                Log.d("find-json-tag", "       => " + current + tag + " = " + entry.getValue().getAsString());
+            } else if (!entry.getValue().isJsonNull() && !entry.getValue().isJsonPrimitive()){
+                find(tag, sep, entry.getValue().getAsJsonObject(), current + entry.getKey() + sep, matches);
+            }
+        }
+    }
+
+    public static JsonObject getJsonFromPath(String path, JsonObject data) {
+
+        String[] shards = path.split("\\.");
+
+        JsonObject prev = data;
+        for (int i = 0; i < shards.length - 1; ++i) {
+            if (prev.has(shards[i]))
+                prev = prev.getAsJsonObject(shards[i]);
+            else return null;
+        }
+
+        if (prev.has(shards[shards.length - 1]))
+            return prev;
+        else return null;
     }
 }

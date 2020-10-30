@@ -1,15 +1,16 @@
 package fr.insalyon.mxyns.icrc.dna.case_list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.constraintlayout.widget.Group;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
@@ -17,7 +18,6 @@ import com.google.android.material.button.MaterialButton;
 import java.util.List;
 
 import fr.insalyon.mxyns.icrc.dna.DataGatheringActivity;
-import fr.insalyon.mxyns.icrc.dna.MainActivity;
 import fr.insalyon.mxyns.icrc.dna.R;
 
 public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerViewAdapter.ViewHolder> {
@@ -38,6 +38,9 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
+
+        holder.mContentView.setEnabled(false);
+        holder.mContentView.setEnabled(true);
 
         holder.mContentView.setText(mValues.get(position).displayName);
         holder.caseStatus.setBackgroundTintList(ColorStateList.valueOf(holder.mItem.getColor()));
@@ -62,7 +65,9 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             mView = view;
 
             mContentView = view.findViewById(R.id.case_item_name);
+
             caseStatus = view.findViewById(R.id.case_item_status);
+
 
             defaultBackground = mContentView.getBackground();
             mContentView.setInputType(InputType.TYPE_NULL);
@@ -89,6 +94,17 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
                     mEdit.setTag("edit");
                     mEdit.setIconResource(R.drawable.ic_baseline_edit_24);
                 }
+            });
+
+            caseStatus.setOnClickListener(e -> {
+
+                Context context = view.getContext();
+                Intent intent = new Intent(context, DataGatheringActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("load", mItem.path);
+                intent.putExtra("plsreset", true);
+
+                context.startActivity(intent);
             });
         }
 

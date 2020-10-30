@@ -2,6 +2,7 @@ package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -67,6 +68,17 @@ public class DataGatheringActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        System.out.println();
+
+        String path = getIntent().getStringExtra("load");
+        if (path != null)
+            sectionsPagerAdapter.loadDataFromFile(path);
+    }
+
     // Back button behaviour
     @Override
     public void onBackPressed() {
@@ -79,8 +91,10 @@ public class DataGatheringActivity extends AppCompatActivity {
     protected void onNewIntent(Intent intent) {
 
         if (intent.getBooleanExtra("plsreset", false)) {
+            setIntent(intent);
             recreate();
         }
+
         super.onNewIntent(intent);
     }
 

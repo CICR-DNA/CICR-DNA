@@ -36,7 +36,7 @@ public class FormScreenFragment extends Fragment {
     private static final String ARG_DESCRIPTION = "description";
     private static final String ARG_IMAGE = "image";
 
-    private final ArrayList<InputTemplateFragment> inputFragments = new ArrayList<>();
+    final ArrayList<InputTemplateFragment> inputFragments = new ArrayList<>();
 
     public static FormScreenFragment newInstance(
             int tier,

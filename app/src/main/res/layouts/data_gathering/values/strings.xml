@@ -9,6 +9,8 @@
     <string name="tier_1_screen_1_option_1_path">mother</string>
     <string name="tier_1_screen_1_option_2">Father</string>
     <string name="tier_1_screen_1_option_2_path">father</string>
+    <string name="tier_1_screen_1_option_3">Siblings</string>
+    <string name="tier_1_screen_1_option_3_path">siblings</string>
 
 
     <string name="tier_1_screen_3_title">Grandparents</string>

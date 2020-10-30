@@ -36,22 +36,22 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
     }
 
     @Override
-    public Boolean getValueFromBundle(@Nullable Bundle bundle) {
-        return bundle.getBoolean(ARG_VALUE);
-    }
-
-    @Override
     public void putValueToBundle(@Nullable Bundle bundle) {
         boolean value = false;
         if (root != null)
             value = ((CheckBox) root.findViewById(R.id.input_template_checkbox)).isChecked();
 
-        bundle.putBoolean(ARG_VALUE, value);
+        bundle.putSerializable(ARG_VALUE, value);
     }
 
     @Override
     protected int valueToCount(Boolean value) {
 
         return value ? 1 : 0;
+    }
+
+    @Override
+    public Boolean parseValue(String str) {
+        return Boolean.parseBoolean(str);
     }
 }

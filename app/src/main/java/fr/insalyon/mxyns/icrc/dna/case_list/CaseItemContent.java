@@ -42,9 +42,9 @@ public class CaseItemContent {
 
     public static CaseItemContent fromFile(Context context, File file) throws FileNotFoundException {
 
-        JsonElement json = new JsonParser().parse(new FileReader(file));
+        JsonObject json = FileUtils.loadJsonFromFile(file);
         Log.d("loading-json", file.getPath() + " => " + json.toString());
-        return new CaseItemContent(context, file.getPath(), json.getAsJsonObject());
+        return new CaseItemContent(context, file.getPath(), json);
     }
 
     @Override

@@ -32,7 +32,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:targetApi="m" />
+            android:clickable="false"
+            android:focusable="false"
+            />
 
         <EditText
             android:id="@+id/case_item_name"

@@ -20,8 +20,6 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     public InputTemplateFragment() {
     }
 
-    protected abstract T getValueFromBundle(Bundle bundle);
-
     protected abstract void putValueToBundle(Bundle bundle);
 
     public InputTemplateFragment<T> init(InputDescription inputDescription) {
@@ -47,7 +45,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         Bundle arguments = getArguments();
         if (arguments != null) {
             text_id = requireArguments().getInt(ARG_TEXT);
-            value = getValueFromBundle(arguments);
+            value = parseValue(arguments.getSerializable(ARG_VALUE).toString());
         }
 
         viewModel.text.setValue(getResources().getString(text_id));
@@ -69,7 +67,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     public InputResult<T> getValue() {
 
         int id = viewModel.getTextId();
-        String name = getResources().getResourceEntryName(id);
+        String name = getResources().getResourceEntryName(viewModel.getTextId());
         String path = "";
 
         TypedValue unit_score_holder = new TypedValue();
@@ -103,4 +101,13 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         return viewModel;
     }
 
+    public abstract T parseValue(String str);
+
+    public void setValue(String str) {
+
+        if (viewModel != null)
+            viewModel.setValue(parseValue(str));
+        else
+            getArguments().putSerializable(ARG_VALUE, str);
+    }
 }

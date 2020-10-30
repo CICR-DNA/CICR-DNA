@@ -33,6 +33,7 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
 
         TextView textView = root.findViewById(R.id.input_template_integer_text);
         getViewModel().text.observe(owner, textView::setText);
+        intField.setText(String.valueOf(getViewModel().value.getValue()));
 
         intField.addTextChangedListener(new TextWatcher() {
             @Override
@@ -63,21 +64,21 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
     }
 
     @Override
-    public Integer getValueFromBundle(@Nullable Bundle bundle) {
-        return bundle.getInt(ARG_VALUE);
-    }
-
-    @Override
     public void putValueToBundle(@Nullable Bundle bundle) {
         String value = "0";
         if (root != null)
             value = ((EditText) root.findViewById(R.id.input_template_integer_field)).getText().toString();
 
-        bundle.putInt(ARG_VALUE, Integer.parseInt(value));
+        bundle.putSerializable(ARG_VALUE, Integer.parseInt(value));
     }
 
     @Override
     protected int valueToCount(Integer value) {
         return value;
+    }
+
+    @Override
+    public Integer parseValue(String str) {
+        return Integer.parseInt(str);
     }
 }
