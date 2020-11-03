@@ -9,8 +9,7 @@ public class FormScreenFragmentViewModel extends ViewModel {
     private final MutableLiveData<String> title = new MutableLiveData<>(),
             description = new MutableLiveData<>();
 
-    private final MutableLiveData<Integer> image_id = new MutableLiveData<>(),
-            tier = new MutableLiveData<>();
+    private final MutableLiveData<Integer> image_id = new MutableLiveData<>();
 
     public LiveData<String> getTitle() {
         return this.title;
@@ -24,10 +23,6 @@ public class FormScreenFragmentViewModel extends ViewModel {
         return this.image_id;
     }
 
-    public LiveData<Integer> getTier() {
-        return this.tier;
-    }
-
     public void setTitle(String string) {
         this.title.setValue(string);
     }
@@ -38,9 +33,5 @@ public class FormScreenFragmentViewModel extends ViewModel {
 
     public void setDescription(String desc) {
         this.description.setValue(desc);
-    }
-
-    public void setTier(Integer tier) {
-        this.tier.setValue(tier);
     }
 }

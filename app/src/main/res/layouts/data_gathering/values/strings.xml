@@ -27,7 +27,18 @@
     <string name="tier_1_screen_3_option_4">Maternal grandmother</string>
     <string name="tier_1_screen_3_option_4_path">grandparents.maternal.grandma</string>
 
-    <string name="tier_1_screen_3_option_5">2nd Husband</string>
+    <string name="tier_1_screen_5_title">Aunts and Uncles</string>
+    <string name="tier_1_screen_5_description">kqjdlqzkdjqzmdzqjdlk jlqz jdlkqzjd qzlkdjqklmdjzq mlkdjq klmdjqlkmdj</string>
+
+    <string name="tier_1_screen_5_option_1">Paternal Uncles</string>
+    <string name="tier_1_screen_5_option_1_path">uncles.paternal</string>
+    <string name="tier_1_screen_5_option_2">Paternal Aunts</string>
+    <string name="tier_1_screen_5_option_2_path">aunts.paternal</string>
+
+    <string name="tier_1_screen_5_option_3">Maternal Uncles</string>
+    <string name="tier_1_screen_5_option_3_path">uncles.maternal</string>
+    <string name="tier_1_screen_5_option_4">Maternal Aunts</string>
+    <string name="tier_1_screen_5_option_4_path">aunts.maternal</string>
 
     <string name="wrong_integer_input_error">please enter a valid integer value</string>
 </resources>

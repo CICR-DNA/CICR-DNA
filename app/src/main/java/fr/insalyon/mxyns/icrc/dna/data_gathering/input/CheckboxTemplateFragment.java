@@ -17,7 +17,8 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
 
     private View root;
 
-    public CheckboxTemplateFragment() {}
+    public CheckboxTemplateFragment() {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,7 +31,7 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
         getViewModel().text.observe(owner, checkbox::setText);
         getViewModel().value.observe(owner, checkbox::setChecked);
 
-        checkbox.setOnCheckedChangeListener((a, isChecked) -> updateViewModelValue(isChecked));
+        checkbox.setOnCheckedChangeListener((a, isChecked) -> updateValue(isChecked));
 
         return root;
     }

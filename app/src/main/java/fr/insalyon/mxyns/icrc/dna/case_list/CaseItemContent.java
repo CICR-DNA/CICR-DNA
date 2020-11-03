@@ -3,20 +3,15 @@ package fr.insalyon.mxyns.icrc.dna.case_list;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.google.gson.JsonPrimitive;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
 import fr.insalyon.mxyns.icrc.dna.Constants;
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
-
 
 public class CaseItemContent {
     public final transient String path;
@@ -33,9 +28,9 @@ public class CaseItemContent {
         this.displayName = json.get("displayName").getAsString();
         this.score = json.get("score").getAsFloat();
 
-        this.color = context.getResources().getColor(score >= Constants.SECOND_THRESHOLD ?
+        this.color = context.getResources().getColor(score >= Constants.getSecondThreshold(context.getResources()) ?
                             R.color.status_ok
-                    : score >= Constants.FIRST_THRESHOLD ?
+                    : score >= Constants.getFirstThreshold(context.getResources()) ?
                             R.color.status_medium
                     : R.color.status_bad);
     }

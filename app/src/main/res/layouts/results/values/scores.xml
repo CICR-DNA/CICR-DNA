@@ -2,7 +2,7 @@
 <resources>
 
     <item name="first_threshold" type="dimen" format="float">4</item>
-    <item name="second_threshold" type="dimen" format="float">15</item>
+    <item name="second_threshold" type="dimen" format="float">10</item>
 
     <item name="tier_1_screen_1_option_1" type="dimen" format="float">1.1</item>
     <item name="tier_1_screen_1_option_2" type="dimen" format="float">1.2</item>

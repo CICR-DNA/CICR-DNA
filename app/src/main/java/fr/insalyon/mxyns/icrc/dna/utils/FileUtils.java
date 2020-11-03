@@ -2,27 +2,17 @@ package fr.insalyon.mxyns.icrc.dna.utils;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -81,32 +71,26 @@ public class FileUtils {
         return json.get(property);
     }
 
-    public static JsonObject jsonFromValues(HashMap<Integer, ArrayList<InputResult>> values, float score) {
-
-        JsonObject obj = new JsonObject();
-        obj.addProperty("displayName", new Date().toString());
-        obj.addProperty("score", score);
+    public static JsonObject jsonFromValues(HashMap<Integer, ArrayList<InputResult>> values) {
 
         JsonObject entries = new JsonObject();
         JsonObject entry;
         for (Integer tier : values.keySet())
             for (InputResult result : values.get(tier)) {
                 if (result.getJsonPath().length() == 0) {
-                    Log.d("json-entry", "No path for " + result.getName());
+                    Log.d("json-entry", "No path for " + result.getInputName());
                     continue;
                 }
 
                 entry = new JsonObject();
-                entry.addProperty("input", result.getName());
-                entry.addProperty("raw", result.getRaw().toString());
+                entry.addProperty("input", result.getInputName());
+                entry.addProperty("raw", result.getRaw());
                 entry.addProperty("count", result.getCount());
                 Log.d("json-entry", entry.toString());
                 addJsonEntry(entries, result.getJsonPath(), entry);
             }
 
-        obj.add("entries", entries);
-
-        return obj;
+        return entries;
     }
 
     private static void addJsonEntry(JsonObject dest, String jsonPath, JsonElement value) {

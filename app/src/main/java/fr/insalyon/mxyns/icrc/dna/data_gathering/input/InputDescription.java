@@ -1,20 +1,26 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
+import android.content.res.Resources;
+import android.util.Log;
+
 import androidx.annotation.StringRes;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InputDescription {
+import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenFragment;
 
-    public final String viewType;
+public class InputDescription implements Serializable {
+
+    public final String viewType, inputName, displayName;
 
     @StringRes
     public final Integer viewTextId;
 
     private static final Map<String, Class> viewTemplatesMap;
 
-    private final Class input_template_class;
+    private transient final Class input_template_class;
 
     static {
         viewTemplatesMap = new HashMap<>();
@@ -22,22 +28,32 @@ public class InputDescription {
         viewTemplatesMap.put("integer", SpinnerTemplateFragment.class);
     }
 
-    public InputDescription(String viewType, Integer viewTextId) {
+    public InputDescription(String viewType, Integer viewTextId, Resources res) {
 
         this.viewTextId = viewTextId;
+        this.inputName = res.getResourceEntryName(viewTextId);
+        this.displayName = res.getString(viewTextId);
+
         this.viewType = viewType;
         this.input_template_class = viewTemplatesMap.get(viewType);
     }
 
-    public InputTemplateFragment make() throws InstantiationException, IllegalAccessException {
+    public InputTemplateFragment make(FormScreenFragment owner) throws InstantiationException, IllegalAccessException {
 
+        Log.d("data-oncreate", "make input fragment : \ninput : " + inputName +"\ntype="+viewType);
         InputTemplateFragment inputFragment = (InputTemplateFragment) input_template_class.newInstance();
+        inputFragment.init(this, owner);
 
-        return inputFragment.init(this);
+        return inputFragment;
     }
 
+    @Override
     public String toString() {
-
-        return "Input[type=" + viewType + ", class=" + input_template_class + ", textId=" + viewTextId + "]";
+        return "InputDescription{" +
+                "viewType='" + viewType + '\'' +
+                ", inputName='" + inputName + '\'' +
+                ", viewTextId=" + viewTextId +
+                ", input_template_class=" + input_template_class +
+                '}';
     }
 }

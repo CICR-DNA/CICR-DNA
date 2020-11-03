@@ -24,19 +24,20 @@ import java.util.ArrayList;
 
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputDescription;
-import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
 
 public class FormScreenFragment extends Fragment {
 
     private FormScreenFragmentViewModel viewModel;
 
-    private static final String ARG_TIER = "tier";
     private static final String ARG_TITLE = "title";
     private static final String ARG_DESCRIPTION = "description";
     private static final String ARG_IMAGE = "image";
 
-    final ArrayList<InputTemplateFragment> inputFragments = new ArrayList<>();
+    public int tier;
+    private String title;
+
+    public final ArrayList<InputTemplateFragment> inputFragments = new ArrayList<>();
 
     public static FormScreenFragment newInstance(
             int tier,
@@ -46,11 +47,13 @@ public class FormScreenFragment extends Fragment {
             InputDescription... inputs_desc
     ) {
 
+
+        Log.d("data-oncreate", "build fragment");
         FormScreenFragment fragment = new FormScreenFragment();
+        fragment.tier = tier;
 
         Bundle bundle = new Bundle();
 
-        bundle.putInt(ARG_TIER, tier);
         bundle.putInt(ARG_TITLE, title);
         bundle.putInt(ARG_DESCRIPTION, description);
         bundle.putInt(ARG_IMAGE, image);
@@ -59,7 +62,8 @@ public class FormScreenFragment extends Fragment {
 
         for (InputDescription inputDescription : inputs_desc) {
             try {
-                fragment.inputFragments.add(inputDescription.make());
+                Log.d("make-input", "inputDesc : " + inputDescription );
+                fragment.inputFragments.add(inputDescription.make(fragment));
             } catch (IllegalAccessException | java.lang.InstantiationException e) {
                 System.out.println("Unable to create input : " + inputDescription);
                 e.printStackTrace();
@@ -72,22 +76,23 @@ public class FormScreenFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         viewModel = new ViewModelProvider(this).get(FormScreenFragmentViewModel.class);
 
-        int index = 1, title = -1, description = -1, image = -1;
+        int title = -1, description = -1, image = -1;
 
         if (getArguments() != null) {
-            index = getArguments().getInt(ARG_TIER);
             title = getArguments().getInt(ARG_TITLE);
             description = getArguments().getInt(ARG_DESCRIPTION);
             image = getArguments().getInt(ARG_IMAGE);
         }
 
         Resources res = getResources();
-        viewModel.setTier(index);
         viewModel.setTitle(res.getString(title));
         viewModel.setDescription(res.getString(description));
         viewModel.setImageId(image);
+
+        Log.d("data-oncreate", "formscreen fragment create " + (this.title = res.getString(title)));
     }
 
     @Override
@@ -105,35 +110,34 @@ public class FormScreenFragment extends Fragment {
 
         // TODO set title
 
+
         LinearLayout form = root.findViewById(R.id.input_list_lin_layout);
 
-        FragmentManager fragMan = getChildFragmentManager();
-        FragmentTransaction fragTransaction = fragMan.beginTransaction();
+        if (form.getChildCount() != inputFragments.size()) {
+            FragmentManager fragMan = getChildFragmentManager();
+            FragmentTransaction fragTransaction = fragMan.beginTransaction();
 
-        for (int i = 0; i < inputFragments.size(); ++i) {
-            if (fragMan.findFragmentByTag("input_" + i) == null)
-                fragTransaction.add(form.getId(), inputFragments.get(i), "input_" + i);
+
+            for (int i = 0; i < inputFragments.size(); ++i) {
+                if (fragMan.findFragmentByTag("input_" + i) == null) {
+                    Log.d("transac", "input_" + i + " doesn't exist, adding " + inputFragments.get(i));
+                    fragTransaction.add(form.getId(), inputFragments.get(i), "input_" + i);
+                }
+            }
+
+            fragTransaction.commit();
         }
 
-        fragTransaction.commit();
+
+        Log.d("data-oncreate", "formscreen fragment create view " + title);
 
         return root;
     }
 
-    public FormScreenFragmentViewModel getViewModel() {
-        return viewModel;
-    }
+    @Override
+    public void onResume() {
+        super.onResume();
 
-    public ArrayList<InputResult> getValues() {
-
-        ArrayList<InputResult> input_values = new ArrayList<>();
-
-        for (InputTemplateFragment input : inputFragments) {
-            InputResult value = input.getValue();
-            Log.d("fragment-values", value.toString());
-            input_values.add(value);
-        }
-
-        return input_values;
+        Log.d("data-oncreate", "formscreen fragment resume " + title);
     }
 }

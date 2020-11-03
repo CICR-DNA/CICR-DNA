@@ -2,7 +2,6 @@ package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,36 +10,21 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import fr.insalyon.mxyns.icrc.dna.case_list.CaseListFragment;
-
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Constants.init(getResources());
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         FloatingActionButton fab = findViewById(R.id.confirm);
         fab.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this, DataGatheringActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
-        });
-
-        // Part of back button behaviour
-        fab.setOnLongClickListener(view -> {
-
-            Intent intent = new Intent(MainActivity.this, DataGatheringActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            intent.putExtra("plsreset", true); // ask for fields reset
-            startActivity(intent);
-            return true;
         });
     }
 

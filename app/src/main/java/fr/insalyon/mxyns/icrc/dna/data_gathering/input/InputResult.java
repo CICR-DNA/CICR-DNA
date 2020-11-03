@@ -2,66 +2,52 @@ package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
 import java.io.Serializable;
 
-public class InputResult<T> implements Serializable {
+public class InputResult implements Serializable {
 
 
-    private final int id;
-    private final String name;
-    private final String displayName;
-    private final String jsonPath;
+    private final String input_name;
 
-    private final T raw;
-    private final float score;
+    private final String rawValue;
+
+    // must be set later by loading string resource input_name + "_path"
+    // bc InputResult is made by a Fragment that can be detached at the time the method is called
+    private String jsonPath;
     private final int count;
 
-    public InputResult(int id, String jsonPath, String name, String displayName, T raw, int count, float score) {
+    public InputResult(String input_name, String rawValue, int count) {
 
-        this.id = id;
-        this.name = name;
-        this.displayName = displayName;
-        this.raw = raw;
-        this.score = score;
+        this.input_name = input_name;
+        this.rawValue = rawValue;
         this.count = count;
-        this.jsonPath = jsonPath;
     }
 
-    public int getId() {
-        return id;
+    public String getInputName() {
+        return input_name;
     }
 
-    public String getName() {
-        return name;
+    public String getRaw() {
+        return rawValue;
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public T getRaw() {
-        return raw;
-    }
-
-    public float getScore() {
-        return score;
-    }
-
-
-    @Override
-    public String toString() {
-        return "InputResult{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", displayName='" + displayName + '\'' +
-                ", raw=" + raw +
-                ", score=" + score +
-                '}';
+    public int getCount() {
+        return count;
     }
 
     public String getJsonPath() {
         return jsonPath;
     }
 
-    public int getCount() {
-        return count;
+    public void setJsonPath(String jsonPath) {
+        this.jsonPath = jsonPath;
+    }
+
+    @Override
+    public String toString() {
+        return "InputResult{" +
+                "input_name='" + input_name + '\'' +
+                ", rawValue='" + rawValue + '\'' +
+                ", jsonPath='" + jsonPath + '\'' +
+                ", count=" + count +
+                '}';
     }
 }
