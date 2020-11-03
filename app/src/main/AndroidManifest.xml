@@ -21,7 +21,9 @@
         <activity
             android:name="fr.insalyon.mxyns.icrc.dna.DataGatheringActivity"
             android:label="@string/title_activity_data_gathering"
-            android:theme="@style/Theme.ICRC_DNA.NoActionBar" />
+            android:theme="@style/Theme.ICRC_DNA.NoActionBar"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name="fr.insalyon.mxyns.icrc.dna.MainActivity"
             android:label="@string/app_name"
