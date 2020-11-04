@@ -28,11 +28,7 @@ public class CaseItemContent {
         this.displayName = json.get("displayName").getAsString();
         this.score = json.get("score").getAsFloat();
 
-        this.color = context.getResources().getColor(score >= Constants.getSecondThreshold(context.getResources()) ?
-                            R.color.status_ok
-                    : score >= Constants.getFirstThreshold(context.getResources()) ?
-                            R.color.status_medium
-                    : R.color.status_bad);
+        this.color = Constants.getStatusColor(context.getResources(), score);
     }
 
     public static CaseItemContent fromFile(Context context, File file) throws FileNotFoundException {

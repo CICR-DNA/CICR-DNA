@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1">
@@ -11,9 +9,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/case_item_edit"
+        app:layout_constraintEnd_toStartOf="@+id/case_item_menu_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -27,14 +25,13 @@
             android:adjustViewBounds="true"
             android:background="@drawable/square"
             android:backgroundTintMode="src_over"
+            android:clickable="false"
+            android:focusable="false"
             android:foreground="@drawable/square_borders"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:clickable="false"
-            android:focusable="false"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/case_item_name"
@@ -42,7 +39,6 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="none"
-            android:text="case name"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/case_item_status"
@@ -50,19 +46,17 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <Button
-        android:id="@+id/case_item_edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/case_item_menu_button"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="45dp"
+        android:layout_height="0dp"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:minWidth="0dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:tag="edit"
-        app:icon="@drawable/ic_baseline_edit_24"
-        app:iconPadding="0dp"
+        android:background="?attr/selectableItemBackground"
+        android:tint="@android:color/tertiary_text_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

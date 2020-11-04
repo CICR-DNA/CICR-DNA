@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="icrc_primary_red">#F90005</color>
+    <color name="icrc_primary_red_variant">#8E1719</color>
+    <color name="icrc_white">#FFFFFFFF</color>
+    <color name="icrc_white_variant">#8C8C8C</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>

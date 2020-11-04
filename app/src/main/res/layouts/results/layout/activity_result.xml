@@ -37,6 +37,8 @@
         android:translationY="-75dp"
         app:srcCompat="@drawable/ic_baseline_undo_24" />
 
-    <include layout="@layout/content_result" />
+    <include
+        android:id="@+id/result_content"
+        layout="@layout/content_result" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

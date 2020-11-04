@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.google.gson.JsonObject;
 
 import java.io.File;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,7 +26,7 @@ import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
 public class ResultActivity extends AppCompatActivity {
 
-    float score;
+    private float score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,10 @@ public class ResultActivity extends AppCompatActivity {
         go_back_fab.setOnClickListener(view -> finish());
 
         score = evaluateScore(values);
+
+        findViewById(R.id.result_content).setBackgroundColor(Constants.getStatusColor(getResources(), score));
+
+        ((TextView) findViewById(R.id.result_text)).setText(String.valueOf( (int)(10*score) / 10.0 ));
     }
 
     private float evaluateScore(HashMap<Integer, ArrayList<InputResult>> values) {

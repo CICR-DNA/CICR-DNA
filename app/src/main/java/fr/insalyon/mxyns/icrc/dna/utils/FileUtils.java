@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -200,5 +201,11 @@ public class FileUtils {
         if (prev.has(shards[shards.length - 1]))
             return prev;
         else return null;
+    }
+
+    public static boolean deleteFile(String path) {
+
+        File file = new File(path);
+        return file.exists() && file.delete();
     }
 }
