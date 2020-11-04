@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">BRSSA</string>
-    <string name="open_data_gathering_button">Open Data Gathering</string>
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_data_gathering">DataGatheringActivity</string>
-    <string name="title_activity_result">ResultActivity</string>
+    <string name="title_activity_data_gathering">Data Gathering</string>
+    <string name="title_activity_result">Results</string>
 
     <string name="files_path">/cases/</string>
 

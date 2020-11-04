@@ -12,4 +12,9 @@
     <item name="tier_1_screen_3_option_3" type="dimen" format="float">2.3</item>
     <item name="tier_1_screen_3_option_4" type="dimen" format="float">2.4</item>
 
+    <item name="tier_1_screen_5_option_1" type="dimen" format="float">3.1</item>
+    <item name="tier_1_screen_5_option_2" type="dimen" format="float">3.2</item>
+    <item name="tier_1_screen_5_option_3" type="dimen" format="float">3.3</item>
+    <item name="tier_1_screen_5_option_4" type="dimen" format="float">3.4</item>
+
 </resources>

@@ -2,6 +2,7 @@
 <resources>
 
     <string name="template_text">placeholder</string>
+    <string name="wrong_integer_input_error">please enter a valid integer value</string>
 
     <string name="tier_1_screen_1_title">Parents</string>
     <string name="tier_1_screen_1_description"><b>Can BRS be collected from the <u>biological</u> father and/or mother of the missing person?</b></string>
@@ -40,5 +41,4 @@
     <string name="tier_1_screen_5_option_4">Maternal Aunts</string>
     <string name="tier_1_screen_5_option_4_path">aunts.maternal</string>
 
-    <string name="wrong_integer_input_error">please enter a valid integer value</string>
 </resources>
