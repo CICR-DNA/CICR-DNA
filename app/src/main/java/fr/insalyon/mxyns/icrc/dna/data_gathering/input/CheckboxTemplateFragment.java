@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import androidx.lifecycle.LifecycleOwner;
 
@@ -28,7 +29,8 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
         root = inflater.inflate(R.layout.fragment_checkbox_template, container, false);
 
         CheckBox checkbox = root.findViewById(R.id.input_template_checkbox);
-        getViewModel().text.observe(owner, checkbox::setText);
+        TextView textView = root.findViewById(R.id.input_checkbox_text);
+        getViewModel().text.observe(owner, textView::setText);
         getViewModel().value.observe(owner, checkbox::setChecked);
 
         checkbox.setOnCheckedChangeListener((a, isChecked) -> updateValue(isChecked));
