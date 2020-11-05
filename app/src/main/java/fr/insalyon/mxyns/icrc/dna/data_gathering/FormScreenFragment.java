@@ -2,6 +2,7 @@ package fr.insalyon.mxyns.icrc.dna.data_gathering;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,6 +105,7 @@ public class FormScreenFragment extends Fragment {
 
         final TextView descView = root.findViewById(R.id.description);
         viewModel.getDescription().observe(lifecycleOwner, descView::setText);
+        descView.setMovementMethod(new ScrollingMovementMethod());
 
         final ImageView imageView = root.findViewById(R.id.relationshipRepresentation);
         viewModel.getImageId().observe(lifecycleOwner, imageView::setImageResource);
