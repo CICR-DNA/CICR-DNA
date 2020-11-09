@@ -4,17 +4,45 @@
     <item name="first_threshold" type="dimen" format="float">4</item>
     <item name="second_threshold" type="dimen" format="float">10</item>
 
-    <item name="tier_1_screen_1_option_1" type="dimen" format="float">1.1</item>
-    <item name="tier_1_screen_1_option_2" type="dimen" format="float">1.2</item>
+    <!--Mother--> <item name="tier_1_screen_1_option_1" type="dimen" format="float">1.1</item>
+    <!--Father--> <item name="tier_1_screen_1_option_2" type="dimen" format="float">1.2</item>
 
-    <item name="tier_1_screen_3_option_1" type="dimen" format="float">2.1</item>
-    <item name="tier_1_screen_3_option_2" type="dimen" format="float">2.2</item>
-    <item name="tier_1_screen_3_option_3" type="dimen" format="float">2.3</item>
-    <item name="tier_1_screen_3_option_4" type="dimen" format="float">2.4</item>
+    <!--Daughters--><item name="tier_1_screen_2_option_1" type="dimen" format="float">2.1</item>
+    <!--Sons--><item name="tier_1_screen_2_option_2" type="dimen" format="float">2.2</item>
 
-    <item name="tier_1_screen_5_option_1" type="dimen" format="float">3.1</item>
-    <item name="tier_1_screen_5_option_2" type="dimen" format="float">3.2</item>
-    <item name="tier_1_screen_5_option_3" type="dimen" format="float">3.3</item>
-    <item name="tier_1_screen_5_option_4" type="dimen" format="float">3.4</item>
+    <!--Wife--><item name="tier_1_screen_3_option_1" type="dimen" format="float">2.3</item>
+    <!--Husband--><item name="tier_1_screen_3_option_2" type="dimen" format="float">2.4</item>
+
+    <!--Daughters 2nd spouse--><item name="tier_1_screen_4_option_1" type="dimen" format="float">2.3</item>
+    <!--Sons 2nd spouse--><item name="tier_1_screen_4_option_2" type="dimen" format="float">2.4</item>
+
+    <!--Wife #2--><item name="tier_1_screen_5_option_1" type="dimen" format="float">2.3</item>
+    <!--Husband #2--><item name="tier_1_screen_5_option_2" type="dimen" format="float">2.4</item>
+
+    <!--Full brother--><item name="tier_1_screen_6_option_1" type="dimen" format="float">2.3</item>
+    <!--Full sister--><item name="tier_1_screen_6_option_2" type="dimen" format="float">2.4</item>
+    <!--Monozygotic Twin--><item name="tier_1_screen_6_option_3" type="dimen" format="float">2.4</item>
+
+    <!--Maternal Grandmother--><item name="tier_2_screen_1_option_1" type="dimen" format="float">2.3</item>
+    <!--Maternal Grandfather--><item name="tier_2_screen_1_option_2" type="dimen" format="float">2.4</item>
+    <!--Paternal Grandmother--><item name="tier_2_screen_1_option_3" type="dimen" format="float">2.4</item>
+    <!--Paternal Grandfather--><item name="tier_2_screen_1_option_4" type="dimen" format="float">2.4</item>
+
+    <!--Grandchildren (from all children)--><item name="tier_2_screen_2_option_1" type="dimen" format="float">2.3</item>
+
+    <!--Maternal Aunt--><item name="tier_2_screen_3_option_1" type="dimen" format="float">2.3</item>
+    <!--Maternal Uncle--><item name="tier_2_screen_3_option_2" type="dimen" format="float">2.4</item>
+    <!--Paternal Aunt--><item name="tier_2_screen_3_option_3" type="dimen" format="float">2.4</item>
+    <!--Paternal Uncle--><item name="tier_2_screen_3_option_4" type="dimen" format="float">2.4</item>
+
+    <!--Nieces (from all aunts and uncles)--><item name="tier_2_screen_4_option_2" type="dimen" format="float">2.3</item>
+
+    <!--Paternal Half-brother--><item name="tier_2_screen_5_option_1" type="dimen" format="float">2.3</item>
+    <!--Paternal Half-sister--><item name="tier_2_screen_5_option_2" type="dimen" format="float">2.4</item>
+    <!--Paternal Half-brother--><item name="tier_2_screen_5_option_3" type="dimen" format="float">2.4</item>
+    <!--Paternal Half-sister--><item name="tier_2_screen_5_option_4" type="dimen" format="float">2.4</item>
+
+    <!--Step-Mother--><item name="tier_2_screen_6_option_1" type="dimen" format="float">2.4</item>
+    <!--Step-Father--><item name="tier_2_screen_6_option_2" type="dimen" format="float">2.4</item>
 
 </resources>

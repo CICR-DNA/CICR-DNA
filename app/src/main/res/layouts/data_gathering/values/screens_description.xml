@@ -4,41 +4,101 @@
     <string name="template_text">placeholder</string>
     <string name="wrong_integer_input_error">please enter a valid integer value</string>
 
-    <string name="tier_1_screen_1_title">Parents</string>
-    <string name="tier_1_screen_1_description"><b>Can BRS be collected from the <u>biological</u> father and/or mother of the missing person?</b></string>
-    <string name="tier_1_screen_1_option_1">Mother</string>
-    <string name="tier_1_screen_1_option_1_path">mother</string>
-    <string name="tier_1_screen_1_option_2">Father</string>
-    <string name="tier_1_screen_1_option_2_path">father</string>
-    <string name="tier_1_screen_1_option_3">Siblings</string>
-    <string name="tier_1_screen_1_option_3_path">siblings</string>
+    <!--Screen Title--><string name="tier_1_screen_1_title">replace tier_1_screen_1_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_1_screen_1_description">replace tier_1_screen_1_description in strings.xml</string>
+    <!--Mother--> <string name="tier_1_screen_1_option_1">Mother</string>
+    <!--Mother--> <string name="tier_1_screen_1_option_1_path">parents.mother</string>
+    <!--Father--> <string name="tier_1_screen_1_option_2">Father</string>
+    <!--Father--> <string name="tier_1_screen_1_option_2_path">parents.father</string>
+
+    <!--Screen Title--><string name="tier_1_screen_2_title">replace tier_1_screen_2_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_1_screen_2_description">replace tier_1_screen_2_description in strings.xml</string>
+    <!--Daughters--><string name="tier_1_screen_2_option_1">Daughters</string>
+    <!--Daughters--><string name="tier_1_screen_2_option_1_path">children.daughters</string>
+    <!--Sons--><string name="tier_1_screen_2_option_2">Sons</string>
+    <!--Sons--><string name="tier_1_screen_2_option_2_path">children.sons</string>
+
+    <!--Screen Title--><string name="tier_1_screen_3_title">replace tier_1_screen_3_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_1_screen_3_description">replace tier_1_screen_3_description in strings.xml</string>
+    <!--Wife--><string name="tier_1_screen_3_option_1">Wife</string>
+    <!--Wife--><string name="tier_1_screen_3_option_1_path">spouses.wife</string>
+    <!--Husband--><string name="tier_1_screen_3_option_2">Husband</string>
+    <!--Husband--><string name="tier_1_screen_3_option_2_path">spouses.husband</string>
 
 
-    <string name="tier_1_screen_3_title">Grandparents</string>
-    <string name="tier_1_screen_3_description"><b>Can BRS be collected from the spouse of the missing person (other <u>biological</u> parent of the children)?</b></string>
+    <!--Screen Title--><string name="tier_1_screen_4_title">replace tier_1_screen_4_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_1_screen_4_description">replace tier_1_screen_4_description in strings.xml</string>
+    <!--Wife #2--><string name="tier_1_screen_4_option_1">Wife #2</string>
+    <!--Wife #2--><string name="tier_1_screen_4_option_1_path">spouses.wife2</string>
+    <!--Husband #2--><string name="tier_1_screen_4_option_2">Husband #2</string>
+    <!--Husband #2--><string name="tier_1_screen_4_option_2_path">spouses.husband2</string>
 
-    <string name="tier_1_screen_3_option_1">Paternal Grandfather</string>
-    <string name="tier_1_screen_3_option_1_path">grandparents.paternal.grandpa</string>
-    <string name="tier_1_screen_3_option_2">Paternal grandmother</string>
-    <string name="tier_1_screen_3_option_2_path">grandparents.paternal.grandma</string>
 
+    <!--Screen Title--><string name="tier_1_screen_5_title">replace tier_1_screen_5_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_1_screen_5_description">replace tier_1_screen_5_description in strings.xml</string>
+    <!--Daughters 2nd spouse--><string name="tier_1_screen_5_option_1">Daughters 2nd spouse</string>
+    <!--Daughters 2nd spouse--><string name="tier_1_screen_5_option_1_path">children.daughters2</string>
+    <!--Sons 2nd spouse--><string name="tier_1_screen_5_option_2">Sons 2nd spouse</string>
+    <!--Sons 2nd spouse--><string name="tier_1_screen_5_option_2_path">children.sons2</string>
 
-    <string name="tier_1_screen_3_option_3">Maternal grandfather</string>
-    <string name="tier_1_screen_3_option_3_path">grandparents.maternal.grandpa</string>
-    <string name="tier_1_screen_3_option_4">Maternal grandmother</string>
-    <string name="tier_1_screen_3_option_4_path">grandparents.maternal.grandma</string>
+    <!--Screen Title--><string name="tier_1_screen_6_title">replace tier_1_screen_6_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_1_screen_6_description">replace tier_1_screen_6_description in strings.xml</string>
+    <!--Full brother--><string name="tier_1_screen_6_option_1">Full brother</string>
+    <!--Full brother--><string name="tier_1_screen_6_option_1_path">siblings.fullBrothers</string>
+    <!--Full sister--><string name="tier_1_screen_6_option_2">Full sister</string>
+    <!--Full sister--><string name="tier_1_screen_6_option_2_path">siblings.fullSisters</string>
+    <!--Monozygotic Twin--><string name="tier_1_screen_6_option_3">Monozygotic Twin</string>
+    <!--Monozygotic Twin--><string name="tier_1_screen_6_option_3_path">siblings.monozygoticTwins</string>
 
-    <string name="tier_1_screen_5_title">Aunts and Uncles</string>
-    <string name="tier_1_screen_5_description">kqjdlqzkdjqzmdzqjdlk jlqz jdlkqzjd qzlkdjqklmdjzq mlkdjq klmdjqlkmdj</string>
+    <!--Screen Title--><string name="tier_2_screen_1_title">replace tier_2_screen_1_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_2_screen_1_description">replace tier_2_screen_1_description in strings.xml</string>
+    <!--Maternal Grandmother--><string name="tier_2_screen_1_option_1">Maternal Grandmother</string>
+    <!--Maternal Grandmother--><string name="tier_2_screen_1_option_1_path">grandparents.maternal.grandmother</string>
+    <!--Maternal Grandfather--><string name="tier_2_screen_1_option_2">Maternal Grandfather</string>
+    <!--Maternal Grandfather--><string name="tier_2_screen_1_option_2_path">grandparents.maternal.grandfather</string>
+    <!--Paternal Grandmother--><string name="tier_2_screen_1_option_3">Paternal Grandmother</string>
+    <!--Paternal Grandmother--><string name="tier_2_screen_1_option_3_path">grandparents.paternal.grandmother</string>
+    <!--Paternal Grandfather--><string name="tier_2_screen_1_option_4">Paternal Grandfather</string>
+    <!--Paternal Grandfather--><string name="tier_2_screen_1_option_4_path">grandparents.paternal.grandfather</string>
 
-    <string name="tier_1_screen_5_option_1">Paternal Uncles</string>
-    <string name="tier_1_screen_5_option_1_path">uncles.paternal</string>
-    <string name="tier_1_screen_5_option_2">Paternal Aunts</string>
-    <string name="tier_1_screen_5_option_2_path">aunts.paternal</string>
+    <!--Screen Title--><string name="tier_2_screen_2_title">replace tier_2_screen_2_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_2_screen_2_description">replace tier_2_screen_2_description in strings.xml</string>
+    <!--Grandchildren (from all children)--><string name="tier_2_screen_2_option_1">Grandchildren (from all children)</string>
+    <!--Grandchildren (from all children)--><string name="tier_2_screen_2_option_1_path">grandchildren</string>
 
-    <string name="tier_1_screen_5_option_3">Maternal Uncles</string>
-    <string name="tier_1_screen_5_option_3_path">uncles.maternal</string>
-    <string name="tier_1_screen_5_option_4">Maternal Aunts</string>
-    <string name="tier_1_screen_5_option_4_path">aunts.maternal</string>
+    <!--Screen Title--><string name="tier_2_screen_3_title">replace tier_2_screen_3_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_2_screen_3_description">replace tier_2_screen_3_description in strings.xml</string>
+    <!--Maternal Aunt--><string name="tier_2_screen_3_option_1">Maternal Aunt</string>
+    <!--Maternal Aunt--><string name="tier_2_screen_3_option_1_path">auntsAndUncles.maternal.aunt</string>
+    <!--Maternal Uncle--><string name="tier_2_screen_3_option_2">Maternal Uncle</string>
+    <!--Maternal Uncle--><string name="tier_2_screen_3_option_2_path">auntsAndUncles.maternal.uncle</string>
+    <!--Paternal Aunt--><string name="tier_2_screen_3_option_3">Paternal Aunt</string>
+    <!--Paternal Aunt--><string name="tier_2_screen_3_option_3_path">auntsAndUncles.paternal.aunt</string>
+    <!--Paternal Uncle--><string name="tier_2_screen_3_option_4">Paternal Uncle</string>
+    <!--Paternal Uncle--><string name="tier_2_screen_3_option_4_path">auntsAndUncles.paternal.uncle</string>
+
+    <!--Screen Title--><string name="tier_2_screen_4_title">replace tier_2_screen_4_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_2_screen_4_description">replace tier_2_screen_4_description in strings.xml</string>
+    <!--Nieces (from all aunts and uncles)--><string name="tier_2_screen_4_option_2">Nieces (from all aunts and uncles)</string>
+    <!--Nieces (from all aunts and uncles)--><string name="tier_2_screen_4_option_2_path">auntsAndUncles.niecesAndNephews</string>
+
+    <!--Screen Title--><string name="tier_2_screen_5_title">replace tier_2_screen_5_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_2_screen_5_description">replace tier_2_screen_5_description in strings.xml</string>
+    <!--Maternal Half-brother--><string name="tier_2_screen_5_option_1">Maternal Half-brother</string>
+    <!--Maternal Half-brother--><string name="tier_2_screen_5_option_1_path">halfSiblings.maternal.halfBrother</string>
+    <!--Maternal Half-sister--><string name="tier_2_screen_5_option_2">Maternal Half-sister</string>
+    <!--Maternal Half-sister--><string name="tier_2_screen_5_option_2_path">halfSiblings.maternal.halfSister</string>
+
+    <!--Paternal Half-brother--><string name="tier_2_screen_5_option_3">Paternal Half-brother</string>
+    <!--Paternal Half-brother--><string name="tier_2_screen_5_option_3_path">halfSiblings.paternal.halfBrother</string>
+    <!--Paternal Half-sister--><string name="tier_2_screen_5_option_4">Paternal Half-sister</string>
+    <!--Paternal Half-sister--><string name="tier_2_screen_5_option_4_path">halfSiblings.paternal.halfSister</string>
+
+    <!--Screen Title--><string name="tier_2_screen_6_title">replace tier_2_screen_6_title in strings.xml</string>
+    <!--Screen Description--><string name="tier_2_screen_6_description">replace tier_2_screen_6_description in strings.xml</string>
+    <!--Step-Mother--><string name="tier_2_screen_6_option_1">Step-Mother</string>
+    <!--Step-Mother--><string name="tier_2_screen_6_option_1_path">stepParents.mother</string>
+    <!--Step-Father--><string name="tier_2_screen_6_option_2">Step-Father</string>
+    <!--Step-Father--><string name="tier_2_screen_6_option_2_path">stepParents.father</string>
 
 </resources>

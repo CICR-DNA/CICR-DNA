@@ -69,16 +69,45 @@ public class ResultActivity extends AppCompatActivity {
 
         TypedValue unit_score_holder = new TypedValue();
 
+        // First pass needed for bonuses
+        short grandparents = 0, children = 0, niecesAndNephews = 0;
+        for (Integer tier : values.keySet())
+            for (InputResult result : values.get(tier)) {
+
+                if (result.getJsonPath().toLowerCase().startsWith("grandparents"))
+                    grandparents += result.getCount();
+
+                if (result.getJsonPath().toLowerCase().startsWith("children"))
+                    children += result.getCount();
+
+                if (result.getJsonPath().toLowerCase().startsWith("auntsanduncles.niecesandnephews"))
+                    niecesAndNephews += result.getCount();
+            }
+
+
+        // Dumb sum
         for (Integer tier : values.keySet()) {
             Log.d("all-values", "Tier " + tier + " : ");
             for (InputResult result : values.get(tier))
                 try {
-                    getResources().getValue(getResources().getIdentifier(result.getInputName(), "dimen", getPackageName()), unit_score_holder, true);
+
+                    if (children < 1 && result.getJsonPath().toLowerCase().startsWith("spouses"))
+                        continue;
+
+                    // FIXME is in "Scoring System" slide but not mentioned in the rest of the slideshow
+                    if (niecesAndNephews < 1 && result.getJsonPath().toLowerCase().startsWith("siblings.spouses"))
+                        continue;
+
+                        getResources().getValue(getResources().getIdentifier(result.getInputName(), "dimen", getPackageName()), unit_score_holder, true);
                     score += unit_score_holder.getFloat() * result.getCount();
+
                 } catch (Exception e) {
                     Log.d("result-calc", "error while looking for unit_score of Input " + result.getInputName());
                 }
         }
+
+        if (grandparents >= 4)
+            score += 4;
 
         Toast.makeText(this, "Score is " + score, Toast.LENGTH_LONG).show();
 

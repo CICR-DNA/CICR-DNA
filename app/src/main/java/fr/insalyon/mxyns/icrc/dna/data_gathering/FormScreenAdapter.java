@@ -50,27 +50,21 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_1_screen_1_description,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("checkbox", R.string.tier_1_screen_1_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_1_option_2, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_1_option_3, mContext.getResources())
+                new InputDescription("checkbox", R.string.tier_1_screen_1_option_2, mContext.getResources())
+        );
 
+        registerFormFragment(1, R.string.tier_1_screen_2_title,
+                R.string.tier_1_screen_2_description,
+                R.drawable.ic_baseline_double_check_24,
+                new InputDescription("checkbox", R.string.tier_1_screen_2_option_1, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_1_screen_2_option_2, mContext.getResources())
         );
 
         registerFormFragment(1, R.string.tier_1_screen_3_title,
                 R.string.tier_1_screen_3_description,
                 R.drawable.ic_baseline_double_check_24,
                 new InputDescription("checkbox", R.string.tier_1_screen_3_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_3, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_4, mContext.getResources())
-        );
-
-        registerFormFragment(1, R.string.tier_1_screen_5_title,
-                R.string.tier_1_screen_5_description,
-                R.drawable.ic_baseline_double_check_24,
-                new InputDescription("integer", R.string.tier_1_screen_5_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_5_option_2, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_5_option_3, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_5_option_4, mContext.getResources())
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2, mContext.getResources())
         );
     }
 
