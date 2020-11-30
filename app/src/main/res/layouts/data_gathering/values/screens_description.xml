@@ -4,8 +4,8 @@
     <string name="template_text">placeholder</string>
     <string name="wrong_integer_input_error">please enter a valid integer value</string>
 
-    <!--Screen Title--><string name="tier_1_screen_1_title">replace tier_1_screen_1_title in strings.xml</string>
-    <!--Screen Description--><string name="tier_1_screen_1_description">replace tier_1_screen_1_description in strings.xml</string>
+    <!--Screen Title--><string name="tier_1_screen_1_title">Parents</string>
+    <!--Screen Description--><string name="tier_1_screen_1_description">Direct Parents</string>
     <!--Mother--> <string name="tier_1_screen_1_option_1">Mother</string>
     <!--Mother--> <string name="tier_1_screen_1_option_1_path">parents.mother</string>
     <!--Father--> <string name="tier_1_screen_1_option_2">Father</string>

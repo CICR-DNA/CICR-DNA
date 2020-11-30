@@ -56,8 +56,8 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         registerFormFragment(1, R.string.tier_1_screen_2_title,
                 R.string.tier_1_screen_2_description,
                 R.drawable.ic_baseline_double_check_24,
-                new InputDescription("checkbox", R.string.tier_1_screen_2_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_2_option_2, mContext.getResources())
+                new InputDescription("integer", R.string.tier_1_screen_2_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_1_screen_2_option_2, mContext.getResources())
         );
 
         registerFormFragment(1, R.string.tier_1_screen_3_title,
