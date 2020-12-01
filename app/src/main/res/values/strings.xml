@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_main">Cases</string>
-    <string name="title_activity_data_gathering">Collected Data</string>
+    <string name="title_activity_data_gathering">BRS Collection</string>
     <string name="title_activity_result">Results</string>
 
     <string name="files_path">/cases/</string>
