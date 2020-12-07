@@ -27,12 +27,33 @@
             android:text="@string/template_text"
             android:textSize="@dimen/datagathering_description_font_size" />
 
-        <ImageView
-            android:id="@+id/relationshipRepresentation"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="@dimen/datagathering_image_width"
-            android:layout_height="@dimen/datagathering_image_height"
-            android:src="@drawable/ic_baseline_crop_square_24"
-            app:srcCompat="@drawable/ic_baseline_crop_square_24" />
+            android:layout_height="@dimen/datagathering_image_height">
+
+            <ImageButton
+                android:id="@+id/pedigreeHelpButton"
+                style="@style/Widget.AppCompat.ImageButton"
+                android:layout_width="@dimen/datagathering_help_width"
+                android:layout_height="@dimen/datagathering_help_height"
+                android:background="?attr/selectableItemBackground"
+                android:tint="@android:color/tertiary_text_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_help_outline_24" />
+
+            <ImageView
+                android:id="@+id/relationshipRepresentation"
+                android:layout_width="@dimen/datagathering_image_width"
+                android:layout_height="@dimen/datagathering_image_height"
+                android:src="@drawable/ic_baseline_crop_square_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_crop_square_24" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 

@@ -11,6 +11,9 @@ import java.util.Map;
 
 import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenFragment;
 
+/**
+ * Description of an DataGatheringActivity input. Used to generate a corresponding InputTemplateFragment
+ */
 public class InputDescription implements Serializable {
 
     public final String viewType, inputName, displayName;
@@ -18,6 +21,9 @@ public class InputDescription implements Serializable {
     @StringRes
     public final Integer viewTextId;
 
+    /**
+     * Input name => Fragment class register
+     */
     private static final Map<String, Class> viewTemplatesMap;
 
     private transient final Class input_template_class;

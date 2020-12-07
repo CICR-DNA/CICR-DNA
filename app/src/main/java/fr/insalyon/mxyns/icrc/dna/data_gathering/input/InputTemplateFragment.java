@@ -13,6 +13,11 @@ import fr.insalyon.mxyns.icrc.dna.DataGatheringActivity;
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenFragment;
 
+/**
+ * Represents an user input of a certain type
+ *
+ * @param <T> type of the input
+ */
 public abstract class InputTemplateFragment<T> extends Fragment {
 
     public static final String ARG_TEXT_ID = "text_id";
@@ -25,8 +30,16 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     public InputDescription description;
     public FormScreenFragment owner;
 
-    public InputTemplateFragment() { }
+    public InputTemplateFragment() {
+    }
 
+    /**
+     * Must be called after instantiation for fragment to work
+     *
+     * @param inputDescription input description from which the input fragment will be generated
+     * @param owner
+     * @return
+     */
     public InputTemplateFragment<T> init(InputDescription inputDescription, FormScreenFragment owner) {
 
         Bundle args = new Bundle();
@@ -139,10 +152,13 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     }
 
     protected abstract void putValueToBundle(Bundle bundle);
+
     protected abstract int valueToCount(T value);
+
     public InputTemplateViewModel<T> getViewModel() {
         return viewModel;
     }
+
     public abstract T parseValue(String str);
 
     public void setRawValue(String str) {

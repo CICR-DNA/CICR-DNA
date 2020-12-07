@@ -20,11 +20,23 @@ import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
+/**
+ * Tabbed activity. Each tab is a "screen" with its input fragments whose inputs will be retrieved and passed to ResultActivity
+ */
 public class DataGatheringActivity extends AppCompatActivity {
 
-    private FormScreenAdapter formScreenAdapter;
-    private String path;
+    /**
+     * Inputs' data modified in real time by the fragments
+     */
     public static HashMap<String, JsonObject> data = null;
+    /**
+     * Tabs container and manager
+     */
+    private FormScreenAdapter formScreenAdapter;
+    /**
+     * JSON File, null if new case. not null if case loaded from a file
+     */
+    private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +44,7 @@ public class DataGatheringActivity extends AppCompatActivity {
 
         Log.d("data-oncreate", "CREATE DATAGATHERING");
 
+        // load case data from disk
         path = getIntent().getStringExtra("load");
         if (path != null)
             data = loadDataFromFile(path);
@@ -50,6 +63,7 @@ public class DataGatheringActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
         FloatingActionButton fab = findViewById(R.id.confirm);
+        // TODO move raw strings to R.string
         fab.setOnClickListener(view -> Snackbar.make(view, "Êtes-vous sûr ?", Snackbar.LENGTH_LONG)
                 .setAction("Valider", e -> {
 
@@ -69,6 +83,12 @@ public class DataGatheringActivity extends AppCompatActivity {
         Log.d("data-oncreate", formScreenAdapter.inputNameToFragment.toString());
     }
 
+    /**
+     * Loads a case data from a JSON File, finds all inputs' values in the json.
+     *
+     * @param path file path
+     * @return map : input name(eg: tier_1_screen_3_option_4) => JsonObject (eg { raw: "true", count: "1", input:"tier_1_screen_3_option_4" })
+     */
     public HashMap<String, JsonObject> loadDataFromFile(String path) {
 
         JsonObject jsonData = FileUtils.loadJsonFromFile(path);
@@ -86,6 +106,12 @@ public class DataGatheringActivity extends AppCompatActivity {
         return data;
     }
 
+    /**
+     * Gathers inputs' values from all of the InputFragments (stored in 'data')
+     *
+     * @return map : tier => list of InputResult
+     * @see this#data
+     */
     public HashMap<Integer, ArrayList<InputResult>> gatherValues() {
 
         HashMap<Integer, ArrayList<InputResult>> result = new HashMap<>();

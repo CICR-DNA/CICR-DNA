@@ -8,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -16,7 +15,6 @@ import com.google.gson.JsonObject;
 
 import java.io.File;
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -24,8 +22,16 @@ import java.util.HashMap;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
+/**
+ * Activity that displays the result of the input given by the user in the DataGatheringActivity
+ */
 public class ResultActivity extends AppCompatActivity {
 
+    /**
+     * score evaluated in evaluateScore
+     *
+     * @see this#evaluateScore(HashMap)
+     */
     private float score;
 
     @Override
@@ -60,13 +66,20 @@ public class ResultActivity extends AppCompatActivity {
 
         findViewById(R.id.result_content).setBackgroundColor(Constants.getStatusColor(getResources(), score));
 
-        ((TextView) findViewById(R.id.result_text)).setText(String.valueOf( (int)(10*score) / 10.0 ));
+        ((TextView) findViewById(R.id.result_text)).setText(String.valueOf((int) (10 * score) / 10.0));
     }
 
+    /**
+     * Math to evaluate "DNA score" from user inputs
+     *
+     * @param values map : tier => list of InputResult in this tier
+     * @return score
+     */
     private float evaluateScore(HashMap<Integer, ArrayList<InputResult>> values) {
 
         float score = 0;
 
+        // used to get score corresponding to an input
         TypedValue unit_score_holder = new TypedValue();
 
         // First pass needed for bonuses
@@ -98,7 +111,8 @@ public class ResultActivity extends AppCompatActivity {
                     if (niecesAndNephews < 1 && result.getJsonPath().toLowerCase().startsWith("siblings.spouses"))
                         continue;
 
-                        getResources().getValue(getResources().getIdentifier(result.getInputName(), "dimen", getPackageName()), unit_score_holder, true);
+                    // load unit score of an input
+                    getResources().getValue(getResources().getIdentifier(result.getInputName(), "dimen", getPackageName()), unit_score_holder, true);
                     score += unit_score_holder.getFloat() * result.getCount();
 
                 } catch (Exception e) {
@@ -109,11 +123,18 @@ public class ResultActivity extends AppCompatActivity {
         if (grandparents >= 4)
             score += 4;
 
+        // toast popup score value
         Toast.makeText(this, "Score is " + score, Toast.LENGTH_LONG).show();
 
         return score;
     }
 
+    /**
+     * Saves inputs' results to a json file
+     *
+     * @param values user inputs
+     * @param path   json output file : filesDir + R.string.files_path + / + case-x.json
+     */
     private void saveAndExit(HashMap<Integer, ArrayList<InputResult>> values, String path) {
 
         JsonObject obj = path != null ? FileUtils.loadJsonFromFile(path) : new JsonObject();
@@ -130,6 +151,9 @@ public class ResultActivity extends AppCompatActivity {
         resetAppToInitialState();
     }
 
+    /**
+     * Reset app state and go back to MainActivity
+     */
     private void resetAppToInitialState() {
 
         Intent intent = new Intent(ResultActivity.this, MainActivity.class);

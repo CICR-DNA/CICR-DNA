@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class InputResult implements Serializable {
 
-
     private final String input_name;
 
     private final String rawValue;

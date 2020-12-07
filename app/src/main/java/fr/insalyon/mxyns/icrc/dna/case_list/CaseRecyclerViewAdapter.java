@@ -6,7 +6,6 @@ import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,6 +22,9 @@ import fr.insalyon.mxyns.icrc.dna.DataGatheringActivity;
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
+/**
+ * Adapts the CaseItemContent to a RecyclerView
+ */
 public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerViewAdapter.ViewHolder> {
 
     private final List<CaseItemContent> mValues;
@@ -55,6 +56,12 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         return mValues.size();
     }
 
+    /**
+     * Deletes a case and notifies removal of the item
+     *
+     * @param position item index to remove
+     * @return true if file is deleted
+     */
     public boolean deleteCase(int position) {
 
 
@@ -80,9 +87,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             mView = view;
 
             mContentView = view.findViewById(R.id.case_item_name);
-
             caseStatus = view.findViewById(R.id.case_item_status);
-
             mMenu = view.findViewById(R.id.case_item_menu_button);
 
             defaultBackground = mContentView.getBackground();
@@ -111,6 +116,9 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             });
         }
 
+        /**
+         * Loads a case into DataGatheringActivity
+         */
         private void openFile(View view) {
 
             Log.d("menu-rename", "open file " + mItem.path);
@@ -123,6 +131,9 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             context.startActivity(intent);
         }
 
+        /**
+         * Show Rename/Delete/Edit menu
+         */
         private void showMenu() {
 
             PopupMenu menu = new PopupMenu(mView.getContext(), mMenu);
@@ -144,6 +155,12 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             menu.show();
         }
 
+        /**
+         * Switches case name EditText attributes
+         *
+         * @param state true if editable
+         * @return editable
+         */
         private boolean renameMode(boolean state) {
 
             Log.d("menu-rename", "rename " + state);

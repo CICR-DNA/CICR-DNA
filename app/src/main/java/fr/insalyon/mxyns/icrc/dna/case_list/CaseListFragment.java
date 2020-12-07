@@ -3,33 +3,36 @@ package fr.insalyon.mxyns.icrc.dna.case_list;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
+/**
+ * Case List in MainActivity
+ *
+ * @see fr.insalyon.mxyns.icrc.dna.MainActivity
+ */
 public class CaseListFragment extends Fragment {
 
+    /**
+     * Cases data
+     */
     ArrayList<CaseItemContent> items = new ArrayList<>();
 
-    public CaseListFragment() { }
+    public CaseListFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class CaseListFragment extends Fragment {
         items.clear();
         Activity activity = requireActivity();
 
+        // load cases from files
         String dir_path = activity.getFilesDir().getPath() + activity.getResources().getString(R.string.files_path);
         Log.d("loading-json", "loading files in dir " + dir_path);
 
