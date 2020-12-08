@@ -1,9 +1,12 @@
 package fr.insalyon.mxyns.icrc.dna;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,9 +67,48 @@ public class ResultActivity extends AppCompatActivity {
 
         score = evaluateScore(values);
 
+        // update UI colors & text
         findViewById(R.id.result_content).setBackgroundColor(Constants.getStatusColor(getResources(), score));
+        ((TextView) findViewById(R.id.result_text)).setText(Constants.getStatusLabel(getResources(), score));
 
-        ((TextView) findViewById(R.id.result_text)).setText(String.valueOf((int) (10 * score) / 10.0));
+        Log.d("results-summary", "fillSummary: b4");
+        fillSummary(values, findViewById(R.id.results_summary_layout));
+    }
+
+    // TODO use some sort of formattable string res
+    private void fillSummary(HashMap<Integer, ArrayList<InputResult>> data, LinearLayout summaryLayout) {
+
+        Resources res = getResources();
+        Context context = summaryLayout.getContext();
+        ArrayList<TextView> tierLines = new ArrayList<>();
+        for (Integer tier : data.keySet()) {
+            String tierText = String.format(res.getString(R.string.results_summary_tier_item), tier);
+
+            for (InputResult result : data.get(tier)) {
+                if (result.getCount() > 0) {
+                    String resultText = String.format(res.getString(R.string.results_summary_input_item), result.getDisplayName(), result.getCount());
+                    tierLines.add(makeSummaryLine(resultText, 2, context));
+                }
+            }
+
+            if (tierLines.size() > 0) {
+                summaryLayout.addView(makeSummaryLine(tierText, 1, context));
+
+                for (TextView tierLine : tierLines)
+                    summaryLayout.addView(tierLine);
+
+                tierLines.clear();
+            }
+        }
+    }
+
+    public TextView makeSummaryLine(String text, int numberOfTabs, Context context) {
+
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setPadding((int) (numberOfTabs * getResources().getDimension(R.dimen.activity_horizontal_margin)), 0, 0, 0);
+
+        return textView;
     }
 
     /**

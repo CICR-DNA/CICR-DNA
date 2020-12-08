@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="results_summary_title">Data collection summary</string>
+    <string name="results_summary_tier_item">Tier %d :</string>
+    <string name="results_summary_input_item">%s : %d</string>
+</resources>

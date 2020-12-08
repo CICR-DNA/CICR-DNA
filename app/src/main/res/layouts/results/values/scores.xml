@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--The way it works : score in [-∞                => first_threshold]   -> first_step_label     -->
+    <!--                   score in [first_threshold   => second_threshold]  -> second_step_label    -->
+    <!--                   score in [second_threshold  => +∞]                -> third_step_label     -->
     <item name="first_threshold" type="dimen" format="float">4</item>
     <item name="second_threshold" type="dimen" format="float">10</item>
 
-    <!--Mother--> <item name="tier_1_screen_1_option_1" type="dimen" format="float">1.1</item>
-    <!--Father--> <item name="tier_1_screen_1_option_2" type="dimen" format="float">1.2</item>
+    <item name="first_step_label" type="string">BAD</item>
+    <item name="second_step_label" type="string">MEH</item>
+    <item name="third_step_label" type="string">LET\'S GO!</item>
 
-    <!--Daughters--><item name="tier_1_screen_2_option_1" type="dimen" format="float">2.1</item>
-    <!--Sons--><item name="tier_1_screen_2_option_2" type="dimen" format="float">2.2</item>
 
-    <!--Wife--><item name="tier_1_screen_3_option_1" type="dimen" format="float">2.3</item>
-    <!--Husband--><item name="tier_1_screen_3_option_2" type="dimen" format="float">2.4</item>
+    <!--Mother-->
+    <item name="tier_1_screen_1_option_1" type="dimen" format="float">1.1</item>
+    <!--Father-->
+    <item name="tier_1_screen_1_option_2" type="dimen" format="float">1.2</item>
+
+    <!--Daughters-->
+    <item name="tier_1_screen_2_option_1" type="dimen" format="float">2.1</item>
+    <!--Sons-->
+    <item name="tier_1_screen_2_option_2" type="dimen" format="float">2.2</item>
+
+    <!--Wife-->
+    <item name="tier_1_screen_3_option_1" type="dimen" format="float">2.3</item>
+    <!--Husband-->
+    <item name="tier_1_screen_3_option_2" type="dimen" format="float">2.4</item>
 
     <!--Daughters 2nd spouse--><item name="tier_1_screen_4_option_1" type="dimen" format="float">2.3</item>
     <!--Sons 2nd spouse--><item name="tier_1_screen_4_option_2" type="dimen" format="float">2.4</item>

@@ -143,9 +143,11 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
         JsonObject data = DataGatheringActivity.data.get(this.name);
         String rawValue = data.get("raw").getAsString();
+        String displayName = getArguments().getString(ARG_TEXT);
 
         return new InputResult(
                 name,
+                displayName,
                 rawValue,
                 valueToCount(parseValue(rawValue))
         );

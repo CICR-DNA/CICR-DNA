@@ -1,8 +1,10 @@
 package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.res.Resources;
-import android.graphics.Color;
 import android.util.TypedValue;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.StringRes;
 
 public class Constants {
 
@@ -28,6 +30,7 @@ public class Constants {
         }
     }
 
+    @ColorInt
     public static int getStatusColor(Resources res, float score) {
 
         return res.getColor(score >= Constants.getSecondThreshold(res) ?
@@ -35,5 +38,20 @@ public class Constants {
                 : score >= Constants.getFirstThreshold(res) ?
                 R.color.status_medium
                 : R.color.status_bad);
+    }
+
+    @StringRes
+    public static int getStatusLabelId(Resources res, float score) {
+
+        return score >= Constants.getSecondThreshold(res) ?
+                R.string.third_step_label
+                : score >= Constants.getFirstThreshold(res) ?
+                R.string.second_step_label
+                : R.string.first_step_label;
+    }
+
+    public static String getStatusLabel(Resources res, float score) {
+
+        return res.getString(getStatusLabelId(res, score));
     }
 }

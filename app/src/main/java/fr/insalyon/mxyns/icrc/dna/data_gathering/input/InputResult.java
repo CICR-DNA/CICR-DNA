@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 public class InputResult implements Serializable {
 
-    private final String input_name;
+    private final String inputName;
+    private final String displayName;
 
     private final String rawValue;
 
@@ -13,15 +14,20 @@ public class InputResult implements Serializable {
     private String jsonPath;
     private final int count;
 
-    public InputResult(String input_name, String rawValue, int count) {
+    public InputResult(String inputName, String displayName, String rawValue, int count) {
 
-        this.input_name = input_name;
+        this.inputName = inputName;
+        this.displayName = displayName;
         this.rawValue = rawValue;
         this.count = count;
     }
 
     public String getInputName() {
-        return input_name;
+        return inputName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public String getRaw() {
@@ -43,7 +49,8 @@ public class InputResult implements Serializable {
     @Override
     public String toString() {
         return "InputResult{" +
-                "input_name='" + input_name + '\'' +
+                "input_name='" + inputName + '\'' +
+                ", displayName='" + displayName + '\'' +
                 ", rawValue='" + rawValue + '\'' +
                 ", jsonPath='" + jsonPath + '\'' +
                 ", count=" + count +
