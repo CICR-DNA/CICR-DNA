@@ -4,13 +4,6 @@
     <dimen name="inputs_horizontal_margin">60dp</dimen>
     <dimen name="input_integer_width">64dp</dimen>
 
-
-    <dimen name="datagathering_description_font_size">20sp</dimen>
-    <dimen name="datagathering_image_height">300dp</dimen>
-    <dimen name="datagathering_image_width">200dp</dimen>
-    <dimen name="datagathering_help_width">35dp</dimen>
-    <dimen name="datagathering_help_height">35dp</dimen>
-
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
