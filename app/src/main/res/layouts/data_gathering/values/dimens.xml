@@ -3,8 +3,7 @@
     <dimen name="inputs_vertical_padding">16dp</dimen>
 
     <dimen name="datagathering_description_font_size">20sp</dimen>
-    <dimen name="datagathering_header_weight">0.33</dimen>
-    <dimen name="datagathering_inputs_weight">0.67</dimen>
+    <item name="datagathering_image_screen_prop" format="float" type="dimen">0.30</item>
     <dimen name="datagathering_help_width">48dp</dimen>     <!-- min recommended size -->
     <dimen name="datagathering_help_height">48dp</dimen>    <!-- min recommended size -->
 </resources>

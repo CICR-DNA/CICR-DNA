@@ -1,13 +1,16 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,6 +28,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 
+import fr.insalyon.mxyns.icrc.dna.Constants;
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputDescription;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
@@ -40,19 +44,27 @@ public class FormScreenFragment extends Fragment {
     private static final String ARG_TITLE = "title";
     private static final String ARG_PEDIGREE_HELP = "pedigree_help";
     private static final String ARG_DESCRIPTION = "description";
+
     /**
      * Input fragments
      */
     public final ArrayList<InputTemplateFragment> inputFragments = new ArrayList<>();
+
+    /**
+     * Image ID (pedigree)
+     */
     private static final String ARG_IMAGE = "image";
+
     /**
      * Input tier
      */
     public int tier;
+
     /**
      * Associated ViewModel
      */
     private FormScreenFragmentViewModel viewModel;
+
     /**
      * Unused (could be displayed in toolbar)
      */
@@ -140,6 +152,11 @@ public class FormScreenFragment extends Fragment {
         final ImageView imageView = root.findViewById(R.id.relationshipRepresentation);
         viewModel.getImageId().observe(lifecycleOwner, imageView::setImageResource);
 
+        WindowManager windowManager = (WindowManager) container.getContext().getSystemService(Context.WINDOW_SERVICE);
+        Point size = new Point();
+        windowManager.getDefaultDisplay().getSize(size);
+        imageView.getLayoutParams().height = (int) (size.y * Constants.getFloat(getResources(), R.dimen.datagathering_image_screen_prop).getFloat());
+
         final ImageButton helpButton = root.findViewById(R.id.pedigreeHelpButton);
         helpButton.setOnClickListener(e -> {
 
@@ -156,7 +173,7 @@ public class FormScreenFragment extends Fragment {
                     .show();
         });
 
-        // TODO put title to toolbar
+        // TODO put title in toolbar
 
         LinearLayout form = root.findViewById(R.id.input_list_lin_layout);
 

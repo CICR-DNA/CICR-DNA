@@ -1,7 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="inputs_horizontal_margin">60dp</dimen>
+    <dimen name="inputs_horizontal_margin">45dp</dimen>
     <dimen name="input_integer_width">64dp</dimen>
 
     <dimen name="activity_horizontal_margin">16dp</dimen>

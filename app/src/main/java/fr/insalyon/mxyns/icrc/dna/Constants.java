@@ -4,6 +4,7 @@ import android.content.res.Resources;
 import android.util.TypedValue;
 
 import androidx.annotation.ColorInt;
+import androidx.annotation.DimenRes;
 import androidx.annotation.StringRes;
 
 public class Constants {
@@ -53,5 +54,17 @@ public class Constants {
     public static String getStatusLabel(Resources res, float score) {
 
         return res.getString(getStatusLabelId(res, score));
+    }
+
+    public static TypedValue getFloat(Resources res, @DimenRes int float_id) {
+
+        TypedValue value_holder = new TypedValue();
+        try {
+            res.getValue(float_id, value_holder, true);
+        } catch (Exception ignored) {
+            return null;
+        }
+
+        return value_holder;
     }
 }
