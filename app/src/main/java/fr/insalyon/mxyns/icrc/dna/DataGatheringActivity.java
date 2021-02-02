@@ -63,9 +63,9 @@ public class DataGatheringActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
 
         FloatingActionButton fab = findViewById(R.id.confirm);
-        // TODO move raw strings to R.string
-        fab.setOnClickListener(view -> Snackbar.make(view, "Êtes-vous sûr ?", Snackbar.LENGTH_LONG)
-                .setAction("Valider", e -> {
+
+        fab.setOnClickListener(view -> Snackbar.make(view, R.string.datagathering_fab_u_sure, Snackbar.LENGTH_LONG)
+                .setAction(R.string.datagathering_fab_accept, e -> {
 
                     Intent intent = new Intent(DataGatheringActivity.this, ResultActivity.class);
                     intent.putExtra("all-values", gatherValues());

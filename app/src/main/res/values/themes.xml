@@ -20,6 +20,5 @@
     </style>
 
     <style name="Theme.ICRC_DNA.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
     <style name="Theme.ICRC_DNA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

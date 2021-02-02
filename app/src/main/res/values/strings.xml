@@ -6,6 +6,5 @@
     <string name="title_activity_data_gathering">BRS Collection</string>
     <string name="title_activity_result">Results</string>
 
-    <string name="files_path">/cases/</string>
-
+    <string name="files_path" translatable="false">/cases/</string>
 </resources>

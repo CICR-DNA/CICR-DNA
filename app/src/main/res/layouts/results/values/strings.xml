@@ -4,4 +4,7 @@
     <string name="results_summary_title">Data collection summary</string>
     <string name="results_summary_tier_item">Tier %d :</string>
     <string name="results_summary_input_item">%s : %d</string>
+    <string name="results_score_toast_text">Score : %.2f</string>
+    <string name="results_fab_save_and_quit">Save and quit ?</string>
+    <string name="results_fab_finish">FINISH</string>
 </resources>

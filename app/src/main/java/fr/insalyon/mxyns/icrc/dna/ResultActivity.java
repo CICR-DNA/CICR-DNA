@@ -57,8 +57,8 @@ public class ResultActivity extends AppCompatActivity {
         FloatingActionButton confirm_fab = findViewById(R.id.confirm);
         confirm_fab.setOnClickListener(view -> {
 
-            Snackbar snackbar = Snackbar.make(view, "Enregistrer et quitter ? ", Snackbar.LENGTH_LONG)
-                    .setAction("FIN", e -> saveAndExit(values, path));
+            Snackbar snackbar = Snackbar.make(view, R.string.results_fab_save_and_quit, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.results_fab_finish, e -> saveAndExit(values, path));
             snackbar.show();
         });
 
@@ -75,7 +75,6 @@ public class ResultActivity extends AppCompatActivity {
         fillSummary(values, findViewById(R.id.results_summary_layout));
     }
 
-    // TODO use some sort of formattable string res
     private void fillSummary(HashMap<Integer, ArrayList<InputResult>> data, LinearLayout summaryLayout) {
 
         Resources res = getResources();
@@ -166,7 +165,7 @@ public class ResultActivity extends AppCompatActivity {
             score += 4;
 
         // toast popup score value
-        Toast.makeText(this, "Score is " + score, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, String.format(getResources().getString(R.string.results_score_toast_text), score), Toast.LENGTH_LONG).show();
 
         return score;
     }

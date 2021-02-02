@@ -15,7 +15,6 @@
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="8dp"
         android:text="@string/template_text"
-        android:textColor="@color/icrc_input_text_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/input_template_integer_field"
         app:layout_constraintStart_toStartOf="parent"

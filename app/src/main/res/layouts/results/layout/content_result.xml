@@ -9,9 +9,9 @@
         android:id="@+id/result_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HUH?"
+        android:text="@string/template_text"
         android:textAlignment="center"
-        android:textSize="144sp"
+        android:textSize="96sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
