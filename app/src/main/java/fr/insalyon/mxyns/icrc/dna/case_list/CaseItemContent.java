@@ -75,7 +75,13 @@ public class CaseItemContent {
 
     @Override
     public String toString() {
-        return displayName;
+        return "CaseItemContent{" +
+                "path='" + path + '\'' +
+                ", color=" + color +
+                ", json=" + json +
+                ", score=" + score +
+                ", displayName='" + displayName + '\'' +
+                '}';
     }
 
     public int getColor() {

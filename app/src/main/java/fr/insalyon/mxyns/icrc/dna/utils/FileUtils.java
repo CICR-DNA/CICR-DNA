@@ -7,7 +7,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,13 +14,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
+import fr.insalyon.mxyns.icrc.dna.sync.EmailSync;
+import fr.insalyon.mxyns.icrc.dna.sync.RestSync;
+import fr.insalyon.mxyns.icrc.dna.sync.Sync;
 
 public class FileUtils {
 
+    // FIXME move to CaseListFragment ? depends on how it'll be used
+    /**
+     * Data synchronizers, used to send the cases data to any type of receiver, sorted in order of use.
+     * If the first one fails the next one will be used until one is etc.
+     * @see FileUtils#attemptFileSync
+     */
+    public static LinkedList<Sync> syncs = new LinkedList<>(Arrays.asList(new RestSync(), new EmailSync()));
 
+    /**
+     * Lists and sorts files in a dir (with API Level < 21 constraint)
+     * @param path path to dir
+     * @return sorted ArrayList of paths to files in the provided dir
+     */
     public static ArrayList<File> listFiles(String path) {
 
         File dir = new File(path);
@@ -36,6 +51,11 @@ public class FileUtils {
         return list;
     }
 
+    /**
+     * Serializes and saves a JsonObject to a file
+     * @param json json to save
+     * @param path path of file
+     */
     public static void saveJsonToFile(JsonObject json, String path) {
 
         try {
@@ -56,6 +76,14 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Sets the element 'property' in 'json' to 'value' and writes the result to file at 'path'
+     * @param json source object
+     * @param path path to saved file
+     * @param property key to alter in 'json'
+     * @param value new value of 'property'
+     * @return the altered property's JsonElement
+     */
     public static JsonElement alterProperty(JsonObject json, String path, String property, JsonElement value) {
 
         json.add(property, value);
@@ -72,6 +100,22 @@ public class FileUtils {
         return json.get(property);
     }
 
+    /**
+     * Makes a JsonObject from a map containing some inputs' result values.
+     * Map : tier => list of inputs' results
+     * @see InputResult
+     *
+     * uses FileUtils#addJsonEntry to insert
+     * {
+     *      "input" : InputResult.inputName,
+     *      "raw" : InputResult.rawValue,
+     *      "count" : InputResult.count
+     *  }
+     *  at InputResult.jsonPath in a JsonObject which is the returned result
+     * @see FileUtils#addJsonEntry(JsonObject, String, JsonElement)
+     * @param values map to convert to JsonObject
+     * @return JsonObject representing the 'values' map
+     */
     public static JsonObject jsonFromValues(HashMap<Integer, ArrayList<InputResult>> values) {
 
         JsonObject entries = new JsonObject();
@@ -94,6 +138,12 @@ public class FileUtils {
         return entries;
     }
 
+    /**
+     * Inserts a JsonElement at a specified json path in a JsonObject
+     * @param dest json object into which the element is inserted
+     * @param jsonPath json path the element will have after insertion
+     * @param value JsonElement to put at path 'jsonPath' in 'dest'
+     */
     private static void addJsonEntry(JsonObject dest, String jsonPath, JsonElement value) {
 
         String[] shards = jsonPath.split("\\.");
@@ -128,6 +178,13 @@ public class FileUtils {
         prev.add(shards[shards.length - 1], value);
     }
 
+    /**
+     * Generates an unique (in the directory given) file name
+     * If the directory provided doesn't exist the file name will be : somePseudoRandomLongValue + ".json"
+     * If it exists : "case-" + smallestUniqueInt(in this dir) + ".json"
+     * @param root directory in which the file name will be unique
+     * @return random and unique (in the directory given) file name
+     */
     public static String nameFile(File root) {
 
         if (!root.exists())
@@ -144,6 +201,11 @@ public class FileUtils {
         return "case-"+i+".json";
     }
 
+    /**
+     * Loads a JsonObject from an input file.
+     * @param path path to file
+     * @return JsonObject described by the file
+     */
     public static JsonObject loadJsonFromFile(String path) {
 
         if (path == null)
@@ -151,6 +213,11 @@ public class FileUtils {
 
         return loadJsonFromFile(new File(path));
     }
+    /**
+     * Loads a JsonObject from an input file.
+     * @param file the file to read the json from
+     * @return JsonObject described by the file
+     */
     public static JsonObject loadJsonFromFile(File file) {
 
         if (!file.exists())
@@ -164,6 +231,13 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Uses FileUtils#find to find the json paths of all JsonObjects with key equals(ignoring case) to 'tag'
+     * @param tag key value to search for
+     * @param data JsonObject to search in
+     * @see FileUtils#find
+     * @return ArrayList<String> containing all of the json paths to JsonObjects with matching key value
+     */
     public static ArrayList<String> findAll(String tag, JsonObject data) {
 
         Log.d("find-json-tag", "start findAll(" + tag + ") in : \n " + data.toString());
@@ -174,6 +248,14 @@ public class FileUtils {
         return matches;
     }
 
+    /**
+     * Recursively finds all entries with key 'tag' in 'data' and adds its json path to 'matches'
+     * @param tag key to search for
+     * @param sep json path separator
+     * @param data current JsonObject being searched in
+     * @param current json path of the current JsonObject being searched in
+     * @param matches array of matches to fill
+     */
     private static void find(String tag, String sep, JsonObject data, String current, ArrayList<String> matches) {
 
         Log.d("find-json-tag", "   => " + current);
@@ -187,6 +269,12 @@ public class FileUtils {
         }
     }
 
+    /**
+     * Finds the JsonObject located at json path in a JsonObject
+     * @param path json path to follow
+     * @param data root json object in which the search is done
+     * @return JsonObject at 'path' in 'data' if any or null if not found
+     */
     public static JsonObject getJsonFromPath(String path, JsonObject data) {
 
         String[] shards = path.split("\\.");
@@ -203,9 +291,31 @@ public class FileUtils {
         else return null;
     }
 
+    /**
+     * Deletes a file
+     * @param path path to file
+     * @return true if file was deleted
+     */
     public static boolean deleteFile(String path) {
 
         File file = new File(path);
         return file.exists() && file.delete();
+    }
+
+    /**
+     * Attempts to send a file using any synchronizer.
+     * @param filePath path of the file to send
+     * @return true if synchronization was successful
+     * @see FileUtils#syncs
+     */
+    public static Sync attemptFileSync(String filePath) {
+
+        for (Sync sync : syncs) {
+            if (sync.send(filePath)) {
+                return sync;
+            }
+        }
+
+        return null;
     }
 }

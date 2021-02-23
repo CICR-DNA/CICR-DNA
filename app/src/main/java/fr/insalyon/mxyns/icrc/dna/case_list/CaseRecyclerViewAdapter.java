@@ -20,6 +20,7 @@ import java.util.List;
 
 import fr.insalyon.mxyns.icrc.dna.DataGatheringActivity;
 import fr.insalyon.mxyns.icrc.dna.R;
+import fr.insalyon.mxyns.icrc.dna.sync.Sync;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
 /**
@@ -27,6 +28,9 @@ import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
  */
 public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerViewAdapter.ViewHolder> {
 
+    /**
+     * List of CaseItemContent containing all of the loaded cases file infos
+     */
     private final List<CaseItemContent> mValues;
 
     public CaseRecyclerViewAdapter(List<CaseItemContent> items) {
@@ -71,6 +75,22 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         notifyItemRangeChanged(position, mValues.size());
 
         return result;
+    }
+
+    private boolean syncCase(int position) {
+
+        CaseItemContent cicrCase = mValues.get(position);
+        Log.d("menu-file-sync", "Trying to sync case " + cicrCase);
+        Sync usedSynchronizer = FileUtils.attemptFileSync(cicrCase.path);
+
+        if (usedSynchronizer == null) {
+            Log.d("menu-file-sync", "Case not synchronized");
+        } else {
+            Log.d("menu-file-sync", "Case synchronized using a " + usedSynchronizer.getClass().getName());
+            Log.d("menu-file-sync", "Case synchronized using a " + usedSynchronizer.getClass().getSimpleName());
+            Log.d("menu-file-sync", "Case synchronized using a " + usedSynchronizer.getClass().getCanonicalName());
+        }
+        return usedSynchronizer != null;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -143,6 +163,9 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
                 int id = item.getItemId();
                 if (id == R.id.menu_rename)
                     return renameMode(true);
+                else if (id == R.id.menu_sync) {
+                    return syncCase(getAdapterPosition());
+                }
                 else if (id == R.id.menu_delete)
                     return deleteCase(getAdapterPosition());
                 else if (id == R.id.menu_edit) {
