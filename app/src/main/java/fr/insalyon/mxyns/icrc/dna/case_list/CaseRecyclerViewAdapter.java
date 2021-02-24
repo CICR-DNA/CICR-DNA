@@ -78,11 +78,11 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         return result;
     }
 
-    private boolean syncCase(int position) {
+    private boolean syncCase(Context context, int position) {
 
         CaseItemContent cicrCase = mValues.get(position);
         Log.d("menu-file-sync", "Trying to sync case " + cicrCase);
-        Sync usedSynchronizer = FileUtils.attemptFileSync(cicrCase.path);
+        Sync usedSynchronizer = Sync.attemptFileSync(context, cicrCase.path);
 
         if (usedSynchronizer == null) {
             Log.d("menu-file-sync", "Case not synchronized");
@@ -165,7 +165,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
                 if (id == R.id.menu_rename)
                     return renameMode(true);
                 else if (id == R.id.menu_sync) {
-                    return syncCase(getAdapterPosition());
+                    return syncCase(mMenu.getContext(), getAdapterPosition());
                 }
                 else if (id == R.id.menu_delete)
                     return deleteCase(getAdapterPosition());

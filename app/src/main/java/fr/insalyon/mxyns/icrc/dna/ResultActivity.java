@@ -186,7 +186,7 @@ public class ResultActivity extends AppCompatActivity {
         obj.add("entries", FileUtils.jsonFromValues(values));
 
         File root = new File(getFilesDir(), getResources().getString(R.string.files_path));
-        FileUtils.saveJsonToFile(obj, path != null ? path : root.getPath() + "/" + FileUtils.nameFile(root));
+        FileUtils.saveJsonToFile(obj, path != null ? path : root.getPath() + "/" + FileUtils.nameCaseFile(root));
 
         Log.d("result-json", obj.toString());
         resetAppToInitialState();

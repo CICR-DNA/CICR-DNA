@@ -41,17 +41,10 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> paths = caseList.getSelectedPaths();
                 Log.d("menu-file-sync", "Selected " + paths);
 
-                Sync synchronizer;
-                for (String path : paths) {
-                    synchronizer = FileUtils.attemptFileSync(path);
-
-                    if (synchronizer == null) {
-                        Log.d("menu-file-sync", "Case not synchronized");
-                    } else {
-                        Log.d("menu-file-sync", "Case synchronized using a " + synchronizer.getClass().getSimpleName());
-                    }
-                }
-
+                if (paths.size() > 1)
+                    Sync.attemptFileSync(this, paths);
+                else
+                    Sync.attemptFileSync(this, paths.get(0));
             }
             toggleMultiSelection();
         });
