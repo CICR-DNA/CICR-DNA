@@ -16,12 +16,14 @@ import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
  */
 public abstract class Sync {
 
+    // FIXME warning
+    // TODO email target in xml (=> initialize / store sync in MainActivity maybe)
     /**
      * Data synchronizers, used to send the cases data to any type of receiver, sorted in order of use.
      * If the first one fails the next one will be used until one is etc.
      * @see Sync#attemptFileSync
      */
-    public static LinkedList<Sync> syncs = new LinkedList<>(Arrays.asList(new RestSync(), new EmailSync("edezimmall-6736@yopmail.com")));
+    public static LinkedList<Sync> syncs = new LinkedList<>(Arrays.asList(new RestSync(), new EmailSync("")));
 
     public abstract boolean send(Context context, String filePath);
 
@@ -35,7 +37,7 @@ public abstract class Sync {
 
         File zipFile;
         try {
-            zipFile = FileUtils.randomFileInDir(context.getFilesDir(), "tmp", "zip");
+            zipFile = FileUtils.randomFileInDir(context.getCacheDir(), "tmp", "zip");
         } catch (IOException ex) {
             return false;
         }

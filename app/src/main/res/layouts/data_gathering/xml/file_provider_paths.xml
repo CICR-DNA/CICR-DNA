@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <files-path name="cases_dir" path="cases/" />
-    <files-path name="tmp_dir" path="tmp/" />
+    <cache-path name="tmp_dir" path="tmp/" />
+
 </paths>
