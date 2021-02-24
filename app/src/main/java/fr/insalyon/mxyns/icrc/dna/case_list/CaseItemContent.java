@@ -42,6 +42,7 @@ public class CaseItemContent {
      */
     public String displayName;
 
+
     /**
      * new CaseItemContent and determines case status color
      *

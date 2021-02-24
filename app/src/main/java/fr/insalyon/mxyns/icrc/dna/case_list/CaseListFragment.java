@@ -31,8 +31,13 @@ public class CaseListFragment extends Fragment {
      */
     ArrayList<CaseItemContent> items = new ArrayList<>();
 
-    public CaseListFragment() {
-    }
+    /**
+     *
+     */
+
+    private RecyclerView recyclerView;
+
+    public CaseListFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,11 +67,35 @@ public class CaseListFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
             recyclerView.setAdapter(new CaseRecyclerViewAdapter(items));
             recyclerView.addItemDecoration(new DividerItemDecoration(context,DividerItemDecoration.VERTICAL));
         }
         return view;
+    }
+
+    public void setMultiSelection(boolean state) {
+
+        if (this.recyclerView != null) {
+            for (int i = 0; i < this.recyclerView.getChildCount(); i++) {
+                CaseRecyclerViewAdapter.ViewHolder viewHolder = (CaseRecyclerViewAdapter.ViewHolder) this.recyclerView.findViewHolderForAdapterPosition(i);
+                viewHolder.setMultiSelectionMode(state);
+            }
+        }
+    }
+
+    public ArrayList<String> getSelectedPaths() {
+
+        ArrayList<String> selected = new ArrayList<>();
+        if (this.recyclerView != null) {
+            for (int i = 0; i < this.recyclerView.getChildCount(); i++) {
+                CaseRecyclerViewAdapter.ViewHolder viewHolder = (CaseRecyclerViewAdapter.ViewHolder) this.recyclerView.findViewHolderForAdapterPosition(i);
+                if (viewHolder != null && viewHolder.mMultiSelectionCheckbox.isChecked())
+                    selected.add(viewHolder.mItem.path);
+            }
+        }
+
+        return selected;
     }
 }

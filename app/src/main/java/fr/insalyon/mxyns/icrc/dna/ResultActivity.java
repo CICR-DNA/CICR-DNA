@@ -54,7 +54,7 @@ public class ResultActivity extends AppCompatActivity {
 
         HashMap<Integer, ArrayList<InputResult>> values = (HashMap<Integer, ArrayList<InputResult>>) data;
 
-        FloatingActionButton confirm_fab = findViewById(R.id.confirm);
+        FloatingActionButton confirm_fab = findViewById(R.id.fab_confirm);
         confirm_fab.setOnClickListener(view -> {
 
             Snackbar snackbar = Snackbar.make(view, R.string.results_fab_save_and_quit, Snackbar.LENGTH_LONG)

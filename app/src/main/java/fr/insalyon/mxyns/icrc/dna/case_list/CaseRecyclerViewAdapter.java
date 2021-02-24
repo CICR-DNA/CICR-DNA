@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
@@ -86,9 +87,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         if (usedSynchronizer == null) {
             Log.d("menu-file-sync", "Case not synchronized");
         } else {
-            Log.d("menu-file-sync", "Case synchronized using a " + usedSynchronizer.getClass().getName());
             Log.d("menu-file-sync", "Case synchronized using a " + usedSynchronizer.getClass().getSimpleName());
-            Log.d("menu-file-sync", "Case synchronized using a " + usedSynchronizer.getClass().getCanonicalName());
         }
         return usedSynchronizer != null;
     }
@@ -99,6 +98,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         public final ImageButton mMenu;
         public final View caseStatus;
         private final Drawable defaultBackground;
+        public final CheckBox mMultiSelectionCheckbox;
         public CaseItemContent mItem;
 
         public ViewHolder(View view) {
@@ -109,6 +109,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             mContentView = view.findViewById(R.id.case_item_name);
             caseStatus = view.findViewById(R.id.case_item_status);
             mMenu = view.findViewById(R.id.case_item_menu_button);
+            mMultiSelectionCheckbox = view.findViewById(R.id.case_item_multiselection_checkbox);
 
             defaultBackground = mContentView.getBackground();
 
@@ -208,6 +209,13 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         @Override
         public String toString() {
             return super.toString() + " '" + mContentView.getText() + "'";
+        }
+
+        public void setMultiSelectionMode(boolean state) {
+
+            this.mMultiSelectionCheckbox.setChecked(false);
+            this.mMenu.setVisibility(state ? View.GONE : View.VISIBLE);
+            this.mMultiSelectionCheckbox.setVisibility(state ? View.VISIBLE : View.GONE);
         }
     }
 }

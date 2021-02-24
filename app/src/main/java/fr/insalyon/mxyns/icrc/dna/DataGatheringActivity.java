@@ -62,7 +62,7 @@ public class DataGatheringActivity extends AppCompatActivity {
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-        FloatingActionButton fab = findViewById(R.id.confirm);
+        FloatingActionButton fab = findViewById(R.id.fab_confirm);
 
         fab.setOnClickListener(view -> Snackbar.make(view, R.string.datagathering_fab_u_sure, Snackbar.LENGTH_LONG)
                 .setAction(R.string.datagathering_fab_accept, e -> {

@@ -25,11 +25,28 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/confirm"
+        android:id="@+id/fab_sync"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:layout_gravity="top|end"
         android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/dummy"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@drawable/ic_baseline_sync_24" />
+
+    <View
+        android:id="@+id/dummy"
+        android:layout_width="1dp"
+        android:layout_height="@dimen/fab_distance"
+        app:layout_anchor="@id/fab_confirm"
+        app:layout_anchorGravity="top|right|end" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        android:layout_gravity="bottom|end"
         app:srcCompat="@drawable/ic_baseline_add_24_white" />
 
     <include

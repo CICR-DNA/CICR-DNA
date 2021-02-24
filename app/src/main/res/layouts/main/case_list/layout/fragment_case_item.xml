@@ -8,10 +8,11 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/case_item_menu_button"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -46,17 +47,30 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageButton
-        android:id="@+id/case_item_menu_button"
-        style="@style/Widget.AppCompat.ImageButton"
-        android:layout_width="45dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:background="?attr/selectableItemBackground"
-        android:tint="@android:color/tertiary_text_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/case_item_menu_button"
+            style="@style/Widget.AppCompat.ImageButton"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground"
+            android:tint="@android:color/tertiary_text_dark"
+            app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+        <CheckBox
+            android:id="@+id/case_item_multiselection_checkbox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
