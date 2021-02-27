@@ -49,6 +49,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
      */
     private void registerFragments() {
 
+        // Parents
         registerFormFragment(1, R.string.tier_1_screen_1_title,
                 R.string.tier_1_screen_1_description,
                 R.string.pedigree_help_template,
@@ -57,97 +58,136 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 new InputDescription("checkbox", R.string.tier_1_screen_1_option_2, mContext.getResources())
         );
 
+        // Siblings
         registerFormFragment(1, R.string.tier_1_screen_2_title,
                 R.string.tier_1_screen_2_description,
                 R.string.pedigree_help_template,
-                R.drawable.children,
+                R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_1_screen_2_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_2_option_2, mContext.getResources())
+                new InputDescription("integer", R.string.tier_1_screen_2_option_2, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_1_screen_2_option_3, mContext.getResources())
         );
 
+        // Siblings spouses
         registerFormFragment(1, R.string.tier_1_screen_3_title,
                 R.string.tier_1_screen_3_description,
                 R.string.pedigree_help_template,
-                R.drawable.spouse,
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2, mContext.getResources())
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("integer", R.string.tier_1_screen_3_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_1_screen_3_option_2, mContext.getResources())
         );
 
+        // Step-parents
         registerFormFragment(1, R.string.tier_1_screen_4_title,
                 R.string.tier_1_screen_4_description,
                 R.string.pedigree_help_template,
-                R.drawable.spouse2,
+                R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("checkbox", R.string.tier_1_screen_4_option_1, mContext.getResources()),
                 new InputDescription("checkbox", R.string.tier_1_screen_4_option_2, mContext.getResources())
         );
 
+        // Half-siblings
         registerFormFragment(1, R.string.tier_1_screen_5_title,
                 R.string.tier_1_screen_5_description,
                 R.string.pedigree_help_template,
-                R.drawable.children2,
+                R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_1_screen_5_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_5_option_2, mContext.getResources())
+                new InputDescription("integer", R.string.tier_1_screen_5_option_2, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_1_screen_5_option_3, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_1_screen_5_option_4, mContext.getResources())
         );
 
+        // Nephews
         registerFormFragment(1, R.string.tier_1_screen_6_title,
                 R.string.tier_1_screen_6_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_double_check_24,
+                R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_1_screen_6_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_6_option_2, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_6_option_3, mContext.getResources())
+                new InputDescription("integer", R.string.tier_1_screen_6_option_2, mContext.getResources())
         );
 
+        // Spouse
         registerFormFragment(2, R.string.tier_2_screen_1_title,
                 R.string.tier_2_screen_1_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_double_check_24,
+                R.drawable.spouse,
                 new InputDescription("checkbox", R.string.tier_2_screen_1_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_2_screen_1_option_2, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_2_screen_1_option_3, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_2_screen_1_option_4, mContext.getResources())
+                new InputDescription("checkbox", R.string.tier_2_screen_1_option_2, mContext.getResources())
         );
 
+        // Children
         registerFormFragment(2, R.string.tier_2_screen_2_title,
                 R.string.tier_2_screen_2_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_double_check_24,
-                new InputDescription("integer", R.string.tier_2_screen_2_option_1, mContext.getResources())
+                R.drawable.children,
+                new InputDescription("integer", R.string.tier_2_screen_2_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_2_option_2, mContext.getResources())
         );
 
+        // Second spouse
         registerFormFragment(2, R.string.tier_2_screen_3_title,
                 R.string.tier_2_screen_3_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_double_check_24,
-                new InputDescription("integer", R.string.tier_2_screen_3_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_3_option_2, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_3_option_3, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_3_option_4, mContext.getResources())
+                R.drawable.spouse2,
+                new InputDescription("checkbox", R.string.tier_2_screen_3_option_1, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_2_screen_3_option_2, mContext.getResources())
         );
 
+        // Children from second spouse
         registerFormFragment(2, R.string.tier_2_screen_4_title,
                 R.string.tier_2_screen_4_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_double_check_24,
+                R.drawable.children2,
+                new InputDescription("integer", R.string.tier_2_screen_4_option_1, mContext.getResources()),
                 new InputDescription("integer", R.string.tier_2_screen_4_option_2, mContext.getResources())
         );
 
+        // TODO add "conditional" mark
+        // Daughter/Son-in-law
         registerFormFragment(2, R.string.tier_2_screen_5_title,
                 R.string.tier_2_screen_5_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_double_check_24,
+                R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_2_screen_5_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_5_option_2, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_5_option_3, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_5_option_4, mContext.getResources())
+                new InputDescription("integer", R.string.tier_2_screen_5_option_2, mContext.getResources())
         );
 
+        // Grandchildren
         registerFormFragment(2, R.string.tier_2_screen_6_title,
                 R.string.tier_2_screen_6_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_double_check_24,
-                new InputDescription("checkbox", R.string.tier_2_screen_6_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_2_screen_6_option_2, mContext.getResources())
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("integer", R.string.tier_2_screen_6_option_1, mContext.getResources())
+        );
+
+        // Grandparents
+        registerFormFragment(3, R.string.tier_3_screen_1_title,
+                R.string.tier_3_screen_1_description,
+                R.string.pedigree_help_template,
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("checkbox", R.string.tier_3_screen_1_option_1, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_3_screen_1_option_2, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_3_screen_1_option_3, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_3_screen_1_option_4, mContext.getResources())
+        );
+
+        // Aunts and Uncles
+        registerFormFragment(3, R.string.tier_3_screen_2_title,
+                R.string.tier_3_screen_2_description,
+                R.string.pedigree_help_template,
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("integer", R.string.tier_3_screen_2_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_3_screen_2_option_2, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_3_screen_2_option_3, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_3_screen_2_option_4, mContext.getResources())
+        );
+
+        // Cousins
+        registerFormFragment(3, R.string.tier_3_screen_3_title,
+                R.string.tier_3_screen_3_description,
+                R.string.pedigree_help_template,
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("integer", R.string.tier_3_screen_3_option_1, mContext.getResources())
         );
     }
 
@@ -176,7 +216,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         tabs.add(formFragment);
 
         for (InputTemplateFragment input : formFragment.inputFragments)
-            inputNameToFragment.put(input.name, input);
+            inputNameToFragment.put(input.input_name, input);
     }
 
     @NotNull

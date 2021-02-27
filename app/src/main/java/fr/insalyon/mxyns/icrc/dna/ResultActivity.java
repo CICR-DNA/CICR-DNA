@@ -124,18 +124,23 @@ public class ResultActivity extends AppCompatActivity {
         TypedValue unit_score_holder = new TypedValue();
 
         // First pass needed for bonuses
-        short grandparents = 0, children = 0, niecesAndNephews = 0;
+        short grandparents = 0, niecesAndNephews = 0, grandChildren = 0;
+        short[] children = new short[2]; // 2 maximum at the moment
         for (Integer tier : values.keySet())
             for (InputResult result : values.get(tier)) {
 
-                if (result.getJsonPath().toLowerCase().startsWith("grandparents"))
+                String lowerJsonPath = result.getJsonPath().toLowerCase();
+                if (lowerJsonPath.startsWith("grandparents"))
                     grandparents += result.getCount();
 
-                if (result.getJsonPath().toLowerCase().startsWith("children"))
-                    children += result.getCount();
+                if (lowerJsonPath.startsWith("children"))
+                    children[extractMarriageIndex(lowerJsonPath) - 1] += result.getCount();
 
-                if (result.getJsonPath().toLowerCase().startsWith("auntsanduncles.niecesandnephews"))
+                if (lowerJsonPath.startsWith("siblings.children"))
                     niecesAndNephews += result.getCount();
+
+                if (lowerJsonPath.startsWith("children.children"))
+                    grandChildren += result.getCount();
             }
 
 
@@ -144,12 +149,16 @@ public class ResultActivity extends AppCompatActivity {
             Log.d("all-values", "Tier " + tier + " : ");
             for (InputResult result : values.get(tier))
                 try {
+                    String lowercaseJsonPath = result.getJsonPath().toLowerCase();
 
-                    if (children < 1 && result.getJsonPath().toLowerCase().startsWith("spouses"))
+                    // TODO those multiple ifs could be changed to a list of predicates to check
+                    if (lowercaseJsonPath.startsWith("spouses") && children[extractMarriageIndex(lowercaseJsonPath) - 1] < 1)
                         continue;
 
-                    // FIXME is in "Scoring System" slide but not mentioned in the rest of the slideshow
-                    if (niecesAndNephews < 1 && result.getJsonPath().toLowerCase().startsWith("siblings.spouses"))
+                    if (niecesAndNephews < 1 && lowercaseJsonPath.startsWith("siblings.spouses."))
+                        continue;
+
+                    if (grandChildren < 1 && lowercaseJsonPath.startsWith("children.spouses."))
                         continue;
 
                     // load unit score of an input
@@ -206,5 +215,22 @@ public class ResultActivity extends AppCompatActivity {
 
         startActivity(intent);
         finish();
+    }
+
+    /**
+     *
+     * @param jsonPath
+     * @return
+     */
+    private short extractMarriageIndex(String jsonPath) {
+        String[] shards = jsonPath.split("\\.");
+        String lastMember = shards[shards.length - 1];
+        short parentId = 1;
+        try {
+            // if no number at the end then children are from 1st marriage
+            parentId = Short.parseShort(String.valueOf(lastMember.charAt(lastMember.length() - 1)));
+        } catch (NumberFormatException ignored) {}
+
+        return parentId;
     }
 }

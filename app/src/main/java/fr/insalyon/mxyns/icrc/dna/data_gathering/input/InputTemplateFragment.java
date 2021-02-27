@@ -26,7 +26,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     public static final String ARG_VALUE = "value";
 
     private InputTemplateViewModel<T> viewModel;
-    public String name;
+    public String input_name;
     public InputDescription description;
     public FormScreenFragment owner;
 
@@ -44,17 +44,17 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
         Bundle args = new Bundle();
         this.description = inputDescription;
-        this.name = inputDescription.inputName;
+        this.input_name = inputDescription.inputName;
         this.owner = owner;
         args.putInt(ARG_TEXT_ID, inputDescription.viewTextId);
         args.putString(ARG_TEXT, inputDescription.displayName);
-        args.putString(ARG_NAME, this.name);
+        args.putString(ARG_NAME, this.input_name);
         putValueToBundle(args); // put default value
         setArguments(args);
 
         Log.d("name-null-init", String.valueOf(getArguments()));
 
-        JsonObject data = DataGatheringActivity.data.get(this.name);
+        JsonObject data = DataGatheringActivity.data.get(this.input_name);
         if (data != null && data.get("raw") != null) {
             setRawValue(data.get("raw").getAsString());
         } else
@@ -71,17 +71,17 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         viewModel = (InputTemplateViewModel<T>) new ViewModelProvider(this).get(InputTemplateViewModel.class);
 
         if (this instanceof CheckboxTemplateFragment)
-            Log.d("no-check-zone-oncreate", "CheckBox " + this.name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(name) + " )");
+            Log.d("no-check-zone-oncreate", "CheckBox " + this.input_name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(input_name) + " )");
 
-        this.name = requireArguments().getString(ARG_NAME);
-
-        Log.d("name-null-create", String.valueOf(getArguments()));
-        initializeUIFromBundle(getArguments());
+        this.input_name = requireArguments().getString(ARG_NAME);
 
         // on text_id change, change displayed text
         viewModel.text_id.observe(this, newId -> viewModel.text.setValue(getResources().getString(newId)));
 
-        Log.d("data-oncreate", "input fragment created " + this.name + " aka " + viewModel.text.getValue());
+        Log.d("name-null-create", String.valueOf(getArguments()));
+        initializeUIFromBundle(getArguments());
+
+        Log.d("data-oncreate", "input fragment created " + this.input_name + " aka " + viewModel.text.getValue());
     }
 
     private void initializeUIFromBundle(Bundle arguments) {
@@ -99,7 +99,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
         if (value != null && viewModel.value.getValue() == null) {
             viewModel.value.setValue(value);
-            Log.d("initialize-ui", name + " value = " + value);
+            Log.d("initialize-ui", input_name + " value = " + value);
         } else
             Log.d("initialize-ui", "no value");
     }
@@ -109,7 +109,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         super.onResume();
 
         if (this instanceof CheckboxTemplateFragment)
-            Log.d("no-check-zone-onresume", "CheckBox " + this.name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(name) + " )");
+            Log.d("no-check-zone-onresume", "CheckBox " + this.input_name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(input_name) + " )");
 
         updateValue(viewModel.value.getValue());
     }
@@ -117,7 +117,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     protected void updateValue(T value) {
 
         if (this instanceof CheckboxTemplateFragment)
-            Log.d("no-check-zone-b4updt", "CheckBox " + this.name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(name) + " )");
+            Log.d("no-check-zone-b4updt", "CheckBox " + this.input_name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(input_name) + " )");
 
         if (value == null)
             return;
@@ -125,7 +125,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         JsonObject result = new JsonObject();
         result.addProperty("raw", value.toString());
         result.addProperty("count", valueToCount(value));
-        DataGatheringActivity.data.put(this.name, result);
+        DataGatheringActivity.data.put(this.input_name, result);
 
 
         Log.d("name-null-set", getResources().getString(viewModel.text_id.getValue()) + " : set value");
@@ -136,17 +136,17 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         viewModel.value.setValue(value);
 
         if (this instanceof CheckboxTemplateFragment)
-            Log.d("no-check-zone-aftrupdt", "CheckBox " + this.name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(name) + " )");
+            Log.d("no-check-zone-aftrupdt", "CheckBox " + this.input_name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(input_name) + " )");
     }
 
     public InputResult getInputResult() {
 
-        JsonObject data = DataGatheringActivity.data.get(this.name);
+        JsonObject data = DataGatheringActivity.data.get(this.input_name);
         String rawValue = data.get("raw").getAsString();
         String displayName = getArguments().getString(ARG_TEXT);
 
         return new InputResult(
-                name,
+                input_name,
                 displayName,
                 rawValue,
                 valueToCount(parseValue(rawValue))
