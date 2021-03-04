@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.JsonObject;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -52,7 +54,9 @@ public class CaseListFragment extends Fragment {
 
         for (File file : FileUtils.listFiles(dir_path)) {
             try {
-                items.add(CaseItemContent.fromFile(getContext(), file));
+                JsonObject json = FileUtils.loadJsonFromFile(file);
+                if (json.has("version")) // ignore any case that doesn't have a "version" tag (was made pre-release)
+                    items.add(CaseItemContent.fromFile(getContext(), file));
             } catch (Exception ignored) {
                 Log.d("loading-json", "error while loading file : " + file);
             }

@@ -7,4 +7,5 @@
     <string name="title_activity_result">Results</string>
 
     <string name="files_path" translatable="false">/cases/</string>
+    <string name="json_version" translatable="false">0.1.0</string>
 </resources>

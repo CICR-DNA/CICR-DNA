@@ -1,21 +1,25 @@
 package fr.insalyon.mxyns.icrc.dna;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageButton;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import fr.insalyon.mxyns.icrc.dna.data_gathering.DataGatheringOnScreenChangeListener;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenAdapter;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.TabLayout;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
@@ -33,10 +37,15 @@ public class DataGatheringActivity extends AppCompatActivity {
      * Tabs container and manager
      */
     private FormScreenAdapter formScreenAdapter;
+    private ViewPager viewPager;
+
+    private TabLayout tabs;
     /**
      * JSON File, null if new case. not null if case loaded from a file
      */
     private String path;
+
+    private boolean changesDone = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +65,15 @@ public class DataGatheringActivity extends AppCompatActivity {
         setContentView(R.layout.activity_data_gathering);
         formScreenAdapter = new FormScreenAdapter(this, getSupportFragmentManager());
 
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        // setup swipeable views
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(formScreenAdapter);
 
-        TabLayout tabs = findViewById(R.id.tabs);
-        tabs.setupWithViewPager(viewPager);
+        tabs = findViewById(R.id.tabs);
+        tabs.init(formScreenAdapter, viewPager);
 
+        // confirm fab behaviour
         FloatingActionButton fab = findViewById(R.id.fab_confirm);
-
         fab.setOnClickListener(view -> Snackbar.make(view, R.string.datagathering_fab_u_sure, Snackbar.LENGTH_LONG)
                 .setAction(R.string.datagathering_fab_accept, e -> {
 
@@ -73,6 +83,16 @@ public class DataGatheringActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }).show());
+
+        // setup swipe buttons behaviour
+        ImageButton left_swiper = findViewById(R.id.datagathering_left_chevron);
+        left_swiper.setOnClickListener(e -> viewPager.setCurrentItem((viewPager.getCurrentItem() - 1 + formScreenAdapter.getCount()) % formScreenAdapter.getCount()));
+        ImageButton right_swiper = findViewById(R.id.datagathering_right_chevron);
+        right_swiper.setOnClickListener(e -> viewPager.setCurrentItem((viewPager.getCurrentItem() + 1) % formScreenAdapter.getCount()));
+
+        DataGatheringOnScreenChangeListener longAssName;
+        viewPager.addOnPageChangeListener(longAssName = new DataGatheringOnScreenChangeListener(left_swiper, right_swiper, formScreenAdapter, this));
+        longAssName.onPageSelected(0);
     }
 
     @Override
@@ -81,6 +101,31 @@ public class DataGatheringActivity extends AppCompatActivity {
 
         Log.d("data-oncreate", "resume datagathering");
         Log.d("data-oncreate", formScreenAdapter.inputNameToFragment.toString());
+    }
+
+    // Back button behaviour
+    @Override
+    public void onBackPressed() {
+
+        if (changesDone)
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.datagathering_exit_without_saving_title)
+                    .setMessage(R.string.datagathering_exit_without_saving_msg)
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            DataGatheringActivity.super.onBackPressed();
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        else
+            super.onBackPressed();
     }
 
     /**
@@ -144,5 +189,12 @@ public class DataGatheringActivity extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    public void setInputValue(String input_name, JsonObject result, boolean notify) {
+
+        DataGatheringActivity.data.put(input_name, result);
+        if (notify)
+            changesDone = true;
     }
 }

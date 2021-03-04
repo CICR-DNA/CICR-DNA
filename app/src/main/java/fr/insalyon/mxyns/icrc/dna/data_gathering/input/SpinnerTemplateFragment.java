@@ -55,7 +55,7 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
                     intField.setError(getResources().getString(R.string.wrong_integer_input_error));
                 }
 
-                updateValue(val);
+                updateValue(val, true);
             }
         });
 

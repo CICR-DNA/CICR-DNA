@@ -2,7 +2,6 @@ package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
 import android.os.Bundle;
 import android.util.Log;
-
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -111,10 +110,10 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         if (this instanceof CheckboxTemplateFragment)
             Log.d("no-check-zone-onresume", "CheckBox " + this.input_name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(input_name) + " )");
 
-        updateValue(viewModel.value.getValue());
+        updateValue(viewModel.value.getValue(), false);
     }
 
-    protected void updateValue(T value) {
+    protected void updateValue(T value, boolean notify) {
 
         if (this instanceof CheckboxTemplateFragment)
             Log.d("no-check-zone-b4updt", "CheckBox " + this.input_name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(input_name) + " )");
@@ -125,7 +124,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         JsonObject result = new JsonObject();
         result.addProperty("raw", value.toString());
         result.addProperty("count", valueToCount(value));
-        DataGatheringActivity.data.put(this.input_name, result);
+        ((DataGatheringActivity) getActivity()).setInputValue(this.input_name, result, notify);
 
 
         Log.d("name-null-set", getResources().getString(viewModel.text_id.getValue()) + " : set value");

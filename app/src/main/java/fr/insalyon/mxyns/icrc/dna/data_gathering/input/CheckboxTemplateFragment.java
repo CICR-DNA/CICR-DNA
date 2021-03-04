@@ -33,7 +33,7 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
         getViewModel().text.observe(owner, textView::setText);
         getViewModel().value.observe(owner, checkbox::setChecked);
 
-        checkbox.setOnCheckedChangeListener((a, isChecked) -> updateValue(isChecked));
+        checkbox.setOnCheckedChangeListener((a, isChecked) -> updateValue(isChecked, true));
 
         return root;
     }

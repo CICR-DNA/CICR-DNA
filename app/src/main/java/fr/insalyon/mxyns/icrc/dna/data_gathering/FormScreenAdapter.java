@@ -64,7 +64,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_1_screen_2_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_2_option_2, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_1_screen_2_option_2, mContext.getResources(), true),
                 new InputDescription("integer", R.string.tier_1_screen_2_option_3, mContext.getResources())
         );
 

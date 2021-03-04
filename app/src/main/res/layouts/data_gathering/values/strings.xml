@@ -2,4 +2,9 @@
 <resources>
     <string name="datagathering_fab_u_sure">Are you sure?</string>
     <string name="datagathering_fab_accept">Confirm</string>
+
+    <string name="datagathering_warning_contains_conditional_fields">Be careful, this screen contains conditional fields ! Check the help menu for more info</string>
+
+    <string name="datagathering_exit_without_saving_title">Unsaved changes</string>
+    <string name="datagathering_exit_without_saving_msg">You\'ve modified data and didn\'t save before exiting. Unsaved changes will be lost !</string>
 </resources>

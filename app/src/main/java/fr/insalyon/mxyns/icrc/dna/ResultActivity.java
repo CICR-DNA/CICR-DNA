@@ -21,6 +21,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
@@ -77,13 +78,14 @@ public class ResultActivity extends AppCompatActivity {
 
     private void fillSummary(HashMap<Integer, ArrayList<InputResult>> data, LinearLayout summaryLayout) {
 
+        List<ArrayList<InputResult>> sortedData = sortIndexedMap(data, new ArrayList<>());
         Resources res = getResources();
         Context context = summaryLayout.getContext();
         ArrayList<TextView> tierLines = new ArrayList<>();
-        for (Integer tier : data.keySet()) {
+        for (int tier = 1; tier <= sortedData.size(); tier++) {
             String tierText = String.format(res.getString(R.string.results_summary_tier_item), tier);
 
-            for (InputResult result : data.get(tier)) {
+            for (InputResult result : sortedData.get(tier - 1)) {
                 if (result.getCount() > 0) {
                     String resultText = String.format(res.getString(R.string.results_summary_input_item), result.getDisplayName(), result.getCount());
                     tierLines.add(makeSummaryLine(resultText, 2, context));
@@ -100,7 +102,6 @@ public class ResultActivity extends AppCompatActivity {
             }
         }
     }
-
     public TextView makeSummaryLine(String text, int numberOfTabs, Context context) {
 
         TextView textView = new TextView(context);
@@ -108,6 +109,24 @@ public class ResultActivity extends AppCompatActivity {
         textView.setPadding((int) (numberOfTabs * getResources().getDimension(R.dimen.activity_horizontal_margin)), 0, 0, 0);
 
         return textView;
+    }
+
+    /**
+     * Fills a list containing the values of a map sorted by keys, assuming that said keys are integers in range [1; map.size()]
+     * Using the toFill list as a parameter to let the choice of List implementation open
+     *
+     * @param data map to sort by key values
+     * @param toFill List to fill
+     * @return toFill List filled with data Map's data sorted by key values
+     */
+    private <T> List<T> sortIndexedMap(HashMap<Integer, T> data, List<T> toFill) {
+
+        int i = 1;
+        T current;
+        while ((current = data.get(i++)) != null)
+            toFill.add(current);
+
+        return toFill;
     }
 
     /**
@@ -191,6 +210,7 @@ public class ResultActivity extends AppCompatActivity {
         if (!obj.has("displayName"))
             obj.addProperty("displayName", new Date().toString());
 
+        obj.addProperty("version", getResources().getString(R.string.json_version));
         obj.addProperty("score", score);
         obj.add("entries", FileUtils.jsonFromValues(values));
 

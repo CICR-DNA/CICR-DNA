@@ -70,6 +70,8 @@ public class FormScreenFragment extends Fragment {
      */
     private String title;
 
+    private boolean containsConditional = false;
+
     public static FormScreenFragment newInstance(
             int tier,
             @StringRes int titleId,
@@ -96,6 +98,7 @@ public class FormScreenFragment extends Fragment {
             try {
                 Log.d("make-input", "inputDesc : " + inputDescription);
                 fragment.inputFragments.add(inputDescription.make(fragment));
+                fragment.containsConditional |= inputDescription.conditional;
             } catch (IllegalAccessException | java.lang.InstantiationException e) {
                 System.out.println("Unable to create input : " + inputDescription);
                 e.printStackTrace();
@@ -202,5 +205,9 @@ public class FormScreenFragment extends Fragment {
         super.onResume();
 
         Log.d("data-oncreate", "formscreen fragment resume " + title);
+    }
+
+    public boolean doesContainConditional() {
+        return containsConditional;
     }
 }

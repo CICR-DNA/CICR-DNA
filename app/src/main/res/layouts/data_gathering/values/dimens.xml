@@ -2,6 +2,7 @@
 <resources>
     <dimen name="inputs_vertical_padding">16dp</dimen>
 
+    <dimen name="datagathering_navbar_height">50dp</dimen>
     <dimen name="datagathering_description_font_size">20sp</dimen>
     <item name="datagathering_image_screen_prop" format="float" type="dimen">0.30</item>
     <dimen name="datagathering_help_width">48dp</dimen>     <!-- min recommended size -->

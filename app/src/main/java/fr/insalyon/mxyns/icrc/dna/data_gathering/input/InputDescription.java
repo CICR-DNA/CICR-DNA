@@ -34,14 +34,22 @@ public class InputDescription implements Serializable {
         viewTemplatesMap.put("integer", SpinnerTemplateFragment.class);
     }
 
-    public InputDescription(String viewType, Integer viewTextId, Resources res) {
+    /**
+     * Flags that indicates if the input of the field depends on the input of other fields
+     */
+    public final boolean conditional;
 
+    public InputDescription(String viewType, Integer viewTextId, Resources res) {
+        this(viewType, viewTextId, res, false);
+    }
+    public InputDescription(String viewType, Integer viewTextId, Resources res, boolean conditional) {
         this.viewTextId = viewTextId;
         this.inputName = res.getResourceEntryName(viewTextId);
         this.displayName = res.getString(viewTextId);
 
         this.viewType = viewType;
         this.input_template_class = viewTemplatesMap.get(viewType);
+        this.conditional = conditional;
     }
 
     public InputTemplateFragment make(FormScreenFragment owner) throws InstantiationException, IllegalAccessException {
