@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Preference Titles -->
+    <string name="sync_method_header">Sync Method</string>
+    <string name="settings_sync_method">Pick preferred Sync method</string>
+    <string name="settings_try_rest_sync">Check settings</string>
+
+    <string name="sync_email_settings_header">Email Sync Settings</string>
+    <string name="settings_default_email">Email Address</string>
+
+    <string name="sync_rest_settings_header">REST Sync Settings</string>
+    <string name="settings_default_restAPI_url">Server Address</string>
+    <string name="settings_default_restAPI_usr">Username</string>
+    <string name="settings_default_restAPI_pwd">Password</string>
+
+
+</resources>
