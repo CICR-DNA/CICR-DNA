@@ -2,5 +2,4 @@
 <paths>
     <files-path name="cases_dir" path="cases/" />
     <cache-path name="tmp_dir" path="tmp/" />
-
 </paths>

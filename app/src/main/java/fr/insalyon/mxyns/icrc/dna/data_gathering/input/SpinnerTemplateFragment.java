@@ -34,6 +34,7 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
         TextView textView = root.findViewById(R.id.input_template_integer_text);
         getViewModel().text.observe(owner, textView::setText);
         intField.setText(String.valueOf(getViewModel().value.getValue()));
+        intField.setSelection(intField.getText().length());
 
         intField.addTextChangedListener(new TextWatcher() {
             @Override

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="results_result_title_font_size">60sp</dimen>
+    <dimen name="results_result_subtitle_font_size">16sp</dimen>
+</resources>

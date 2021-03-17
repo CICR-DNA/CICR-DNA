@@ -58,136 +58,138 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 new InputDescription("checkbox", R.string.tier_1_screen_1_option_2, mContext.getResources())
         );
 
-        // Siblings
+        // Children
         registerFormFragment(1, R.string.tier_1_screen_2_title,
                 R.string.tier_1_screen_2_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_crop_square_24,
+                R.drawable.children,
                 new InputDescription("integer", R.string.tier_1_screen_2_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_2_option_2, mContext.getResources(), true),
-                new InputDescription("integer", R.string.tier_1_screen_2_option_3, mContext.getResources())
+                new InputDescription("integer", R.string.tier_1_screen_2_option_2, mContext.getResources())
         );
 
-        // Siblings spouses
+        // Spouse
         registerFormFragment(1, R.string.tier_1_screen_3_title,
                 R.string.tier_1_screen_3_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("integer", R.string.tier_1_screen_3_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_3_option_2, mContext.getResources())
+                R.drawable.spouse,
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2, mContext.getResources())
         );
 
-        // Step-parents
+        // Children from second spouse
         registerFormFragment(1, R.string.tier_1_screen_4_title,
                 R.string.tier_1_screen_4_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("checkbox", R.string.tier_1_screen_4_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_4_option_2, mContext.getResources())
+                R.drawable.children2,
+                new InputDescription("integer", R.string.tier_1_screen_4_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_1_screen_4_option_2, mContext.getResources())
         );
 
-        // Half-siblings
+        // Second spouse
         registerFormFragment(1, R.string.tier_1_screen_5_title,
                 R.string.tier_1_screen_5_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("integer", R.string.tier_1_screen_5_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_5_option_2, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_5_option_3, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_5_option_4, mContext.getResources())
+                R.drawable.spouse2,
+                new InputDescription("checkbox", R.string.tier_1_screen_5_option_1, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_1_screen_5_option_2, mContext.getResources())
         );
 
-        // Nephews
+        // Siblings
         registerFormFragment(1, R.string.tier_1_screen_6_title,
                 R.string.tier_1_screen_6_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_1_screen_6_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_6_option_2, mContext.getResources())
+                new InputDescription("integer", R.string.tier_1_screen_6_option_2, mContext.getResources(), true),
+                new InputDescription("integer", R.string.tier_1_screen_6_option_3, mContext.getResources())
         );
 
-        // Spouse
+        // Tier 2
+        // TODO add "conditional" mark
+        // Grandparents
         registerFormFragment(2, R.string.tier_2_screen_1_title,
                 R.string.tier_2_screen_1_description,
                 R.string.pedigree_help_template,
-                R.drawable.spouse,
+                R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("checkbox", R.string.tier_2_screen_1_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_2_screen_1_option_2, mContext.getResources())
+                new InputDescription("checkbox", R.string.tier_2_screen_1_option_2, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_2_screen_1_option_3, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_2_screen_1_option_4, mContext.getResources())
         );
 
-        // Children
+        // Grandchildren
         registerFormFragment(2, R.string.tier_2_screen_2_title,
                 R.string.tier_2_screen_2_description,
                 R.string.pedigree_help_template,
-                R.drawable.children,
-                new InputDescription("integer", R.string.tier_2_screen_2_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_2_option_2, mContext.getResources())
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("integer", R.string.tier_2_screen_2_option_1, mContext.getResources())
         );
 
-        // Second spouse
+        // Daughter/Son-in-law
         registerFormFragment(2, R.string.tier_2_screen_3_title,
                 R.string.tier_2_screen_3_description,
                 R.string.pedigree_help_template,
-                R.drawable.spouse2,
-                new InputDescription("checkbox", R.string.tier_2_screen_3_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_2_screen_3_option_2, mContext.getResources())
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("integer", R.string.tier_2_screen_3_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_3_option_2, mContext.getResources())
         );
 
-        // Children from second spouse
+        // Cousins
         registerFormFragment(2, R.string.tier_2_screen_4_title,
                 R.string.tier_2_screen_4_description,
                 R.string.pedigree_help_template,
-                R.drawable.children2,
-                new InputDescription("integer", R.string.tier_2_screen_4_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_4_option_2, mContext.getResources())
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription("integer", R.string.tier_2_screen_4_option_1, mContext.getResources())
         );
 
-        // TODO add "conditional" mark
-        // Daughter/Son-in-law
+        // Aunts and Uncles
         registerFormFragment(2, R.string.tier_2_screen_5_title,
                 R.string.tier_2_screen_5_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_2_screen_5_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_5_option_2, mContext.getResources())
+                new InputDescription("integer", R.string.tier_2_screen_5_option_2, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_5_option_3, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_5_option_4, mContext.getResources())
         );
-
-        // Grandchildren
+        
+        // Nephews
         registerFormFragment(2, R.string.tier_2_screen_6_title,
                 R.string.tier_2_screen_6_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("integer", R.string.tier_2_screen_6_option_1, mContext.getResources())
+                new InputDescription("integer", R.string.tier_2_screen_6_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_6_option_2, mContext.getResources())
         );
 
-        // Grandparents
-        registerFormFragment(3, R.string.tier_3_screen_1_title,
-                R.string.tier_3_screen_1_description,
+        // Siblings spouses
+        registerFormFragment(2, R.string.tier_2_screen_7_title,
+                R.string.tier_2_screen_7_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("checkbox", R.string.tier_3_screen_1_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_3_screen_1_option_2, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_3_screen_1_option_3, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_3_screen_1_option_4, mContext.getResources())
+                new InputDescription("integer", R.string.tier_2_screen_7_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_7_option_2, mContext.getResources())
         );
 
-        // Aunts and Uncles
-        registerFormFragment(3, R.string.tier_3_screen_2_title,
-                R.string.tier_3_screen_2_description,
+
+        // Half-siblings
+        registerFormFragment(2, R.string.tier_2_screen_8_title,
+                R.string.tier_2_screen_8_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("integer", R.string.tier_3_screen_2_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_3_screen_2_option_2, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_3_screen_2_option_3, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_3_screen_2_option_4, mContext.getResources())
+                new InputDescription("integer", R.string.tier_2_screen_8_option_1, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_8_option_2, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_8_option_3, mContext.getResources()),
+                new InputDescription("integer", R.string.tier_2_screen_8_option_4, mContext.getResources())
         );
 
-        // Cousins
-        registerFormFragment(3, R.string.tier_3_screen_3_title,
-                R.string.tier_3_screen_3_description,
+        // Step-parents
+        registerFormFragment(2, R.string.tier_2_screen_9_title,
+                R.string.tier_2_screen_9_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("integer", R.string.tier_3_screen_3_option_1, mContext.getResources())
+                new InputDescription("checkbox", R.string.tier_2_screen_9_option_1, mContext.getResources()),
+                new InputDescription("checkbox", R.string.tier_2_screen_9_option_2, mContext.getResources())
         );
     }
 

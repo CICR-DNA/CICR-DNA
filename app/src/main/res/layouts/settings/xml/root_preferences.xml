@@ -7,23 +7,23 @@
             app:defaultValue="email"
             app:entries="@array/settings_sync_method_entries"
             app:entryValues="@array/settings_sync_method_values"
-            app:key="sync_method"
-            app:title="@string/settings_sync_method"
+            app:key="@string/settings_sync_method_key"
+            app:title="@string/settings_sync_method_title"
             app:useSimpleSummaryProvider="true"
             />
 
         <Preference
             app:key="sync_try_rest"
-            app:title="@string/settings_try_rest_sync"
+            app:title="@string/settings_try_rest_sync_title"
             />
     </PreferenceCategory>
 
 
-    <PreferenceCategory app:title="@string/sync_email_settings_header">
+    <PreferenceCategory app:title="@string/settings_sync_email_header">
 
         <EditTextPreference
-            app:key="default_email"
-            app:title="@string/settings_default_email"
+            app:key="@string/settings_default_email_key"
+            app:title="@string/settings_default_email_title"
             app:useSimpleSummaryProvider="true"
             android:lines="1"
             />
@@ -33,24 +33,39 @@
     <PreferenceCategory app:title="@string/sync_rest_settings_header">
 
         <EditTextPreference
-            app:key="default_restAPI_url"
-            app:title="@string/settings_default_restAPI_url"
+            app:key="@string/settings_default_restAPI_url_key"
+            app:title="@string/settings_default_restAPI_url_title"
             app:useSimpleSummaryProvider="true"
             android:lines="1"
             />
         <EditTextPreference
-            app:key="default_restAPI_usr"
-            app:title="@string/settings_default_restAPI_usr"
+            app:key="@string/settings_default_restAPI_usr_key"
+            app:title="@string/settings_default_restAPI_usr_title"
             app:useSimpleSummaryProvider="true"
             android:lines="1"
             />
         <EditTextPreference
-            app:key="default_restAPI_pwd"
-            app:title="@string/settings_default_restAPI_pwd"
-            app:useSimpleSummaryProvider="true"
+            app:key="@string/settings_default_restAPI_pwd_key"
+            app:title="@string/settings_default_restAPI_pwd_title"
+            app:useSimpleSummaryProvider="false"
             android:lines="1"
             />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/settings_misc_header">
+
+        <ListPreference
+            android:entries="@array/country_names_short"
+            android:entryValues="@array/country_codes_ISO2"
+            android:key="@string/settings_local_key"
+            app:useSimpleSummaryProvider="true"
+            android:title="@string/settings_locale_title" />
+        <Preference
+            app:key="@string/settings_clear_zips_key"
+            app:title="@string/settings_misc_clear_zip"
+            app:summary="@string/settings_misc_clear_zip_warning_message"
+            />
     </PreferenceCategory>
 
 </PreferenceScreen>

@@ -1,27 +1,24 @@
 package fr.insalyon.mxyns.icrc.dna;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.EditTextPreference;
-import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceManager;
-import androidx.preference.PreferenceScreen;
 
-import java.util.Locale;
-import java.util.function.Consumer;
-
-import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.sync.RestSync;
+import fr.insalyon.mxyns.icrc.dna.sync.Sync;
+import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -41,28 +38,52 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+
+        Sync.reInit(this);
+        super.onDestroy();
+    }
+
     public static class SettingsFragment extends PreferenceFragmentCompat {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
 
+            final Resources res = getResources();
 
             Log.d("auto-single-line",getPreferenceManager().getPreferenceScreen().getPreferenceCount() + "");
-            EditTextPreference.OnBindEditTextListener noMultilineAllowed = el -> el.setSingleLine(true);
+            EditTextPreference.OnBindEditTextListener noMultilineAllowed = el -> {
+                el.setSingleLine(true);
+                el.setSelection(el.getText().length());
+            };
             recursiveSetSingleLine(getPreferenceScreen(), noMultilineAllowed);
 
-            findPreference("sync_try_rest").setVisible(String.valueOf(findPreference("sync_method").getKey()).equalsIgnoreCase("restAPI"));
-            findPreference("sync_method").setOnPreferenceChangeListener((pref, key) -> {
-                findPreference("sync_try_rest").setVisible(String.valueOf(key).equalsIgnoreCase("restAPI"));
+            findPreference(res.getString(R.string.settings_try_rest_sync_key)).setVisible(getPreferenceScreen().getSharedPreferences().getString(res.getString(R.string.settings_sync_method_key), null).equalsIgnoreCase("restAPI"));
+            findPreference(res.getString(R.string.settings_sync_method_key)).setOnPreferenceChangeListener((pref, key) -> {
+                findPreference(res.getString(R.string.settings_try_rest_sync_key)).setVisible(String.valueOf(key).equalsIgnoreCase("restAPI"));
                 return true;
             });
 
-            findPreference("sync_try_rest").setOnPreferenceClickListener(e -> {
+            EditTextPreference pref = findPreference(res.getString(R.string.settings_default_restAPI_pwd_key));
+            pref.setOnBindEditTextListener(el -> {
+                el.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                el.setSelection(el.getText().length());
+            });
+            pref.setOnPreferenceChangeListener((e,v) -> {
+                if (v == null) return false;
+
+                Log.d("password", v + " => " + v.hashCode());
+                e.getSharedPreferences().edit().putString(res.getString(R.string.settings_default_restAPI_pwd_key), String.valueOf(v.hashCode())).apply();
+                return false;
+            });
+
+            findPreference(res.getString(R.string.settings_try_rest_sync_key)).setOnPreferenceClickListener(e -> {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SettingsFragment.this.getContext());
                 boolean result = sharedPreferences != null && RestSync.checkSettings(
-                        sharedPreferences.getString("default_restAPI_url", null),
-                        sharedPreferences.getString("default_restAPI_usr", null),
-                        sharedPreferences.getString("default_restAPI_pwd", null)
+                        sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_url_key), null),
+                        sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_usr_key), null),
+                        sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_pwd_key), null)
                 );
 
                 new AlertDialog.Builder(SettingsFragment.this.getContext())
@@ -71,6 +92,11 @@ public class SettingsActivity extends AppCompatActivity {
                         .setPositiveButton("OK", null).create().show();
 
                 return result;
+            });
+
+            findPreference(res.getString(R.string.settings_clear_zips_key)).setOnPreferenceClickListener(e -> {
+                FileUtils.clearDir(SettingsFragment.this.getContext().getCacheDir());
+                return true;
             });
         }
 

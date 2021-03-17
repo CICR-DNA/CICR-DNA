@@ -33,6 +33,7 @@ public class DataGatheringActivity extends AppCompatActivity {
      * Inputs' data modified in real time by the fragments
      */
     public static HashMap<String, JsonObject> data = null;
+
     /**
      * Tabs container and manager
      */
@@ -52,7 +53,7 @@ public class DataGatheringActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Log.d("data-oncreate", "CREATE DATAGATHERING");
-
+        
         // load case data from disk
         path = getIntent().getStringExtra("load");
         if (path != null)
@@ -87,8 +88,16 @@ public class DataGatheringActivity extends AppCompatActivity {
         // setup swipe buttons behaviour
         ImageButton left_swiper = findViewById(R.id.datagathering_left_chevron);
         left_swiper.setOnClickListener(e -> viewPager.setCurrentItem((viewPager.getCurrentItem() - 1 + formScreenAdapter.getCount()) % formScreenAdapter.getCount()));
+        left_swiper.setOnLongClickListener(e -> {
+            viewPager.setCurrentItem(0);
+            return true;
+        });
         ImageButton right_swiper = findViewById(R.id.datagathering_right_chevron);
         right_swiper.setOnClickListener(e -> viewPager.setCurrentItem((viewPager.getCurrentItem() + 1) % formScreenAdapter.getCount()));
+        right_swiper.setOnLongClickListener(e -> {
+            viewPager.setCurrentItem(formScreenAdapter.getCount() - 1);
+            return true;
+        });
 
         DataGatheringOnScreenChangeListener longAssName;
         viewPager.addOnPageChangeListener(longAssName = new DataGatheringOnScreenChangeListener(left_swiper, right_swiper, formScreenAdapter, this));

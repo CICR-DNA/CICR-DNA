@@ -56,6 +56,21 @@ public class Constants {
         return res.getString(getStatusLabelId(res, score));
     }
 
+    @StringRes
+    public static int getStatusInfoId(Resources res, float score) {
+
+        return score >= Constants.getSecondThreshold(res) ?
+                R.string.third_step_info
+                : score >= Constants.getFirstThreshold(res) ?
+                R.string.second_step_info
+                : R.string.first_step_info;
+    }
+
+    public static String getStatusInfo(Resources res, float score) {
+
+        return res.getString(getStatusInfoId(res, score));
+    }
+
     public static TypedValue getFloat(Resources res, @DimenRes int float_id) {
 
         TypedValue value_holder = new TypedValue();

@@ -70,7 +70,8 @@ public class ResultActivity extends AppCompatActivity {
 
         // update UI colors & text
         findViewById(R.id.result_content).setBackgroundColor(Constants.getStatusColor(getResources(), score));
-        ((TextView) findViewById(R.id.result_text)).setText(Constants.getStatusLabel(getResources(), score));
+        ((TextView) findViewById(R.id.results_status_label)).setText(Constants.getStatusLabel(getResources(), score));
+        ((TextView) findViewById(R.id.results_status_info)).setText(Constants.getStatusInfo(getResources(), score));
 
         Log.d("results-summary", "fillSummary: b4");
         fillSummary(values, findViewById(R.id.results_summary_layout));
@@ -143,7 +144,7 @@ public class ResultActivity extends AppCompatActivity {
         TypedValue unit_score_holder = new TypedValue();
 
         // First pass needed for bonuses
-        short grandparents = 0, niecesAndNephews = 0, grandChildren = 0;
+        short grandparents = 0, niecesAndNephews = 0, grandChildren = 0, halfSiblings = 0;
         short[] children = new short[2]; // 2 maximum at the moment
         for (Integer tier : values.keySet())
             for (InputResult result : values.get(tier)) {
@@ -160,8 +161,15 @@ public class ResultActivity extends AppCompatActivity {
 
                 if (lowerJsonPath.startsWith("children.children"))
                     grandChildren += result.getCount();
+
+                if (lowerJsonPath.matches("^siblings\\.[mp]aternal\\.half.+$"))
+                    halfSiblings += result.getCount();
             }
 
+        Log.d("results-counts", "grandparents="+grandparents);
+        Log.d("results-counts", "niecesAndNephews="+niecesAndNephews);
+        Log.d("results-counts", "grandChildren="+grandChildren);
+        Log.d("results-counts", "halfSiblings="+halfSiblings);
 
         // Dumb sum
         for (Integer tier : values.keySet()) {
@@ -178,6 +186,9 @@ public class ResultActivity extends AppCompatActivity {
                         continue;
 
                     if (grandChildren < 1 && lowercaseJsonPath.startsWith("children.spouses."))
+                        continue;
+
+                    if (halfSiblings < 1 && lowercaseJsonPath.startsWith("stepparents."))
                         continue;
 
                     // load unit score of an input
@@ -208,7 +219,7 @@ public class ResultActivity extends AppCompatActivity {
 
         JsonObject obj = path != null ? FileUtils.loadJsonFromFile(path) : new JsonObject();
         if (!obj.has("displayName"))
-            obj.addProperty("displayName", new Date().toString());
+            obj.addProperty("displayName", FileUtils.nameCase(new File(getFilesDir(), getResources().getString(R.string.files_path)), this));
 
         obj.addProperty("version", getResources().getString(R.string.json_version));
         obj.addProperty("score", score);

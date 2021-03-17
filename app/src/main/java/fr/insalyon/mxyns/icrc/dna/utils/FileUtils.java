@@ -1,6 +1,10 @@
 package fr.insalyon.mxyns.icrc.dna.utils;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -12,15 +16,18 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 
 public class FileUtils {
@@ -186,18 +193,28 @@ public class FileUtils {
      */
     public static String nameCaseFile(File root) {
 
-        if (!root.exists())
+        int index = getSmallestIndexedNameAvailable(root, "case-", ".json");
+        if (index < 0) {
             return (long) (System.currentTimeMillis() + System.nanoTime() * Math.random()) + ".json";
+        }
+
+        return "case-" + index + ".json";
+    }
+
+    public static int getSmallestIndexedNameAvailable(File root, String prefix, String suffix) {
+
+        if (!root.exists())
+            return -1;
 
         File[] files = root.listFiles();
         HashMap<String, File> filesMap = new HashMap<>();
         for (File file : files) filesMap.put(file.getName(), file);
 
         int i = 0;
-        while (filesMap.get("case-" + i + ".json") != null)
+        while (filesMap.get(prefix + i + suffix) != null)
             i++;
 
-        return "case-" + i + ".json";
+        return i;
     }
 
     /**
@@ -364,5 +381,29 @@ public class FileUtils {
             result.createNewFile(); // will throw if not created
 
         return result;
+    }
+
+    public static void clearDir(File file) {
+
+        if (file.isDirectory()) {
+            File[] arr = file.listFiles();
+            if (arr == null) return;
+
+            for (File f : arr)
+                clearDir(f);
+
+        } else if (!file.delete()) {
+            Log.d("clearDir", "couldn't delete file " + file.getAbsolutePath());
+        }
+    }
+
+    public static String nameCase(File root, Context context) {
+
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String locale = prefs.getString(context.getResources().getString(R.string.settings_local_key), null);
+        if (locale == null)
+            locale = Locale.getDefault().getCountry();
+
+        return locale + "_" + getSmallestIndexedNameAvailable(root, "case-", ".json");
     }
 }

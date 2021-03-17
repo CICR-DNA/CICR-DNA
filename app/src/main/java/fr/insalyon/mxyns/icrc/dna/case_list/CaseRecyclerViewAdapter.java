@@ -84,6 +84,8 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         Log.d("menu-file-sync", "Trying to sync case " + cicrCase);
         Sync usedSynchronizer = Sync.attemptFileSync(context, cicrCase.path);
 
+        Sync.showSyncResultDialog(context, usedSynchronizer);
+
         if (usedSynchronizer == null) {
             Log.d("menu-file-sync", "Case not synchronized");
         } else {

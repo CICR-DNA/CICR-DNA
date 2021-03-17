@@ -25,11 +25,11 @@ public class EmailSync extends Sync {
     public EmailSync(String target_address) {
 
         this.target_address = target_address;
+        this.showDialog = false;
     }
 
     @Override
     public boolean send(Context context, String filePath) {
-
 
         Intent emailSelectorIntent = new Intent(Intent.ACTION_SENDTO);
         emailSelectorIntent.setData(Uri.parse("mailto:"));

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -25,19 +26,6 @@ import fr.insalyon.mxyns.icrc.dna.sync.Sync;
  * Main Activity with a CaseList
  */
 public class MainActivity extends AppCompatActivity {
-
-    // FIXME warning
-    // TODO email target in xml (=> initialize)
-    /**
-     * Data synchronizers, used to send the cases data to any type of receiver, sorted in order of use.
-     * If the first one fails the next one will be used until one is etc.
-     * @see Sync#attemptFileSync
-     */
-    public static LinkedList<Sync> syncs = new LinkedList<>(Arrays.asList(
-            new RestSync(),
-            new EmailSync("")
-    ));
-
 
     private boolean multiSelection = false;
 
@@ -61,17 +49,26 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> paths = caseList.getSelectedPaths();
                 Log.d("menu-file-sync", "Selected " + paths);
 
+                Sync sync = null;
                 if (paths.size() == 1)
-                    Sync.attemptFileSync(this, paths.get(0));
+                    sync = Sync.attemptFileSync(this, paths.get(0));
                 else if (paths.size() > 0)
-                    Sync.attemptFileSync(this, paths);
+                    sync = Sync.attemptFileSync(this, paths);
 
+                Sync.showSyncResultDialog(this, sync);
             }
             toggleMultiSelection();
         });
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Sync.reInit(this);
     }
 
     @Override

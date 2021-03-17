@@ -8,8 +8,11 @@
     <item name="second_threshold" type="dimen" format="float">15</item>
 
     <item name="first_step_label" type="string">BAD</item>
+    <item name="first_step_info" type="string">None or only poor candidates available for collection</item>
     <item name="second_step_label" type="string">DECENT</item>
+    <item name="second_step_info" type="string">Partial collection. Additional relatives recommended</item>
     <item name="third_step_label" type="string">VALID!</item>
+    <item name="third_step_info" type="string">Minimum collection met. Consider still collecting from all available relatives</item>
 
     <!--Parents-->
     <!--Mother--> <item name="tier_1_screen_1_option_1" type="dimen" format="float">10</item>
@@ -29,14 +32,14 @@
     <!--Step-Father--><item name="tier_1_screen_4_option_2" type="dimen" format="float">0.75</item>
 
     <!--Half-siblings-->
-    <!--Paternal Half-brother--><item name="tier_1_screen_5_option_1" type="dimen" format="float">1.75</item>
-    <!--Paternal Half-sister--><item name="tier_1_screen_5_option_2" type="dimen" format="float">1.75</item>
-    <!--Paternal Half-brother--><item name="tier_1_screen_5_option_3" type="dimen" format="float">1.75</item>
-    <!--Paternal Half-sister--><item name="tier_1_screen_5_option_4" type="dimen" format="float">1.75</item>
+    <!--Paternal Half-brother--><item name="tier_1_screen_5_option_1" type="dimen" format="float">1.5</item>
+    <!--Paternal Half-sister--><item name="tier_1_screen_5_option_2" type="dimen" format="float">1.5</item>
+    <!--Paternal Half-brother--><item name="tier_1_screen_5_option_3" type="dimen" format="float">1.5</item>
+    <!--Paternal Half-sister--><item name="tier_1_screen_5_option_4" type="dimen" format="float">1.5</item>
 
     <!--Nieces and Nephews-->
-    <!--Nieces--><item name="tier_1_screen_6_option_1" type="dimen" format="float">1.75</item>
-    <!--Nephews--><item name="tier_1_screen_6_option_2" type="dimen" format="float">1.75</item>
+    <!--Nieces--><item name="tier_1_screen_6_option_1" type="dimen" format="float">1.5</item>
+    <!--Nephews--><item name="tier_1_screen_6_option_2" type="dimen" format="float">1.5</item>
 
 
     <!--Spouse-->
