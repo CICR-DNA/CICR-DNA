@@ -1,5 +1,6 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import androidx.annotation.StringRes;
@@ -7,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.gson.JsonObject;
+
+import java.util.function.Supplier;
 
 import fr.insalyon.mxyns.icrc.dna.DataGatheringActivity;
 import fr.insalyon.mxyns.icrc.dna.R;
@@ -28,8 +31,15 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     public String input_name;
     public InputDescription description;
     public FormScreenFragment owner;
+    private Supplier<Boolean> predicate;
 
     public InputTemplateFragment() {
+
+    }
+
+    public static boolean atLeastOneDependency(String dependency_input_name) {
+        JsonObject data = DataGatheringActivity.data.get(dependency_input_name);
+        return data != null && data.get("count").getAsInt() > 0;
     }
 
     /**
@@ -45,6 +55,8 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         this.description = inputDescription;
         this.input_name = inputDescription.inputName;
         this.owner = owner;
+        this.predicate = inputDescription.predicate;
+
         args.putInt(ARG_TEXT_ID, inputDescription.viewTextId);
         args.putString(ARG_TEXT, inputDescription.displayName);
         args.putString(ARG_NAME, this.input_name);
@@ -83,6 +95,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         Log.d("data-oncreate", "input fragment created " + this.input_name + " aka " + viewModel.text.getValue());
     }
 
+
     private void initializeUIFromBundle(Bundle arguments) {
 
         @StringRes int text_id = R.string.template_text;
@@ -104,13 +117,18 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-        if (this instanceof CheckboxTemplateFragment)
-            Log.d("no-check-zone-onresume", "CheckBox " + this.input_name + " : check is  (viewmodel:" + getViewModel().value.getValue() + ", data=" + DataGatheringActivity.data.get(input_name) + " )");
+    public void onStart() {
+        super.onStart();
 
         updateValue(viewModel.value.getValue(), false);
+    }
+
+    protected abstract void setEnabled(Boolean aBoolean);
+
+    public void onSwippedTo() {
+
+        if (predicate != null)
+            setEnabled(predicate.get());
     }
 
     protected void updateValue(T value, boolean notify) {

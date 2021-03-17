@@ -8,6 +8,9 @@ import androidx.annotation.StringRes;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenFragment;
 
@@ -39,13 +42,19 @@ public class InputDescription implements Serializable {
      */
     public final boolean conditional;
 
+    /**
+     * Predicate evaluated on Fragment resume. Defines if the element should be enabled or not
+     */
+    public final Supplier<Boolean> predicate;
+
     public InputDescription(String viewType, Integer viewTextId, Resources res) {
-        this(viewType, viewTextId, res, false);
+        this(viewType, viewTextId, res, false, null);
     }
-    public InputDescription(String viewType, Integer viewTextId, Resources res, boolean conditional) {
+    public InputDescription(String viewType, Integer viewTextId, Resources res, boolean conditional, Supplier<Boolean> predicate) {
         this.viewTextId = viewTextId;
         this.inputName = res.getResourceEntryName(viewTextId);
         this.displayName = res.getString(viewTextId);
+        this.predicate = predicate;
 
         this.viewType = viewType;
         this.input_template_class = viewTemplatesMap.get(viewType);

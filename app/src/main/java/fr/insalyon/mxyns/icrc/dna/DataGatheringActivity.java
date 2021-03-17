@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 
 import fr.insalyon.mxyns.icrc.dna.data_gathering.DataGatheringOnScreenChangeListener;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenAdapter;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenFragment;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.TabLayout;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
@@ -53,7 +55,7 @@ public class DataGatheringActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Log.d("data-oncreate", "CREATE DATAGATHERING");
-        
+
         // load case data from disk
         path = getIntent().getStringExtra("load");
         if (path != null)
@@ -101,6 +103,12 @@ public class DataGatheringActivity extends AppCompatActivity {
 
         DataGatheringOnScreenChangeListener longAssName;
         viewPager.addOnPageChangeListener(longAssName = new DataGatheringOnScreenChangeListener(left_swiper, right_swiper, formScreenAdapter, this));
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+        });
         longAssName.onPageSelected(0);
     }
 

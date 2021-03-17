@@ -210,4 +210,11 @@ public class FormScreenFragment extends Fragment {
     public boolean doesContainConditional() {
         return containsConditional;
     }
+
+    public void onSwippedTo() {
+
+        for (InputTemplateFragment frag : inputFragments) {
+            frag.onSwippedTo();
+        }
+    }
 }

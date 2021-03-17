@@ -64,6 +64,16 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
         return root;
     }
 
+
+
+    @Override
+    protected void setEnabled(Boolean aBoolean) {
+
+        root.findViewById(R.id.input_template_integer_field).setEnabled(aBoolean);
+        root.findViewById(R.id.input_template_integer_text).setEnabled(aBoolean);
+    }
+
+
     @Override
     public void putValueToBundle(@Nullable Bundle bundle) {
         String value = "0";

@@ -22,6 +22,13 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
     }
 
     @Override
+    protected void setEnabled(Boolean aBoolean) {
+
+        root.findViewById(R.id.input_template_checkbox).setEnabled(aBoolean);
+        root.findViewById(R.id.input_checkbox_text).setEnabled(aBoolean);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
