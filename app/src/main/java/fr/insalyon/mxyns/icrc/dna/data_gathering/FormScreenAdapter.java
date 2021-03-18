@@ -106,7 +106,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         );
 
         // Tier 2
-        // TODO add "conditional" mark
+        // TODO add visual "conditional" mark ?
         // Grandparents
         registerFormFragment(2, R.string.tier_2_screen_1_title,
                 R.string.tier_2_screen_1_description,

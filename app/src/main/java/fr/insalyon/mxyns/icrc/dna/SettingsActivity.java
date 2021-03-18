@@ -1,6 +1,5 @@
 package fr.insalyon.mxyns.icrc.dna;
 
-import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -16,9 +15,10 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceManager;
 
-import fr.insalyon.mxyns.icrc.dna.sync.RestSync;
 import fr.insalyon.mxyns.icrc.dna.sync.Sync;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
+import fr.insalyon.mxyns.icrc.dna.utils.tasks.LoginAsyncTask;
+import fr.insalyon.mxyns.icrc.dna.utils.tasks.PasswordHashingAsyncTask;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
 
             final Resources res = getResources();
 
-            Log.d("auto-single-line",getPreferenceManager().getPreferenceScreen().getPreferenceCount() + "");
+            Log.d("auto-single-line", getPreferenceManager().getPreferenceScreen().getPreferenceCount() + "");
             EditTextPreference.OnBindEditTextListener noMultilineAllowed = el -> {
                 el.setSingleLine(true);
                 el.setSelection(el.getText().length());
@@ -70,28 +70,24 @@ public class SettingsActivity extends AppCompatActivity {
                 el.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 el.setSelection(el.getText().length());
             });
-            pref.setOnPreferenceChangeListener((e,v) -> {
+            pref.setOnPreferenceChangeListener((e, v) -> {
                 if (v == null) return false;
 
-                Log.d("password", v + " => " + v.hashCode());
-                e.getSharedPreferences().edit().putString(res.getString(R.string.settings_default_restAPI_pwd_key), String.valueOf(v.hashCode())).apply();
+                new PasswordHashingAsyncTask(getContext(), 16).execute(v.toString());
                 return false;
             });
 
             findPreference(res.getString(R.string.settings_try_rest_sync_key)).setOnPreferenceClickListener(e -> {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SettingsFragment.this.getContext());
-                boolean result = sharedPreferences != null && RestSync.checkSettings(
+
+                LoginAsyncTask login = new LoginAsyncTask(getContext());
+                login.execute(
                         sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_url_key), null),
                         sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_usr_key), null),
                         sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_pwd_key), null)
                 );
 
-                new AlertDialog.Builder(SettingsFragment.this.getContext())
-                        .setTitle("REST API " + (result ? "Succes" : "Error") )
-                        .setMessage("Connection to the REST API " + (result ? "succeeded" : "failed. Perhaps the actual settings are wrong."))
-                        .setPositiveButton("OK", null).create().show();
-
-                return result;
+                return false;
             });
 
             findPreference(res.getString(R.string.settings_clear_zips_key)).setOnPreferenceClickListener(e -> {
@@ -106,7 +102,7 @@ public class SettingsActivity extends AppCompatActivity {
                 if (preference instanceof PreferenceCategory)
                     recursiveSetSingleLine((PreferenceCategory) preference, noMultilineAllowed);
                 else if (preference instanceof EditTextPreference)
-                    ((EditTextPreference)preference).setOnBindEditTextListener(noMultilineAllowed);
+                    ((EditTextPreference) preference).setOnBindEditTextListener(noMultilineAllowed);
             }
         }
     }

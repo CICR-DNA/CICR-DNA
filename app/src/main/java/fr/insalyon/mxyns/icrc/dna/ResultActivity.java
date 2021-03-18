@@ -19,7 +19,6 @@ import com.google.gson.JsonObject;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class ResultActivity extends AppCompatActivity {
         // get data from intent
         Serializable data = getIntent().getSerializableExtra("all-values");
         if (data == null) {
-            Toast.makeText(this, "No data to analyze", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.results_no_data_to_analyse_error, Toast.LENGTH_LONG).show();
             return;
         }
 

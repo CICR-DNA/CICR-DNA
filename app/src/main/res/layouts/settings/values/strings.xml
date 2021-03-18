@@ -6,9 +6,15 @@
     <string name="settings_sync_method_title">Pick preferred Sync method</string>
     <string name="settings_sync_method_key" translatable="false">sync_method</string>
 
-
     <string name="settings_try_rest_sync_title">Check settings</string>
     <string name="settings_try_rest_sync_key" translatable="false">sync_try_rest</string>
+
+    <string name="settings_default_restAPI_try_pending_title">Authenticating…</string>
+    <string name="settings_default_restAPI_try_pending_message">Trying to contact the remote synchronization server for your authentication…</string>
+    <string name="settings_default_restAPI_try_error_title">Authentication error</string>
+    <string name="settings_default_restAPI_try_error_message">An error occurred during the authentication process.\nPlease check the server address, username (email) and password you provided and then try again.</string>
+    <string name="settings_default_restAPI_try_success_title">Successfully connected</string>
+    <string name="settings_default_restAPI_try_success_message">You were successfully connected to the remote synchronization server.</string>
 
     <string name="settings_sync_email_header">Email Sync Settings</string>
     <string name="settings_default_email_title">Email Address</string>
@@ -18,11 +24,19 @@
     <string name="settings_default_restAPI_url_title">Server Address</string>
     <string name="settings_default_restAPI_url_key">default_restAPI_url</string>
 
+
     <string name="settings_default_restAPI_usr_title">Username</string>
     <string name="settings_default_restAPI_usr_key" translatable="false">default_restAPI_usr</string>
-
     <string name="settings_default_restAPI_pwd_title">Password</string>
     <string name="settings_default_restAPI_pwd_key" translatable="false">default_restAPI_pwd</string>
+
+    <string name="settings_default_restAPI_pwd_hashing_pending_title">Securing your password…</string>
+    <string name="settings_default_restAPI_pwd_hashing_pending_message">Your password is being secured and saved, please wait…</string>
+    <string name="settings_default_restAPI_pwd_hashing_error_title">Hashing Error</string>
+    <string name="settings_default_restAPI_pwd_hashing_error_message">An error occurred while trying to secure and save your password.</string>
+    <string name="settings_default_restAPI_pwd_hashing_success_title">Password remembered</string>
+    <string name="settings_default_restAPI_pwd_hashing_success_message">Your password has been successfully secured and saved.</string>
+
 
     <string name="settings_misc_header">Miscellaneous</string>
     <string name="settings_misc_clear_zip">Clear Cache</string>
@@ -31,4 +45,5 @@
     <string name="settings_locale_title" translatable="false">Mission location</string>
     <string name="settings_local_key" translatable="false">settings_locale</string>
     <string name="settings_clear_zips_key" translatable="false">clear_zips</string>
+
 </resources>

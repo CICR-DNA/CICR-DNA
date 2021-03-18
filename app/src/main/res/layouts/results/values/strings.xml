@@ -7,4 +7,6 @@
     <string name="results_score_toast_text">Score : %.2f</string>
     <string name="results_fab_save_and_quit">Save and quit ?</string>
     <string name="results_fab_finish">FINISH</string>
+
+    <string name="results_no_data_to_analyse_error">No data to analyze</string>
 </resources>

@@ -7,6 +7,7 @@
 
     <string name="datagathering_exit_without_saving_title">Unsaved changes</string>
     <string name="datagathering_exit_without_saving_msg">You\'ve modified data and didn\'t save before exiting. Unsaved changes will be lost !</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="datagathering_pedigree_help_dialog_title">Pedigree Help</string>
 
 </resources>

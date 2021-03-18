@@ -13,7 +13,7 @@
             />
 
         <Preference
-            app:key="sync_try_rest"
+            app:key="@string/settings_try_rest_sync_key"
             app:title="@string/settings_try_rest_sync_title"
             />
     </PreferenceCategory>

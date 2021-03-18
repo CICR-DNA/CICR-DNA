@@ -16,10 +16,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -46,7 +46,7 @@ public class FileUtils {
 
         ArrayList<File> list = new ArrayList<>(Arrays.asList(dir.listFiles()));
 
-        Collections.sort(list, (a, b) -> a.getPath().compareTo(b.getPath()));
+        Collections.sort(list, Comparator.comparing(File::getPath));
         Collections.reverse(list);
 
         return list;

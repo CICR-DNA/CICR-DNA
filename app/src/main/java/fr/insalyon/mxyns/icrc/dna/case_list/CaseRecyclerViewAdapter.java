@@ -53,6 +53,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         holder.mContentView.setEnabled(true);
 
         holder.mContentView.setText(mValues.get(position).displayName);
+        holder.mContentView.setSelection(holder.mContentView.getText().length());
         holder.caseStatus.setBackgroundTintList(ColorStateList.valueOf(holder.mItem.getColor()));
     }
 

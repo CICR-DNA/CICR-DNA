@@ -169,7 +169,7 @@ public class FormScreenFragment extends Fragment {
             }
 
             new AlertDialog.Builder(getContext())
-                    .setTitle("Pedigree Help")
+                    .setTitle(R.string.datagathering_pedigree_help_dialog_title)
                     .setMessage(pedigreeHelpId)
                     .setPositiveButton(android.R.string.ok, null)
                     .setIcon(R.drawable.ic_baseline_help_outline_24)

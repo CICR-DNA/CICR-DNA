@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="settings_default_restAPI_url_login_path">users/login</string>
+    <string name="settings_default_restAPI_url_post_path">cases/insertDatabase</string>
+    <string name="settings_default_restAPI_body_login">
+        {
+            \"email\" : \"%s\",
+            \"password\" : \"%s\"
+        }
+    </string>
+</resources>

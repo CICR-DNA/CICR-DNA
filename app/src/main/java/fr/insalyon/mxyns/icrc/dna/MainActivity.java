@@ -7,19 +7,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 
 import fr.insalyon.mxyns.icrc.dna.case_list.CaseListFragment;
-import fr.insalyon.mxyns.icrc.dna.sync.EmailSync;
-import fr.insalyon.mxyns.icrc.dna.sync.RestSync;
 import fr.insalyon.mxyns.icrc.dna.sync.Sync;
 
 /**
@@ -55,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
                 else if (paths.size() > 0)
                     sync = Sync.attemptFileSync(this, paths);
 
-                Sync.showSyncResultDialog(this, sync);
+                if (paths.size() != 0)
+                    Sync.showSyncResultDialog(this, sync);
             }
             toggleMultiSelection();
         });

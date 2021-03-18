@@ -3,7 +3,9 @@ package fr.insalyon.mxyns.icrc.dna.sync;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.preference.PreferenceManager;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,9 +14,6 @@ import java.util.List;
 
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.preference.PreferenceManager;
 
 /**
  * A synchronizer is a way to send data to any case data file to a receiver and then mark the file as sync-ed.
@@ -48,8 +47,6 @@ public abstract class Sync {
         zipFile = FileUtils.zip(filePaths, zipFile.getPath());
 
         Sync usedSynchronizer = attemptFileSync(context, zipFile.getPath());
-
-        Log.d("email-zip-delete", "deleted zip");
 
         return usedSynchronizer;
     }
@@ -92,11 +89,12 @@ public abstract class Sync {
     }
 
     public static void showSyncResultDialog(Context context, boolean result) {
+
         new AlertDialog.Builder(context)
-                .setMessage("Super ça marche" + (result ? "" : " pas"))
-                .setTitle("Synchronization " + (result ? "succes" : "failure"))
+                .setTitle(result ? R.string.main_sync_success_title : R.string.main_sync_failure_title)
+                .setMessage(result ? R.string.main_sync_success_msg : R.string.main_sync_failure_msg)
                 .setCancelable(true)
-                .setPositiveButton("OK", null)
+                .setPositiveButton(android.R.string.ok, null)
                 .create()
                 .show();
     }

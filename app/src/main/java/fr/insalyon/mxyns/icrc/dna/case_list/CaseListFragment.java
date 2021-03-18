@@ -36,7 +36,6 @@ public class CaseListFragment extends Fragment {
     /**
      *
      */
-
     private RecyclerView recyclerView;
 
     public CaseListFragment() { }
