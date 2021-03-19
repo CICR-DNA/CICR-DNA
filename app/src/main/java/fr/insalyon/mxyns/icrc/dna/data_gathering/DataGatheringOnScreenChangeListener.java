@@ -3,6 +3,7 @@ package fr.insalyon.mxyns.icrc.dna.data_gathering;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -13,13 +14,15 @@ import fr.insalyon.mxyns.icrc.dna.R;
 public class DataGatheringOnScreenChangeListener extends ViewPager.SimpleOnPageChangeListener {
 
     private final View left_swiper, right_swiper;
+    private final TextView page_index_text;
     private final FormScreenAdapter screenAdapter;
     private Toast currentlyDisplayedToast;
 
-    public DataGatheringOnScreenChangeListener(View left_swiper, View right_swiper, FormScreenAdapter screenAdapter, Context context) {
+    public DataGatheringOnScreenChangeListener(TextView page_index_text, View left_swiper, View right_swiper, FormScreenAdapter screenAdapter, Context context) {
         this.left_swiper = left_swiper;
         this.right_swiper = right_swiper;
         this.screenAdapter = screenAdapter;
+        this.page_index_text = page_index_text;
         this.context = context;
     }
 
@@ -29,6 +32,7 @@ public class DataGatheringOnScreenChangeListener extends ViewPager.SimpleOnPageC
     public void onPageSelected(int position) {
         left_swiper.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
         right_swiper.setVisibility(position == screenAdapter.getCount() - 1 ? View.INVISIBLE : View.VISIBLE);
+        page_index_text.setText(context.getResources().getString(R.string.datagathering_page_index, 1 + position, screenAdapter.getCount()));
 
         if (currentlyDisplayedToast != null && currentlyDisplayedToast.getView().getVisibility() == View.VISIBLE)
             currentlyDisplayedToast.cancel();

@@ -10,4 +10,5 @@
 
     <string name="datagathering_pedigree_help_dialog_title">Pedigree Help</string>
 
+    <string name="datagathering_page_index">%d / %d</string>
 </resources>
