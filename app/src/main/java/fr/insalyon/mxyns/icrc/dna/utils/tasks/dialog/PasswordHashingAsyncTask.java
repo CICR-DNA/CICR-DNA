@@ -1,4 +1,4 @@
-package fr.insalyon.mxyns.icrc.dna.utils.tasks;
+package fr.insalyon.mxyns.icrc.dna.utils.tasks.dialog;
 
 import android.content.Context;
 

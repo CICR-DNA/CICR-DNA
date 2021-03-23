@@ -1,4 +1,4 @@
-package fr.insalyon.mxyns.icrc.dna.utils.tasks;
+package fr.insalyon.mxyns.icrc.dna.utils.tasks.dialog;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog;
 public abstract class DialogBlockingAsyncTask<T, R, S> extends AsyncTask<T, R, S> {
 
     protected final Context mContext;
+
+    // TODO my own alert dialog
     private AlertDialog currentDialog;
 
     @StringRes
@@ -34,6 +36,7 @@ public abstract class DialogBlockingAsyncTask<T, R, S> extends AsyncTask<T, R, S
         currentDialog = new AlertDialog.Builder(mContext)
                 .setTitle(pending_title_id)
                 .setMessage(pending_msg_id)
+                .setView(fr.insalyon.mxyns.icrc.dna.R.layout.blocking_dialog)
                 .setCancelable(false)
                 .create();
 

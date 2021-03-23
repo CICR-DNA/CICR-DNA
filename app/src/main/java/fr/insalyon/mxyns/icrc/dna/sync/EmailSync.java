@@ -25,11 +25,10 @@ public class EmailSync extends Sync {
     public EmailSync(String target_address) {
 
         this.target_address = target_address;
-        this.showDialog = false;
     }
 
     @Override
-    public boolean send(Context context, String filePath) {
+    public void send(Context context, String filePath) {
 
         Intent emailSelectorIntent = new Intent(Intent.ACTION_SENDTO);
         emailSelectorIntent.setData(Uri.parse("mailto:"));
@@ -44,10 +43,8 @@ public class EmailSync extends Sync {
         Uri attachment = FileProvider.getUriForFile(context, MainActivity.class.getPackage().getName() + ".fileprovider", new File(filePath));
         emailIntent.putExtra(Intent.EXTRA_STREAM, attachment);
 
-        if( emailIntent.resolveActivity(context.getPackageManager()) != null )
+        if(emailIntent.resolveActivity(context.getPackageManager()) != null)
             context.startActivity(emailIntent);
-
-        return true;
     }
 
     public String makeSubject(Resources resources, String filePath) {

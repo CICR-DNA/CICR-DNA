@@ -4,5 +4,5 @@
     <string name="main_sync_success_title">Synchronization success</string>
     <string name="main_sync_failure_title">Synchronization failure</string>
     <string name="main_sync_success_msg">Your cases were synchronized successfully</string>
-    <string name="main_sync_failure_msg">Your cases weren\'t synchronized, check your settings, your internet access and try again later.</string>
+    <string name="main_sync_failure_msg">Your cases weren\'t synchronized, check your settings, your internet access and try again.</string>
 </resources>

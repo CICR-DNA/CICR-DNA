@@ -17,8 +17,8 @@ import androidx.preference.PreferenceManager;
 
 import fr.insalyon.mxyns.icrc.dna.sync.Sync;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
-import fr.insalyon.mxyns.icrc.dna.utils.tasks.LoginAsyncTask;
-import fr.insalyon.mxyns.icrc.dna.utils.tasks.PasswordHashingAsyncTask;
+import fr.insalyon.mxyns.icrc.dna.utils.tasks.dialog.LoginAsyncTask;
+import fr.insalyon.mxyns.icrc.dna.utils.tasks.dialog.PasswordHashingAsyncTask;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -73,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity {
             pref.setOnPreferenceChangeListener((e, v) -> {
                 if (v == null) return false;
 
-                new PasswordHashingAsyncTask(getContext(), 16).execute(v.toString());
+                new PasswordHashingAsyncTask(getContext(), res.getInteger(R.integer.hashing_cost)).execute(v.toString()); // TODO cost => res
                 return false;
             });
 

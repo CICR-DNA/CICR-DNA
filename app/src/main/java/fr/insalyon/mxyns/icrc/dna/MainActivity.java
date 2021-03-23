@@ -44,14 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<String> paths = caseList.getSelectedPaths();
                 Log.d("menu-file-sync", "Selected " + paths);
 
-                Sync sync = null;
                 if (paths.size() == 1)
-                    sync = Sync.attemptFileSync(this, paths.get(0));
-                else if (paths.size() > 0)
-                    sync = Sync.attemptFileSync(this, paths);
-
-                if (paths.size() != 0)
-                    Sync.showSyncResultDialog(this, sync);
+                    Sync.attemptFileSync(this, paths.get(0));
+                else if (paths.size() > 1)
+                    Sync.attemptFileSync(this, paths);
             }
             toggleMultiSelection();
         });

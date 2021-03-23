@@ -9,13 +9,11 @@ import androidx.preference.PreferenceManager;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
 
 import fr.insalyon.mxyns.icrc.dna.R;
-import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
+import fr.insalyon.mxyns.icrc.dna.utils.RestPostFileAsyncTask;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -40,7 +38,7 @@ public class RestSync extends Sync {
     }
 
     @Override
-    public boolean send(Context context, String filePath) {
+    public void send(Context context, String filePath) {
 
         String url_key = context.getResources().getString(R.string.settings_default_restAPI_url_key);
         String url_str = PreferenceManager.getDefaultSharedPreferences(context).getString(url_key, null);
@@ -48,52 +46,7 @@ public class RestSync extends Sync {
         String token = PreferenceManager.getDefaultSharedPreferences(context).getString("auth_token", null);
         url_str += (url_str.endsWith("/") ? "" : "/") + context.getResources().getString(R.string.settings_default_restAPI_url_post_path);
 
-        OkHttpClient httpClient = new OkHttpClient.Builder()
-                .readTimeout(5, TimeUnit.SECONDS)
-                .build();
-
-        // TODO check if zips are handled correctly
-        RequestBody post_body;
-        if (filePath.endsWith(".json"))
-            post_body = RequestBody.create(
-                    MediaType.parse("application/json"),
-                    FileUtils.loadJsonFromFile(filePath).toString()
-            );
-        else if (filePath.endsWith(".zip"))
-            post_body = RequestBody.create(
-                    MediaType.parse("application/zip"),
-                    new File(filePath)
-            );
-        else {
-            Log.d("rest-sync", "file format not handled : " + new File(filePath).getName());
-            return false;
-        }
-
-        Request req = new Request.Builder()
-                .url(url_str)
-                .addHeader("Authorization", "Bearer " + token)
-                .post(post_body)
-                .build();
-
-        Response rep = syncRequest(httpClient, req);
-
-        if (rep == null) return false;
-
-        Log.d("rest-sync", "response code : " + rep.code());
-        try {
-            ResponseBody body = rep.body();
-
-            Log.d("rest-sync", "no response body");
-            if (body == null) return false;
-
-            String body_as_str = body.string();
-            Log.d("rest-sync", "response body : " + body_as_str);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // TODO rep code must be handled better, will see when this part of the server is done
-        return rep.code() == 200;
+        new RestPostFileAsyncTask(context).execute(url_str, token, filePath);
     }
 
     private static String bodyToString(final Request request) {
@@ -110,8 +63,6 @@ public class RestSync extends Sync {
 
     public static boolean login(Context context, String url_str, String username, String password) {
 
-        password = "123456789";
-
         Log.d("rest-api-login", "attempt to login");
         Resources resources = context.getResources();
         url_str += (url_str.endsWith("/") ? "" : "/") + resources.getString(R.string.settings_default_restAPI_url_login_path);
@@ -120,7 +71,7 @@ public class RestSync extends Sync {
         Log.d("rest-api-login", "url : " + url_str);
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
-                .readTimeout(5, TimeUnit.SECONDS)
+                .readTimeout(resources.getInteger(R.integer.requests_timeout), TimeUnit.SECONDS)
                 .build();
 
         RequestBody post_body = RequestBody.create(MediaType.parse("application/json"),
@@ -163,22 +114,13 @@ public class RestSync extends Sync {
 
     public static Response syncRequest(OkHttpClient httpClient, Request req) {
 
-        AtomicReference<Response> res = new AtomicReference<>();
-        Thread thread = new Thread(() -> {
-
-            try {
-                res.set(httpClient.newCall(req).execute());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        thread.start();
+        Response res = null;
         try {
-            thread.join();
-        } catch (InterruptedException e) {
-            return null;
+            res = httpClient.newCall(req).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        return res.get();
+        return res;
     }
 }

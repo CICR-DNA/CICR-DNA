@@ -20,52 +20,49 @@ import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
  */
 public abstract class Sync {
 
-    public boolean showDialog = true;
-
     private static HashMap<String, Sync> syncMap;
 
     static {
         reInit(null);
     }
 
-    public abstract boolean send(Context context, String filePath);
+    public abstract void send(Context context, String filePath);
 
     /**
      * Attempts to send a list of files using any synchronizer after zipping them.
      *
      * @param filePaths list of paths to the files to send.
-     * @return true if synchronization was successful
      */
-    public static Sync attemptFileSync(Context context, List<String> filePaths) {
+    public static void attemptFileSync(Context context, List<String> filePaths) {
 
         File zipFile;
         try {
             zipFile = FileUtils.randomFileInDir(context.getCacheDir(), "tmp", "zip");
         } catch (IOException ex) {
-            return null;
+            showSyncResultDialog(context, false);
+            return;
         }
         zipFile = FileUtils.zip(filePaths, zipFile.getPath());
 
-        Sync usedSynchronizer = attemptFileSync(context, zipFile.getPath());
-
-        return usedSynchronizer;
+        attemptFileSync(context, zipFile.getPath());
     }
 
     /**
      * Attempts to send a single file using any synchronizer.
      *
      * @param filePath path of the file to send
-     * @return true if synchronization was successful
      */
-    public static Sync attemptFileSync(Context context, String filePath) {
+    public static void attemptFileSync(Context context, String filePath) {
 
         String selected = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getResources().getString(R.string.settings_sync_method_key), null);
         Sync sync = syncMap.get(selected);
 
-        if (sync != null && sync.send(context, filePath))
-            return sync;
+        if (sync == null) {
+            showSyncResultDialog(context, false);
+            return;
+        }
 
-        return null;
+        sync.send(context, filePath);
     }
 
     public static void reInit(Context context) {
@@ -97,13 +94,5 @@ public abstract class Sync {
                 .setPositiveButton(android.R.string.ok, null)
                 .create()
                 .show();
-    }
-    public static void showSyncResultDialog(Context context, Sync sync) {
-
-        boolean result = sync != null;
-        if (result && sync.showDialog)
-            showSyncResultDialog(context, true);
-        else if (!result)
-            showSyncResultDialog(context, false);
     }
 }
