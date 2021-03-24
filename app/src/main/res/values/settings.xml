@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer name="requests_timeout">5</integer>
+    <integer name="requests_timeout_ms">5000</integer>
     <integer name="hashing_cost">16</integer>
 </resources>

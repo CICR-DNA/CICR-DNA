@@ -35,7 +35,7 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
         super.onPreExecute();
 
         client = new OkHttpClient.Builder()
-                .readTimeout(mContext.getResources().getInteger(R.integer.requests_timeout), TimeUnit.SECONDS)
+                .readTimeout(mContext.getResources().getInteger(R.integer.requests_timeout_ms), TimeUnit.MILLISECONDS)
                 .build();
     }
 

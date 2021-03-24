@@ -71,7 +71,7 @@ public class RestSync extends Sync {
         Log.d("rest-api-login", "url : " + url_str);
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
-                .readTimeout(resources.getInteger(R.integer.requests_timeout), TimeUnit.SECONDS)
+                .readTimeout(resources.getInteger(R.integer.requests_timeout_ms), TimeUnit.MILLISECONDS)
                 .build();
 
         RequestBody post_body = RequestBody.create(MediaType.parse("application/json"),
