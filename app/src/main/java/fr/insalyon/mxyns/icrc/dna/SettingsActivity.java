@@ -65,15 +65,18 @@ public class SettingsActivity extends AppCompatActivity {
                 return true;
             });
 
-            EditTextPreference pref = findPreference(res.getString(R.string.settings_default_restAPI_pwd_key));
-            pref.setOnBindEditTextListener(el -> {
+            EditTextPreference password_pref = findPreference(res.getString(R.string.settings_default_restAPI_pwd_key));
+            password_pref.setOnBindEditTextListener(el -> {
                 el.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                 el.setSelection(el.getText().length());
+                el.setText("");
             });
-            pref.setOnPreferenceChangeListener((e, v) -> {
+            password_pref.setOnPreferenceChangeListener((e, v) -> {
                 if (v == null) return false;
 
-                new PasswordHashingAsyncTask(getContext(), res.getInteger(R.integer.hashing_cost)).execute(v.toString()); // TODO cost => res
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SettingsFragment.this.getContext());
+                new PasswordHashingAsyncTask(getContext(), res.getInteger(R.integer.hashing_cost)).execute(v.toString(), sharedPreferences.getString(getContext().getResources().getString(R.string.settings_default_restAPI_usr_key), null));
+
                 return false;
             });
 
