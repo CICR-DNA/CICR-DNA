@@ -1,8 +1,9 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
+
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -87,7 +88,16 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         this.input_name = requireArguments().getString(ARG_NAME);
 
         // on text_id change, change displayed text
-        viewModel.text_id.observe(this, newId -> viewModel.text.setValue(getResources().getString(newId)));
+
+        // TODO remove before sending
+        TypedValue unit_score_holder = new TypedValue();
+        try {
+            getResources().getValue(getResources().getIdentifier(this.input_name, "dimen", this.getContext().getPackageName()), unit_score_holder, true);
+            String score = String.valueOf(unit_score_holder.getFloat());
+            viewModel.text_id.observe(this, newId -> viewModel.text.setValue(getResources().getString(newId) + "\n" + input_name +" => " + score));
+        } catch (Exception ignored) {
+            Log.d("score", "no score for " + input_name);
+        }
 
         Log.d("name-null-create", String.valueOf(getArguments()));
         initializeUIFromBundle(getArguments());
