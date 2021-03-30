@@ -11,11 +11,6 @@
             app:title="@string/settings_sync_method_title"
             app:useSimpleSummaryProvider="true"
             />
-
-        <Preference
-            app:key="@string/settings_try_rest_sync_key"
-            app:title="@string/settings_try_rest_sync_title"
-            />
     </PreferenceCategory>
 
 
@@ -49,6 +44,10 @@
             app:title="@string/settings_default_restAPI_pwd_title"
             app:useSimpleSummaryProvider="false"
             android:lines="1"
+            />
+        <Preference
+            app:key="@string/settings_try_rest_sync_key"
+            app:title="@string/settings_try_rest_sync_title"
             />
 
     </PreferenceCategory>

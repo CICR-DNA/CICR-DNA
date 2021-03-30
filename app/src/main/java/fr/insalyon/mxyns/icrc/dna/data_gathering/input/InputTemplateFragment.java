@@ -2,7 +2,6 @@ package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
@@ -38,9 +37,16 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
     }
 
-    public static boolean atLeastOneDependency(String dependency_input_name) {
-        JsonObject data = DataGatheringActivity.data.get(dependency_input_name);
-        return data != null && data.get("count").getAsInt() > 0;
+    public static boolean atLeastOneDependency(String... dependency_input_names) {
+        int sum = 0;
+        JsonObject data;
+        for (String dep : dependency_input_names) {
+            data = DataGatheringActivity.data.get(dep);
+            if (data != null)
+                sum += data.get("count").getAsInt();
+        }
+
+        return sum > 0;
     }
 
     /**
@@ -87,19 +93,20 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
         this.input_name = requireArguments().getString(ARG_NAME);
 
-        // on text_id change, change displayed text
-
-        // TODO remove before sending
-        TypedValue unit_score_holder = new TypedValue();
-        try {
-            getResources().getValue(getResources().getIdentifier(this.input_name, "dimen", this.getContext().getPackageName()), unit_score_holder, true);
-            String score = String.valueOf(unit_score_holder.getFloat());
-            viewModel.text_id.observe(this, newId -> viewModel.text.setValue(getResources().getString(newId) + "\n" + input_name +" => " + score));
-        } catch (Exception ignored) {
-            Log.d("score", "no score for " + input_name);
-        }
+        /*
+         * TypedValue unit_score_holder = new TypedValue();
+         * try {
+         *     getResources().getValue(getResources().getIdentifier(this.input_name, "dimen", this.getContext().getPackageName()), unit_score_holder, true);
+         *     String score = String.valueOf(unit_score_holder.getFloat());
+         *     viewModel.text_id.observe(this, newId -> viewModel.text.setValue(getResources().getString(newId) + "\n" + input_name +" => " + score));
+         * } catch (Exception ignored) {
+         *     Log.d("score", "no score for " + input_name);
+         * }
+         */
 
         Log.d("name-null-create", String.valueOf(getArguments()));
+
+        // on text_id change, change displayed text
         initializeUIFromBundle(getArguments());
 
         Log.d("data-oncreate", "input fragment created " + this.input_name + " aka " + viewModel.text.getValue());

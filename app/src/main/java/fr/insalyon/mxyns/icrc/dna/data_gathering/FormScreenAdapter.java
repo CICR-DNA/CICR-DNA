@@ -72,8 +72,10 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_1_screen_3_description,
                 R.string.pedigree_help_template,
                 R.drawable.spouse,
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2, mContext.getResources())
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_1, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_1_screen_2_option_1", "tier_1_screen_2_option_2")),
+                new InputDescription("checkbox", R.string.tier_1_screen_3_option_2, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_1_screen_2_option_1", "tier_1_screen_2_option_2"))
         );
 
         // Children from second spouse
@@ -90,8 +92,12 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_1_screen_5_description,
                 R.string.pedigree_help_template,
                 R.drawable.spouse2,
-                new InputDescription("checkbox", R.string.tier_1_screen_5_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_1_screen_5_option_2, mContext.getResources())
+                // TODO remove conditional parameter
+                // TODO reset input value when disabled? => dialog
+                new InputDescription("checkbox", R.string.tier_1_screen_5_option_1, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_1_screen_4_option_1", "tier_1_screen_4_option_2")),
+                new InputDescription("checkbox", R.string.tier_1_screen_5_option_2, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_1_screen_4_option_1", "tier_1_screen_4_option_2"))
         );
 
         // Siblings
@@ -100,8 +106,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription("integer", R.string.tier_1_screen_6_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_1_screen_6_option_2, mContext.getResources(), true,
-                        () -> InputTemplateFragment.atLeastOneDependency("tier_1_screen_5_option_2")),
+                new InputDescription("integer", R.string.tier_1_screen_6_option_2, mContext.getResources()),
                 new InputDescription("integer", R.string.tier_1_screen_6_option_3, mContext.getResources())
         );
 
@@ -130,8 +135,10 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_2_screen_3_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("integer", R.string.tier_2_screen_3_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_3_option_2, mContext.getResources())
+                new InputDescription("integer", R.string.tier_2_screen_3_option_1, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_2_screen_2_option_1")),
+                new InputDescription("integer", R.string.tier_2_screen_3_option_2, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_2_screen_2_option_1"))
         );
 
         // Cousins
@@ -152,7 +159,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 new InputDescription("integer", R.string.tier_2_screen_5_option_3, mContext.getResources()),
                 new InputDescription("integer", R.string.tier_2_screen_5_option_4, mContext.getResources())
         );
-        
+
         // Nephews
         registerFormFragment(2, R.string.tier_2_screen_6_title,
                 R.string.tier_2_screen_6_description,
@@ -167,8 +174,10 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_2_screen_7_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("integer", R.string.tier_2_screen_7_option_1, mContext.getResources()),
-                new InputDescription("integer", R.string.tier_2_screen_7_option_2, mContext.getResources())
+                new InputDescription("integer", R.string.tier_2_screen_7_option_1, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_2_screen_6_option_1", "tier_2_screen_6_option_2")),
+                new InputDescription("integer", R.string.tier_2_screen_7_option_2, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_2_screen_6_option_1", "tier_2_screen_6_option_2"))
         );
 
 
@@ -188,8 +197,11 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_2_screen_9_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription("checkbox", R.string.tier_2_screen_9_option_1, mContext.getResources()),
-                new InputDescription("checkbox", R.string.tier_2_screen_9_option_2, mContext.getResources())
+                new InputDescription("checkbox", R.string.tier_2_screen_9_option_1, mContext.getResources(), true,
+                        // TODO stop using strings, use R.string. ...
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_2_screen_8_option_1", "tier_2_screen_8_option_2", "tier_2_screen_8_option_3", "tier_2_screen_8_option_4")),
+                new InputDescription("checkbox", R.string.tier_2_screen_9_option_2, mContext.getResources(), true,
+                        () -> InputTemplateFragment.atLeastOneDependency("tier_2_screen_8_option_1", "tier_2_screen_8_option_2", "tier_2_screen_8_option_3", "tier_2_screen_8_option_4"))
         );
     }
 
@@ -239,7 +251,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
     }
 
     public List<Fragment> getTabs() {
-        
+
         return tabs;
     }
 }
