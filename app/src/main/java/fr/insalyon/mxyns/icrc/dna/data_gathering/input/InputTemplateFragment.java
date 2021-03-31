@@ -1,5 +1,6 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering.input;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -37,11 +38,11 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
     }
 
-    public static boolean atLeastOneDependency(String... dependency_input_names) {
+    public static boolean atLeastOneDependency(Resources res, @StringRes int... dependency_input_names) {
         int sum = 0;
         JsonObject data;
-        for (String dep : dependency_input_names) {
-            data = DataGatheringActivity.data.get(dep);
+        for (int dep : dependency_input_names) {
+            data = DataGatheringActivity.data.get(res.getResourceEntryName(dep));
             if (data != null)
                 sum += data.get("count").getAsInt();
         }
