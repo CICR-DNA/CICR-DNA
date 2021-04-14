@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="mainactivity_incompatible_json_version_title">Incompatible case version</string>
+    <string name="mainactivity_incompatible_json_version_msg">This case cannot be edited because it is now incompatible with your current version of the application. You can nonetheless still submit your case.\n(This may have been caused by a recent update)</string>
+
+    <string name="mainactivity_delete_case_title">Case deletion</string>
+    <string name="mainactivity_delete_case_msg">You are about to delete a case from your system. This operation will lead to the complete removal of any trace of the case and its associated data. This action is irreversible, are you sure that you want to proceed?</string>
+</resources>

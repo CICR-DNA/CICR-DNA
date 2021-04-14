@@ -45,7 +45,7 @@
     <!--Paternal Grandmother--><item name="tier_2_screen_1_option_3" type="dimen" format="float">2</item>
     <!--Paternal Grandfather--><item name="tier_2_screen_1_option_4" type="dimen" format="float">2</item>
 
-    <!--Grandchildren (from any children)--><item name="tier_2_screen_2_option_1" type="dimen" format="float">1.75</item>
+    <!--Grandchildren (from any children)--><item name="tier_2_screen_2_option_1" type="dimen" format="float">2</item>
 
     <!--Daughter/Son-in-law-->
     <!--Daughter-in-law--><item name="tier_2_screen_3_option_1" type="dimen" format="float">1</item>
@@ -60,18 +60,18 @@
     <!--Paternal Uncle--><item name="tier_2_screen_5_option_4" type="dimen" format="float">2</item>
 
     <!--Nieces and Nephews-->
-    <!--Nieces--><item name="tier_2_screen_6_option_1" type="dimen" format="float">1.5</item>
-    <!--Nephews--><item name="tier_2_screen_6_option_2" type="dimen" format="float">1.5</item>
+    <!--Nieces--><item name="tier_2_screen_6_option_1" type="dimen" format="float">2</item>
+    <!--Nephews--><item name="tier_2_screen_6_option_2" type="dimen" format="float">2</item>
 
     <!--Siblings spouses-->
     <!--Wives--><item name="tier_2_screen_7_option_1" type="dimen" format="float">0.5</item>
     <!--Husbands--><item name="tier_2_screen_7_option_2" type="dimen" format="float">0.5</item>
 
     <!--Half-siblings-->
-    <!--Paternal Half-brother--><item name="tier_2_screen_8_option_1" type="dimen" format="float">1.5</item>
-    <!--Paternal Half-sister--><item name="tier_2_screen_8_option_2" type="dimen" format="float">1.5</item>
-    <!--Paternal Half-brother--><item name="tier_2_screen_8_option_3" type="dimen" format="float">1.5</item>
-    <!--Paternal Half-sister--><item name="tier_2_screen_8_option_4" type="dimen" format="float">1.5</item>
+    <!--Paternal Half-brother--><item name="tier_2_screen_8_option_1" type="dimen" format="float">2</item>
+    <!--Paternal Half-sister--><item name="tier_2_screen_8_option_2" type="dimen" format="float">2</item>
+    <!--Paternal Half-brother--><item name="tier_2_screen_8_option_3" type="dimen" format="float">2</item>
+    <!--Paternal Half-sister--><item name="tier_2_screen_8_option_4" type="dimen" format="float">2</item>
 
     <!--Step-Parents-->
     <!--Step-Mother--><item name="tier_2_screen_9_option_1" type="dimen" format="float">0.75</item>

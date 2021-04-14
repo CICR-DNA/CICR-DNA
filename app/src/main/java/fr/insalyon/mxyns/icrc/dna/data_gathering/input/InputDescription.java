@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.StringRes;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
@@ -32,13 +33,15 @@ public class InputDescription implements Serializable {
 
     public enum InputType {
         Checkbox,
-        Spinner
+        Spinner,
+        StringList
     }
 
     static {
         viewTemplatesMap = new HashMap<>();
         viewTemplatesMap.put(InputType.Checkbox, CheckboxTemplateFragment.class);
         viewTemplatesMap.put(InputType.Spinner, SpinnerTemplateFragment.class);
+        viewTemplatesMap.put(InputType.StringList, StringListTemplateFragment.class);
     }
 
     /**
@@ -70,7 +73,7 @@ public class InputDescription implements Serializable {
         this.conditional = conditional;
     }
 
-    public InputTemplateFragment make(FormScreenFragment owner) throws InstantiationException, IllegalAccessException {
+    public InputTemplateFragment make(FormScreenFragment owner) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
         Log.d("data-oncreate", "make input fragment : \ninput : " + inputName + "\ntype=" + viewType);
         InputTemplateFragment inputFragment = (InputTemplateFragment) input_template_class.newInstance();

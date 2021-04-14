@@ -11,7 +11,7 @@ import at.favre.lib.crypto.bcrypt.BCrypt;
 import at.favre.lib.crypto.bcrypt.LongPasswordStrategies;
 import fr.insalyon.mxyns.icrc.dna.R;
 
-public class PasswordHashingAsyncTask extends DialogBlockingAsyncTask<String, Void, Void> {
+public class PasswordHashingAsyncTask extends DialogBlockingAsyncTask<String, Void, String> {
 
     private final int cost;
 
@@ -31,15 +31,16 @@ public class PasswordHashingAsyncTask extends DialogBlockingAsyncTask<String, Vo
     }
 
     @Override
-    protected Void doInBackground(String... credentials) {
+    protected String doInBackground(String... credentials) {
 
         if (credentials.length == 0 || credentials[0] == null)
             return null;
 
+        // credentials = { password, email }
         String hashed = hashPassword(credentials);
         PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString(mContext.getResources().getString(R.string.settings_default_restAPI_pwd_key), hashed).apply();
 
-        return null;
+        return hashed;
     }
 
     public String hashPassword(String[] credentials) {

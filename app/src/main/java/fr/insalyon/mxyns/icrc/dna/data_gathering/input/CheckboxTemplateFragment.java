@@ -18,8 +18,7 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
 
     private View root;
 
-    public CheckboxTemplateFragment() {
-    }
+    public CheckboxTemplateFragment() { }
 
     @Override
     protected void setEnabled(Boolean aBoolean) {
@@ -57,7 +56,7 @@ public class CheckboxTemplateFragment extends InputTemplateFragment<Boolean> {
     @Override
     protected int valueToCount(Boolean value) {
 
-        return value ? 1 : 0;
+        return value == null ? 0 : value ? 1 : 0;
     }
 
     @Override

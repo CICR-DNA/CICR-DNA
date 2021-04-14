@@ -75,11 +75,11 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
         JsonObject data = DataGatheringActivity.data.get(this.input_name);
         if (data != null && data.get("raw") != null) {
-            setRawValue(data.get("raw").getAsString());
+            setRawValue(data.get("raw").getAsString()); // will also put value in bundle to retrieve it in onCreate
         } else
             Log.d("init", "init : can't get value");
 
-        Log.d("haha init", "input init my friend : " + inputDescription);
+        Log.d("haha init", "input init my friend : " + inputDescription + " with data " + data);
         return this;
     }
 
@@ -114,14 +114,14 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     }
 
 
-    private void initializeUIFromBundle(Bundle arguments) {
+    protected void initializeUIFromBundle(Bundle arguments) {
 
         @StringRes int text_id = R.string.template_text;
         T value = null;
 
         if (arguments != null) {
             text_id = arguments.getInt(ARG_TEXT_ID);
-            value = parseValue(arguments.getSerializable(ARG_VALUE).toString());
+            value = parseValue(String.valueOf(arguments.getSerializable(ARG_VALUE)));
         }
 
         viewModel.text.setValue(getResources().getString(text_id));
@@ -163,7 +163,7 @@ public abstract class InputTemplateFragment<T> extends Fragment {
         ((DataGatheringActivity) getActivity()).setInputValue(this.input_name, result, notify);
 
 
-        Log.d("name-null-set", getResources().getString(viewModel.text_id.getValue()) + " : set value");
+        Log.d("name-null-set", getResources().getString(viewModel.text_id.getValue()) + " : set value = " + value.getClass().getSimpleName() + "(" + value + ")");
 
         if (viewModel == null)
             return;
@@ -177,10 +177,11 @@ public abstract class InputTemplateFragment<T> extends Fragment {
     public InputResult getInputResult() {
 
         JsonObject data = DataGatheringActivity.data.get(this.input_name);
+        Log.d("input-result-data", data.toString());
         String rawValue = data.get("raw").getAsString();
         String displayName = getArguments().getString(ARG_TEXT);
 
-        return new InputResult(
+        return new InputResult (
                 input_name,
                 displayName,
                 rawValue,

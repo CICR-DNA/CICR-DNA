@@ -84,11 +84,12 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
                 firstScreenOfTier.put(formFragment.tier, i);
             }
 
+        int firstTier = firstScreenOfTier.firstKey();
         for (Integer tier : firstScreenOfTier.keySet()) {
             Tab tab = newTab();
             tab.setText("Tier " + tier);
             Log.d("tabs", "Tier " + tier);
-            addTab(tab, tier - 1, false);
+            addTab(tab, tier - firstTier, false);
         }
         if (getChildCount() > 0)
             getTabAt(0).select();

@@ -3,6 +3,7 @@ package fr.insalyon.mxyns.icrc.dna.case_list;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.InputType;
 import android.util.Log;
@@ -14,7 +15,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -55,6 +58,9 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         holder.mContentView.setText(mValues.get(position).displayName);
         holder.mContentView.setSelection(holder.mContentView.getText().length());
         holder.caseStatus.setBackgroundTintList(ColorStateList.valueOf(holder.mItem.getColor()));
+
+        if (!holder.mItem.json.get("version").getAsString().equals(holder.mView.getContext().getResources().getString(R.string.json_version)))
+            holder.disable();
     }
 
     @Override
@@ -68,15 +74,24 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
      * @param position item index to remove
      * @return true if file is deleted
      */
-    public boolean deleteCase(int position) {
+    public boolean deleteCase(Context context, int position) {
+
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.mainactivity_delete_case_title)
+                .setMessage(R.string.mainactivity_delete_case_msg)
+                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+
+                    FileUtils.deleteFile(mValues.get(position).path);
+                    mValues.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, mValues.size());
+                })
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .create().show();
 
 
-        boolean result = FileUtils.deleteFile(mValues.get(position).path);
-        mValues.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, mValues.size());
-
-        return result;
+        return true;
     }
 
     private void syncCase(Context context, int position) {
@@ -89,6 +104,7 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final EditText mContentView;
+        public final TextView mErrorMark;
         public final ImageButton mMenu;
         public final View caseStatus;
         private final Drawable defaultBackground;
@@ -100,18 +116,14 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
 
             mView = view;
 
-            mContentView = view.findViewById(R.id.case_item_name);
             caseStatus = view.findViewById(R.id.case_item_status);
-            mMenu = view.findViewById(R.id.case_item_menu_button);
             mMultiSelectionCheckbox = view.findViewById(R.id.case_item_multiselection_checkbox);
 
-            defaultBackground = mContentView.getBackground();
-
-            renameMode(false);
-
-            // on click on edit => can edit text
-            // on click on confirm => save text
+            mMenu = view.findViewById(R.id.case_item_menu_button);
             mMenu.setOnClickListener(e -> showMenu());
+
+            mContentView = view.findViewById(R.id.case_item_name);
+            defaultBackground = mContentView.getBackground();
 
             mContentView.setOnFocusChangeListener((v, hasFocus) -> {
                 if (!hasFocus) {
@@ -119,6 +131,10 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
                 }
             });
             mContentView.setOnEditorActionListener((v, actionId, event) -> actionId == EditorInfo.IME_ACTION_DONE && !renameMode(false));
+            renameMode(false);
+
+            mErrorMark = view.findViewById(R.id.case_item_error_mark);
+            mErrorMark.setVisibility(View.GONE);
 
             caseStatus.setOnClickListener(this::openFile);
             mContentView.setOnClickListener(e -> {
@@ -137,6 +153,16 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
         private void openFile(View view) {
 
             Log.d("menu-rename", "open file " + mItem.path);
+            if ((mContentView.getPaintFlags() & Paint.STRIKE_THRU_TEXT_FLAG) != 0) {
+
+                new AlertDialog.Builder(view.getContext())
+                        .setTitle(R.string.mainactivity_incompatible_json_version_title)
+                        .setMessage(R.string.mainactivity_incompatible_json_version_msg)
+                        .setPositiveButton(android.R.string.ok, null)
+                        .create().show();
+                return;
+            }
+
             Context context = view.getContext();
             Intent intent = new Intent(context, DataGatheringActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -157,12 +183,12 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
 
                 int id = item.getItemId();
                 if (id == R.id.menu_rename)
-                    return renameMode(true);
+                    return renameMode(mContentView.getTag().toString().equalsIgnoreCase("editable=false"));
                 else if (id == R.id.menu_sync) {
                     syncCase(mMenu.getContext(), getAdapterPosition());
                     return true;
                 } else if (id == R.id.menu_delete)
-                    return deleteCase(getAdapterPosition());
+                    return deleteCase(itemView.getContext(), getAdapterPosition());
                 else if (id == R.id.menu_edit) {
                     openFile(mView);
                     return true;
@@ -210,6 +236,12 @@ public class CaseRecyclerViewAdapter extends RecyclerView.Adapter<CaseRecyclerVi
             this.mMultiSelectionCheckbox.setChecked(false);
             this.mMenu.setVisibility(state ? View.GONE : View.VISIBLE);
             this.mMultiSelectionCheckbox.setVisibility(state ? View.VISIBLE : View.GONE);
+        }
+
+        public void disable() {
+
+            mContentView.setPaintFlags(mContentView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            mErrorMark.setVisibility(View.VISIBLE);
         }
     }
 }

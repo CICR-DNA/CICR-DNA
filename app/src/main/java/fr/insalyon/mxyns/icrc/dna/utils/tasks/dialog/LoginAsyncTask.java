@@ -24,7 +24,13 @@ public class LoginAsyncTask extends DialogBlockingAsyncTask<String, Void, Boolea
     @Override
     protected Boolean doInBackground(String... url_usr_pwd) {
 
-        boolean result = RestSync.login(mContext, url_usr_pwd[0], url_usr_pwd[1], url_usr_pwd[2]);
+
+        boolean result = false;
+        try {
+            result = RestSync.login(mContext, url_usr_pwd[0], url_usr_pwd[1], url_usr_pwd[2]);
+        } catch (Exception ignored) {
+            super.cancel(true);
+        }
 
         if (!result)
             super.cancel(false);

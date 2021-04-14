@@ -26,7 +26,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import fr.insalyon.mxyns.icrc.dna.Constants;
 import fr.insalyon.mxyns.icrc.dna.R;
@@ -99,7 +101,7 @@ public class FormScreenFragment extends Fragment {
                 Log.d("make-input", "inputDesc : " + inputDescription);
                 fragment.inputFragments.add(inputDescription.make(fragment));
                 fragment.containsConditional |= inputDescription.conditional;
-            } catch (IllegalAccessException | java.lang.InstantiationException e) {
+            } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException | java.lang.InstantiationException e) {
                 System.out.println("Unable to create input : " + inputDescription);
                 e.printStackTrace();
             }
@@ -180,7 +182,8 @@ public class FormScreenFragment extends Fragment {
 
         LinearLayout form = root.findViewById(R.id.input_list_lin_layout);
 
-        // if input fragments aren't added to screen fragment
+        Log.d("formscreen-insert", Arrays.toString(inputFragments.toArray()));
+        // if input fragments aren't already added to screen fragment
         if (form.getChildCount() != inputFragments.size()) {
             FragmentManager fragMan = getChildFragmentManager();
             FragmentTransaction fragTransaction = fragMan.beginTransaction();

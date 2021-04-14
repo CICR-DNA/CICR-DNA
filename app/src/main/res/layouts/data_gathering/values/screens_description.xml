@@ -7,6 +7,21 @@
     <string name="wrong_integer_input_error">please enter a valid integer value</string>
 
     <!--Screen Title-->
+    <string name="tier_0_screen_1_title">Missing person</string>
+    <!--Screen Description-->
+    <string name="tier_0_screen_1_description">Information about the missing person</string>
+    <!--Screen Description-->
+    <string name="tier_0_screen_1_pedigreeHelp">Check whether samples were collected from direct parents of the victim</string>
+    <!--Sex-->
+    <string name="tier_0_screen_1_option_1">Sex</string>
+    <string-array name="tier_0_screen_1_option_1_values">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Unknown</item>
+    </string-array>
+    <string name="tier_0_screen_1_option_1_path" translatable="false">victim.sex</string>
+
+    <!--Screen Title-->
     <string name="tier_1_screen_1_title">Parents</string>
     <!--Screen Description-->
     <string name="tier_1_screen_1_description">Check whether samples were collected from direct parents of the victim</string>
@@ -129,7 +144,7 @@
     <!--Husband #2-->
     <string name="tier_2_screen_3_option_2">Sons-in-law</string>
     <string name="tier_2_screen_3_option_2_path" translatable="false">children.spouses.husbands</string>
-    
+
     <!--Screen Title-->
     <string name="tier_2_screen_4_title">Cousins</string>
     <!--Screen Description-->

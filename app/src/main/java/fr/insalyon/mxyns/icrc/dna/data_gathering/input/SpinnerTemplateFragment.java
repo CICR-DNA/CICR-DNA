@@ -37,13 +37,8 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
         intField.setSelection(intField.getText().length());
 
         intField.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -64,8 +59,6 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
         return root;
     }
 
-
-
     @Override
     protected void setEnabled(Boolean aBoolean) {
 
@@ -76,6 +69,7 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
 
     @Override
     public void putValueToBundle(@Nullable Bundle bundle) {
+
         String value = "0";
         if (root != null)
             value = ((EditText) root.findViewById(R.id.input_template_integer_field)).getText().toString();
@@ -85,11 +79,15 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
 
     @Override
     protected int valueToCount(Integer value) {
-        return value;
+        return value == null ? 0 : value;
     }
 
     @Override
     public Integer parseValue(String str) {
-        return Integer.parseInt(str);
+        try {
+            return Integer.parseInt(str);
+        } catch (NumberFormatException ignored) {
+            return 0;
+        }
     }
 }

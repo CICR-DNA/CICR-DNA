@@ -34,6 +34,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/case_item_error_mark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="❗"
+            android:textColor="#D32F2F"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/case_item_name"
+            app:layout_constraintStart_toEndOf="@+id/case_item_status"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/case_item_name"
             android:layout_width="wrap_content"
