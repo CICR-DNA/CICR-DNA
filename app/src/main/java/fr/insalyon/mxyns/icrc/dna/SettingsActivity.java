@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -94,8 +95,9 @@ public class SettingsActivity extends AppCompatActivity {
             });
 
             findPreference(res.getString(R.string.settings_clear_zips_key)).setOnPreferenceClickListener(e -> {
-                FileUtils.clearDir(SettingsFragment.this.getContext().getCacheDir());
-                return true;
+                boolean result = FileUtils.clearDir(SettingsFragment.this.getContext().getCacheDir());
+                Toast.makeText(this.getContext(), result ? R.string.settings_misc_clear_zip_success_message : R.string.settings_misc_clear_zip_error_message, Toast.LENGTH_SHORT).show();
+                return result;
             });
         }
 

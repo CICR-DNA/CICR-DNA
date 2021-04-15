@@ -41,6 +41,8 @@
     <string name="settings_misc_header">Miscellaneous</string>
     <string name="settings_misc_clear_zip">Clear Cache</string>
     <string name="settings_misc_clear_zip_warning_message">Caution, this may invalidate unsent draft emails containing attached zip files</string>
+    <string name="settings_misc_clear_zip_success_message">Cache successfully cleared</string>
+    <string name="settings_misc_clear_zip_error_message">Couldn\'t clear cache</string>
 
     <string name="settings_locale_title" translatable="false">Mission location</string>
     <string name="settings_local_key" translatable="false">settings_locale</string>

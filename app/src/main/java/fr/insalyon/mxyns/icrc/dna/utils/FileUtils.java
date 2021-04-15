@@ -383,18 +383,22 @@ public class FileUtils {
         return result;
     }
 
-    public static void clearDir(File file) {
+    public static boolean clearDir(File file) {
 
+        boolean result = true;
         if (file.isDirectory()) {
             File[] arr = file.listFiles();
-            if (arr == null) return;
+            if (arr == null) return false;
 
             for (File f : arr)
-                clearDir(f);
+                result &= clearDir(f);
 
         } else if (!file.delete()) {
             Log.d("clearDir", "couldn't delete file " + file.getAbsolutePath());
+            result = false;
         }
+
+        return result;
     }
 
     public static String nameCase(File root, Context context) {
