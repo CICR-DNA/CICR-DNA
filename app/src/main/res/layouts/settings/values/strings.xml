@@ -15,6 +15,7 @@
     <string name="settings_default_email_title">Email Address</string>
     <string name="settings_default_email_key" translatable="false">default_email</string>
 
+    <string name="sync_rest_settings_key">default_restAPI_category_key</string>
     <string name="sync_rest_settings_header">Server Submission Settings</string>
     <string name="settings_default_restAPI_url_title">Server Address</string>
     <string name="settings_default_restAPI_url_key">default_restAPI_url</string>

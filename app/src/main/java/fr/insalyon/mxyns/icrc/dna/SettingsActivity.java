@@ -93,6 +93,9 @@ public class SettingsActivity extends AppCompatActivity {
                 Toast.makeText(this.getContext(), result ? R.string.settings_misc_clear_zip_success_message : R.string.settings_misc_clear_zip_error_message, Toast.LENGTH_SHORT).show();
                 return result;
             });
+
+            // TODO release 1.0
+            findPreference(res.getString(R.string.sync_rest_settings_key)).setVisible(false);
         }
 
         public void recursiveSetSingleLine(PreferenceGroup screen, EditTextPreference.OnBindEditTextListener noMultilineAllowed) {

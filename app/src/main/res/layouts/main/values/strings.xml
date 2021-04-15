@@ -12,6 +12,6 @@
     <string name="main_sync_selection_title">Submission method</string>
     <string-array name="main_sync_selection_values">
         <item>Email</item>
-        <item>Server</item>
+        <!-- TODO release 1.0 ><item>Server</item><!-->
     </string-array>
 </resources>
