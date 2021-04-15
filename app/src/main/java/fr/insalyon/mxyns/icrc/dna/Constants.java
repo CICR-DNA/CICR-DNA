@@ -82,4 +82,8 @@ public class Constants {
 
         return value_holder;
     }
+
+    public static void loadScore(Resources res, TypedValue holder, String res_name) {
+        res.getValue(res.getIdentifier(res_name, "dimen", MainActivity.class.getPackage().getName()), holder, true);
+    }
 }

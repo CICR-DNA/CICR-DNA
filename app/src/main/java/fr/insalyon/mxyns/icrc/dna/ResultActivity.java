@@ -191,7 +191,7 @@ public class ResultActivity extends AppCompatActivity {
                         continue;
 
                     // load unit score of an input
-                    getResources().getValue(getResources().getIdentifier(result.getInputName(), "dimen", getPackageName()), unit_score_holder, true);
+                    Constants.loadScore(getResources(), unit_score_holder, result.getInputName());
                     score += unit_score_holder.getFloat() * result.getCount();
 
                 } catch (Exception e) {
@@ -199,8 +199,14 @@ public class ResultActivity extends AppCompatActivity {
                 }
         }
 
+        // grandparents bonus
         if (grandparents >= 4)
             score += 4;
+
+        // limit score to 6 effective grandChildren
+        if (grandChildren >= 6) {
+            score -= (grandChildren - 6) * Constants.getFloat(getResources(), R.dimen.tier_2_screen_2_option_1).getFloat();
+        }
 
         // toast popup score value
         Toast.makeText(this, String.format(getResources().getString(R.string.results_score_toast_text), score), Toast.LENGTH_LONG).show();

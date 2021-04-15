@@ -15,9 +15,9 @@
     <!--Sex-->
     <string name="tier_0_screen_1_option_1">Sex</string>
     <string-array name="tier_0_screen_1_option_1_values">
+        <item>Unknown</item>
         <item>Male</item>
         <item>Female</item>
-        <item>Unknown</item>
     </string-array>
     <string name="tier_0_screen_1_option_1_path" translatable="false">victim.sex</string>
 
