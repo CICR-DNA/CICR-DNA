@@ -2,10 +2,6 @@
 <resources>
 
     <!-- Preference Titles -->
-    <string name="sync_method_header">Submission Method</string>
-    <string name="settings_sync_method_title">Pick preferred Submission method</string>
-    <string name="settings_sync_method_key" translatable="false">sync_method</string>
-
     <string name="settings_try_rest_sync_key" translatable="false">sync_try_rest</string>
 
     <string name="settings_default_restAPI_try_pending_title">Authenticating…</string>

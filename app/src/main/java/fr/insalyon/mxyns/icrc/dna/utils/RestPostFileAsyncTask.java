@@ -46,6 +46,10 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
                 token = strings[1],
                 filePath = strings[2];
 
+        if (url_str == null || token == null || filePath == null) return false;
+
+        url_str += (url_str.endsWith("/") ? "" : "/") + mContext.getResources().getString(R.string.settings_default_restAPI_url_post_path);
+
         RequestBody post_body;
         if (filePath.endsWith(".json"))
             post_body = RequestBody.create(
@@ -62,11 +66,17 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
             return false;
         }
 
-        Request req = new Request.Builder()
-                .url(url_str)
-                .addHeader("Authorization", "Bearer " + token)
-                .post(post_body)
-                .build();
+        Request req;
+        try {
+            req = new Request.Builder()
+                    .url(url_str)
+                    .addHeader("Authorization", "Bearer " + token)
+                    .post(post_body)
+                    .build();
+
+        } catch (IllegalArgumentException ignored) {
+            return false;
+        }
 
         response = RestSync.syncRequest(client, req);
 
@@ -99,7 +109,7 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
         super.onPostExecute(result);
 
         // TODO response code must be handled better, will see when this part of the server is done
-        Sync.showSyncResultDialog(mContext, response.code() == 200);
+        Sync.showSyncResultDialog(mContext, response != null && response.code() == 200);
     }
 
     @Override

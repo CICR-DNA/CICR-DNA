@@ -1,19 +1,6 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/sync_method_header">
-
-        <ListPreference
-            app:defaultValue="email"
-            app:entries="@array/settings_sync_method_entries"
-            app:entryValues="@array/settings_sync_method_values"
-            app:key="@string/settings_sync_method_key"
-            app:title="@string/settings_sync_method_title"
-            app:useSimpleSummaryProvider="true"
-            />
-    </PreferenceCategory>
-
-
     <PreferenceCategory app:title="@string/settings_sync_email_header">
 
         <EditTextPreference

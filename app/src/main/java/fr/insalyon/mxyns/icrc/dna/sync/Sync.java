@@ -1,6 +1,7 @@
 package fr.insalyon.mxyns.icrc.dna.sync;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 
@@ -9,10 +10,11 @@ import androidx.preference.PreferenceManager;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.insalyon.mxyns.icrc.dna.R;
+import fr.insalyon.mxyns.icrc.dna.SettingsActivity;
 import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
 
 /**
@@ -20,7 +22,7 @@ import fr.insalyon.mxyns.icrc.dna.utils.FileUtils;
  */
 public abstract class Sync {
 
-    private static HashMap<String, Sync> syncMap;
+    private static final ArrayList<Sync> syncList = new ArrayList<>();
 
     static {
         reInit(null);
@@ -54,20 +56,27 @@ public abstract class Sync {
      */
     public static void attemptFileSync(Context context, String filePath) {
 
-        String selected = PreferenceManager.getDefaultSharedPreferences(context).getString(context.getResources().getString(R.string.settings_sync_method_key), null);
-        Sync sync = syncMap.get(selected);
+        new AlertDialog.Builder(context)
+                .setTitle(R.string.main_sync_selection_title)
+                .setCancelable(true)
+                .setItems(R.array.main_sync_selection_values, (dialog, which) -> {
 
-        if (sync == null) {
-            showSyncResultDialog(context, false);
-            return;
-        }
+                    Sync sync = syncList.get(which);
 
-        sync.send(context, filePath);
+                    if (sync == null) {
+                        showSyncResultDialog(context, false);
+                        return;
+                    }
+
+                    sync.send(context, filePath);
+                })
+                .create()
+                .show();
     }
 
     public static void reInit(Context context) {
 
-        syncMap = new HashMap<>();
+        syncList.clear();
 
         if (context == null) return;
 
@@ -75,14 +84,12 @@ public abstract class Sync {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
         String target_address = prefs.getString(res.getString(R.string.settings_default_email_key), null);
-        if (target_address != null)
-            syncMap.put("email", new EmailSync(target_address));
+        syncList.add(new EmailSync(target_address));
 
         String url = prefs.getString(res.getString(R.string.settings_default_restAPI_url_key), null);
         String usr = prefs.getString(res.getString(R.string.settings_default_restAPI_usr_key), null);
         String pwd = prefs.getString(res.getString(R.string.settings_default_restAPI_pwd_key), null);
-        if (url != null && usr != null && pwd != null)
-            syncMap.put("restAPI", new RestSync(url, usr, pwd));
+        syncList.add(new RestSync(url, usr, pwd));
     }
 
     public static void showSyncResultDialog(Context context, boolean result) {
@@ -92,6 +99,10 @@ public abstract class Sync {
                 .setMessage(result ? R.string.main_sync_success_msg : R.string.main_sync_failure_msg)
                 .setCancelable(true)
                 .setPositiveButton(android.R.string.ok, null)
+                .setNeutralButton(R.string.go_to_settings, (a,b) -> {
+                    Intent intent = new Intent(context, SettingsActivity.class);
+                    context.startActivity(intent);
+                })
                 .create()
                 .show();
     }

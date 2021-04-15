@@ -1,15 +1,4 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="settings_sync_method_entries">
-        <item>E-mail</item>
-        <item>REST API</item>
-    </string-array>
-
-    <string-array name="settings_sync_method_values">
-        <item>email</item>
-        <item>restAPI</item>
-    </string-array>
-
     <string-array name="country_codes_ISO2">
         <item>AF</item>
         <item>AL</item>

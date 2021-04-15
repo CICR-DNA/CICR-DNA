@@ -20,7 +20,6 @@
         android:id="@+id/input_template_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:entries="@array/settings_sync_method_entries"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/input_list_text"

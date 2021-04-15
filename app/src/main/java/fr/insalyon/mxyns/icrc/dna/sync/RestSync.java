@@ -44,7 +44,6 @@ public class RestSync extends Sync {
         String url_str = PreferenceManager.getDefaultSharedPreferences(context).getString(url_key, null);
 
         String token = PreferenceManager.getDefaultSharedPreferences(context).getString("auth_token", null);
-        url_str += (url_str.endsWith("/") ? "" : "/") + context.getResources().getString(R.string.settings_default_restAPI_url_post_path);
 
         new RestPostFileAsyncTask(context).execute(url_str, token, filePath);
     }

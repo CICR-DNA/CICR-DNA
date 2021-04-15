@@ -60,12 +60,6 @@ public class SettingsActivity extends AppCompatActivity {
             };
             recursiveSetSingleLine(getPreferenceScreen(), noMultilineAllowed);
 
-            findPreference(res.getString(R.string.settings_try_rest_sync_key)).setVisible(getPreferenceScreen().getSharedPreferences().getString(res.getString(R.string.settings_sync_method_key), null).equalsIgnoreCase("restAPI"));
-            findPreference(res.getString(R.string.settings_sync_method_key)).setOnPreferenceChangeListener((pref, key) -> {
-                findPreference(res.getString(R.string.settings_try_rest_sync_key)).setVisible(String.valueOf(key).equalsIgnoreCase("restAPI"));
-                return true;
-            });
-
             EditTextPreference password_pref = findPreference(res.getString(R.string.settings_default_restAPI_pwd_key));
             password_pref.setOnBindEditTextListener(el -> {
                 el.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
