@@ -104,7 +104,6 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_1_screen_5_description,
                 R.string.pedigree_help_template,
                 R.drawable.spouse2,
-                // TODO remove conditional parameter
                 // TODO reset input value when disabled? => dialog
                 new InputDescription(InputType.Checkbox, R.string.tier_1_screen_5_option_1, r,
                         () -> InputTemplateFragment.atLeastOneDependency(r,
@@ -150,19 +149,6 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_2_option_1, r)
         );
 
-        // Daughter/Son-in-law
-        registerFormFragment(2, R.string.tier_2_screen_3_title,
-                R.string.tier_2_screen_3_description,
-                R.string.pedigree_help_template,
-                R.drawable.ic_baseline_crop_square_24,
-                new InputDescription(InputType.Spinner, R.string.tier_2_screen_3_option_1, r,
-                        () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_2_option_1)
-                ),
-                new InputDescription(InputType.Spinner, R.string.tier_2_screen_3_option_2, r,
-                        () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_2_option_1)
-                )
-        );
-
         // Cousins
         registerFormFragment(2, R.string.tier_2_screen_4_title,
                 R.string.tier_2_screen_4_description,
@@ -191,23 +177,6 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_6_option_2, r)
         );
 
-        // Siblings spouses
-        registerFormFragment(2, R.string.tier_2_screen_7_title,
-                R.string.tier_2_screen_7_description,
-                R.string.pedigree_help_template,
-                R.drawable.ic_baseline_crop_square_24,
-                new InputDescription(InputType.Spinner, R.string.tier_2_screen_7_option_1, r,
-                        () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_6_option_1, R.string.tier_2_screen_6_option_2)
-                ),
-                new InputDescription(InputType.Spinner, R.string.tier_2_screen_7_option_2, r,
-                        () -> InputTemplateFragment.atLeastOneDependency(r,
-                                R.string.tier_2_screen_6_option_1,
-                                R.string.tier_2_screen_6_option_2
-                        )
-                )
-        );
-
-
         // Half-siblings
         registerFormFragment(2, R.string.tier_2_screen_8_title,
                 R.string.tier_2_screen_8_description,
@@ -225,7 +194,6 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Checkbox, R.string.tier_2_screen_9_option_1, r,
-                        // TODO stop using strings, use R.string. ...
                         () -> InputTemplateFragment.atLeastOneDependency(r,
                                 R.string.tier_2_screen_8_option_1,
                                 R.string.tier_2_screen_8_option_2,

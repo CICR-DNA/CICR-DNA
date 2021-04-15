@@ -133,19 +133,6 @@
     <string name="tier_2_screen_2_option_1_path" translatable="false">children.children</string>
 
     <!--Screen Title-->
-    <string name="tier_2_screen_3_title">Daughters-in-law and Sons-in-law</string>
-    <!--Screen Description-->
-    <string name="tier_2_screen_3_description">Check whether samples were collected from daughters-in-law and sons-in-law of the victim (only if we have some BRS from their children)</string>
-    <!--Screen Description-->
-    <string name="tier_2_screen_3_pedigreeHelp">Check whether samples were collected from daughters-in-law and sons-in-law of the victim (only if we have some BRS from their children)</string>
-    <!--Wife #2-->
-    <string name="tier_2_screen_3_option_1">Daughters-in-law</string>
-    <string name="tier_2_screen_3_option_1_path" translatable="false">children.spouses.wives</string>
-    <!--Husband #2-->
-    <string name="tier_2_screen_3_option_2">Sons-in-law</string>
-    <string name="tier_2_screen_3_option_2_path" translatable="false">children.spouses.husbands</string>
-
-    <!--Screen Title-->
     <string name="tier_2_screen_4_title">Cousins</string>
     <!--Screen Description-->
     <string name="tier_2_screen_4_description">Introduce the number of BRS collected from cousins of the victim</string>
@@ -186,19 +173,6 @@
     <!--Nephews-->
     <string name="tier_2_screen_6_option_2">Nephews</string>
     <string name="tier_2_screen_6_option_2_path" translatable="false">siblings.children.nieces</string>
-
-    <!--Screen Title-->
-    <string name="tier_2_screen_7_title">Siblings Spouses</string>
-    <!--Screen Description-->
-    <string name="tier_2_screen_7_description">Check whether samples were collected from Wives or Husbands of the victim\'s siblings</string>
-    <!--Screen Description-->
-    <string name="tier_2_screen_7_pedigreeHelp">Check whether samples were collected from Wife or Husband of the victim\'s siblings</string>
-    <!--Sibling's Wife-->
-    <string name="tier_2_screen_7_option_1">Siblings\' wives</string>
-    <string name="tier_2_screen_7_option_1_path" translatable="false">siblings.spouses.wives</string>
-    <!--Sibling's Husband-->
-    <string name="tier_2_screen_7_option_2">Siblings\' husbands</string>
-    <string name="tier_2_screen_7_option_2_path" translatable="false">siblings.spouses.husbands</string>
 
     <!--Screen Title-->
     <string name="tier_2_screen_8_title">Half-Siblings</string>

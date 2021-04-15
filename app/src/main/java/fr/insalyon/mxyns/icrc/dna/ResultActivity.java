@@ -181,12 +181,6 @@ public class ResultActivity extends AppCompatActivity {
                     if (lowercaseJsonPath.startsWith("spouses") && children[extractMarriageIndex(lowercaseJsonPath) - 1] < 1)
                         continue;
 
-                    if (niecesAndNephews < 1 && lowercaseJsonPath.startsWith("siblings.spouses."))
-                        continue;
-
-                    if (grandChildren < 1 && lowercaseJsonPath.startsWith("children.spouses."))
-                        continue;
-
                     if (halfSiblings < 1 && lowercaseJsonPath.startsWith("stepparents."))
                         continue;
 
