@@ -5,7 +5,7 @@ import android.content.Context;
 import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.sync.RestSync;
 
-public class LoginAsyncTask extends DialogBlockingAsyncTask<String, Void, Boolean> {
+public class LoginAsyncTask extends DialogBlockingAsyncTask<Void, Void, Boolean> {
 
     public LoginAsyncTask(Context context) {
         super(context);
@@ -22,12 +22,11 @@ public class LoginAsyncTask extends DialogBlockingAsyncTask<String, Void, Boolea
     }
 
     @Override
-    protected Boolean doInBackground(String... url_usr_pwd) {
-
+    protected Boolean doInBackground(Void... unused) {
 
         boolean result = false;
         try {
-            result = RestSync.login(mContext, url_usr_pwd[0], url_usr_pwd[1], url_usr_pwd[2]);
+            result = RestSync.login(mContext);
         } catch (Exception ignored) {
             super.cancel(true);
         }

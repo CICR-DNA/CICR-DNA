@@ -1,6 +1,7 @@
 package fr.insalyon.mxyns.icrc.dna.sync;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
 
@@ -42,7 +43,6 @@ public class RestSync extends Sync {
 
         String url_key = context.getResources().getString(R.string.settings_default_restAPI_url_key);
         String url_str = PreferenceManager.getDefaultSharedPreferences(context).getString(url_key, null);
-
         String token = PreferenceManager.getDefaultSharedPreferences(context).getString("auth_token", null);
 
         new RestPostFileAsyncTask(context).execute(url_str, token, filePath);
@@ -60,12 +60,20 @@ public class RestSync extends Sync {
         }
     }
 
-    public static boolean login(Context context, String url_str, String username, String password) {
+    public static boolean login(Context context) {
 
         Log.d("rest-api-login", "attempt to login");
-        Resources resources = context.getResources();
-        url_str += (url_str.endsWith("/") ? "" : "/") + resources.getString(R.string.settings_default_restAPI_url_login_path);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        Resources resources = context.getResources();
+
+        String url_str = sharedPreferences.getString(resources.getString(R.string.settings_default_restAPI_url_key), null);
+        String usr = sharedPreferences.getString(resources.getString(R.string.settings_default_restAPI_usr_key), null);
+        String pwd = sharedPreferences.getString(resources.getString(R.string.settings_default_restAPI_pwd_key), null);
+
+        if (url_str == null || usr == null || pwd == null) return false;
+
+        url_str += (url_str.endsWith("/") ? "" : "/") + resources.getString(R.string.settings_default_restAPI_url_login_path);
 
         Log.d("rest-api-login", "url : " + url_str);
 
@@ -74,7 +82,7 @@ public class RestSync extends Sync {
                 .build();
 
         RequestBody post_body = RequestBody.create(MediaType.parse("application/json"),
-                resources.getString(R.string.settings_default_restAPI_body_login, username, password));
+                resources.getString(R.string.settings_default_restAPI_body_login, usr, pwd));
 
         Request req = new Request.Builder()
                 .url(url_str)
@@ -83,17 +91,19 @@ public class RestSync extends Sync {
 
         Log.d("rest-api-login", "post_body : \n" + bodyToString(req));
 
-        Response rep = syncRequest(httpClient, req);
+        Response rep = syncRequest(context, httpClient, req);
 
         Log.d("rest-api-login", rep != null ? " received code : " + rep.code() : "received null");
-        if (!(rep != null && rep.code() == 201)) return false;
+        if (rep == null || rep.code() != 201) return false;
 
         String body_as_str = null;
         try {
             ResponseBody body = rep.body();
 
-            Log.d("rest-api-login", "no response body");
-            if (body == null) return false;
+            if (body == null){
+                Log.d("rest-api-login", "no response body");
+                return false;
+            }
 
             body_as_str = body.string();
         } catch (IOException e) {
@@ -103,7 +113,7 @@ public class RestSync extends Sync {
         Log.d("rest-api-login", "response : " + body_as_str);
 
         JsonObject response = new JsonParser().parse(body_as_str).getAsJsonObject();
-        PreferenceManager.getDefaultSharedPreferences(context).edit()
+        sharedPreferences.edit()
                 .putString("auth_token", response.getAsJsonPrimitive("token").getAsString())
                 .putString("user_id", response.getAsJsonPrimitive("userId").getAsString())
                 .apply();
@@ -111,13 +121,21 @@ public class RestSync extends Sync {
         return true;
     }
 
-    public static Response syncRequest(OkHttpClient httpClient, Request req) {
+    public static Response syncRequest(Context ctx, OkHttpClient httpClient, Request req) {
+
+        if (req == null) return null;
 
         Response res = null;
         try {
             res = httpClient.newCall(req).execute();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (res != null && (res.code() == 401 || res.code() == 498) && login(ctx)) {
+            String auth_token = PreferenceManager.getDefaultSharedPreferences(ctx).getString("auth_token", null);
+            req = req.newBuilder().header("Authorization", "Bearer " + auth_token).build();
+            return syncRequest(ctx, httpClient, req);
         }
 
         return res;

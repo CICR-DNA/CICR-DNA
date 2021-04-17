@@ -78,13 +78,7 @@ public class SettingsActivity extends AppCompatActivity {
             findPreference(res.getString(R.string.settings_try_rest_sync_key)).setOnPreferenceClickListener(e -> {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(SettingsFragment.this.getContext());
 
-                LoginAsyncTask login = new LoginAsyncTask(getContext());
-                login.execute(
-                        sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_url_key), null),
-                        sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_usr_key), null),
-                        sharedPreferences.getString(res.getString(R.string.settings_default_restAPI_pwd_key), null)
-                );
-
+                new LoginAsyncTask(getContext()).execute();
                 return false;
             });
 

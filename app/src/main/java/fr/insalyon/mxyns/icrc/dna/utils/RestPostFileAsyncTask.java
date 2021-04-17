@@ -78,7 +78,7 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
             return false;
         }
 
-        response = RestSync.syncRequest(client, req);
+        response = RestSync.syncRequest(mContext, client, req);
 
         if (response == null) {
             super.cancel(true);
