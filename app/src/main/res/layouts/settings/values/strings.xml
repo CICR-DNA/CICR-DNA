@@ -5,11 +5,11 @@
     <string name="settings_try_rest_sync_key" translatable="false">sync_try_rest</string>
 
     <string name="settings_default_restAPI_try_pending_title">Authenticating…</string>
-    <string name="settings_default_restAPI_try_pending_message">Trying to contact the remote synchronization server for your authentication…</string>
+    <string name="settings_default_restAPI_try_pending_message">Trying to contact the remote submission server for your authentication…</string>
     <string name="settings_default_restAPI_try_error_title">Authentication error</string>
     <string name="settings_default_restAPI_try_error_message">An error occurred during the authentication process.\nPlease check the server address, username (email) and password you provided and then try again.</string>
     <string name="settings_default_restAPI_try_success_title">Successfully connected</string>
-    <string name="settings_default_restAPI_try_success_message">You were successfully connected to the remote synchronization server.</string>
+    <string name="settings_default_restAPI_try_success_message">You were successfully connected to the remote submission server.</string>
 
     <string name="settings_sync_email_header">Email Submission Settings</string>
     <string name="settings_default_email_title">Email Address</string>
