@@ -125,14 +125,15 @@ public class RestSync extends Sync {
 
         if (req == null) return null;
 
-        Response res = null;
+        Response res;
         try {
             res = httpClient.newCall(req).execute();
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
 
-        if (res != null && (res.code() == 401 || res.code() == 498) && login(ctx)) {
+        if ((res.code() == 401 || res.code() == 498) && login(ctx)) {
             String auth_token = PreferenceManager.getDefaultSharedPreferences(ctx).getString("auth_token", null);
             req = req.newBuilder().header("Authorization", "Bearer " + auth_token).build();
             return syncRequest(ctx, httpClient, req);

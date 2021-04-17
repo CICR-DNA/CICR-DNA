@@ -41,7 +41,7 @@ public abstract class Sync {
         try {
             zipFile = FileUtils.randomFileInDir(context.getCacheDir(), "tmp", "zip");
         } catch (IOException ex) {
-            showSyncResultDialog(context, false);
+            showSyncResultDialog(context, false, null);
             return;
         }
         zipFile = FileUtils.zip(filePaths, zipFile.getPath());
@@ -64,7 +64,7 @@ public abstract class Sync {
                     Sync sync = syncList.get(which);
 
                     if (sync == null) {
-                        showSyncResultDialog(context, false);
+                        showSyncResultDialog(context, false, null);
                         return;
                     }
 
@@ -92,18 +92,22 @@ public abstract class Sync {
         syncList.add(new RestSync(url, usr, pwd));
     }
 
-    public static void showSyncResultDialog(Context context, boolean result) {
+    public static void showSyncResultDialog(Context context, boolean result, String error_message) {
 
-        new AlertDialog.Builder(context)
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle(result ? R.string.main_sync_success_title : R.string.main_sync_failure_title)
-                .setMessage(result ? R.string.main_sync_success_msg : R.string.main_sync_failure_msg)
                 .setCancelable(true)
                 .setPositiveButton(android.R.string.ok, null)
                 .setNeutralButton(R.string.go_to_settings, (a,b) -> {
                     Intent intent = new Intent(context, SettingsActivity.class);
                     context.startActivity(intent);
-                })
-                .create()
-                .show();
+                });
+
+        if (error_message == null)
+            builder.setMessage(result ? R.string.main_sync_success_msg : R.string.main_sync_failure_msg);
+        else
+            builder.setMessage(context.getResources().getString(R.string.main_sync_failure_msg_with_error, error_message));
+
+        builder.create().show();
     }
 }

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -86,7 +89,6 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
         }
 
         Log.d("rest-sync", "response code : " + response.code());
-        try {
             ResponseBody body = response.body();
 
             if (body == null) {
@@ -94,12 +96,6 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
                 super.cancel(true);
                 return false;
             }
-
-            String body_as_str = body.string();
-            Log.d("rest-sync", "response body : " + body_as_str);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         return true;
     }
@@ -109,7 +105,20 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
         super.onPostExecute(result);
 
         // TODO response code must be handled better, will see when this part of the server is done
-        Sync.showSyncResultDialog(mContext, response != null && response.code() == 200);
+        boolean success = response != null && (response.code() == 200 || response.code() == 201);
+        String error = null;
+        ResponseBody body = response.body();
+        if (!success && body != null) {
+            try {
+                String body_as_str = body.string();
+                Log.d("server-error", body_as_str);
+                JsonObject json = new JsonParser().parse(body_as_str).getAsJsonObject();
+                error = json.get("error").getAsString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Sync.showSyncResultDialog(mContext, success, error);
     }
 
     @Override
@@ -126,6 +135,6 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
 
     public void cancel() {
 
-        Sync.showSyncResultDialog(mContext, false);
+        Sync.showSyncResultDialog(mContext, false, null);
     }
 }
