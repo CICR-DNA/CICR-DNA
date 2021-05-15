@@ -183,6 +183,7 @@ public class FormScreenFragment extends Fragment {
         LinearLayout form = root.findViewById(R.id.input_list_lin_layout);
 
         Log.d("formscreen-insert", Arrays.toString(inputFragments.toArray()));
+
         // if input fragments aren't already added to screen fragment
         if (form.getChildCount() != inputFragments.size()) {
             FragmentManager fragMan = getChildFragmentManager();

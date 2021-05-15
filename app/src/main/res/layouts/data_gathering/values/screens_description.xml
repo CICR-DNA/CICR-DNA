@@ -2,14 +2,14 @@
 <resources>
 
     <string name="template_text">placeholder</string>
-    <string name="pedigree_help_template">pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info pedigree help info</string>
+    <string name="pedigree_help_template">In the following screens, this section will contain more information and details about the required inputs.</string>
 
     <string name="wrong_integer_input_error">please enter a valid integer value</string>
 
     <!--Screen Title-->
     <string name="tier_0_screen_1_title">Missing person</string>
     <!--Screen Description-->
-    <string name="tier_0_screen_1_description">Information about the missing person</string>
+    <string name="tier_0_screen_1_description">Is the missing person :</string>
     <!--Screen Description-->
     <string name="tier_0_screen_1_pedigreeHelp">Check whether samples were collected from direct parents of the victim</string>
     <!--Sex-->
@@ -24,9 +24,12 @@
     <!--Screen Title-->
     <string name="tier_1_screen_1_title">Parents</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_1_description">Check whether samples were collected from direct parents of the victim</string>
+    <string name="tier_1_screen_1_description">If the biological father and/or mother of the missing person are available to collect BRS, select the available candidates</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_1_pedigreeHelp">Check whether samples were collected from direct parents of the victim</string>
+    <string name="tier_1_screen_1_pedigreeHelp">
+        A biological parent is one that either gave birth (mother) or the person who fathered the child. Sometimes referred to as "natural parents".\n
+        \n
+        Biological parents are not always the legal parents.</string>
     <!--Mother-->
     <string name="tier_1_screen_1_option_1">Mother</string>
     <string name="tier_1_screen_1_option_1_path" translatable="false">parents.mother</string>
@@ -37,9 +40,9 @@
     <!--Screen Title-->
     <string name="tier_1_screen_2_title">Children</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_2_description">Introduce the number of samples collected from children of the victim</string>
+    <string name="tier_1_screen_2_description">If the biological child(ren) of the missing person are available to collect BRS, select the available candidate(s).</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_2_pedigreeHelp">Introduce the number of samples collected from children of the victim</string>
+    <string name="tier_1_screen_2_pedigreeHelp">A biological child must be a child of either the birth mother or the person who fathered the child.</string>
     <!--Daughters-->
     <string name="tier_1_screen_2_option_1">Daughters</string>
     <string name="tier_1_screen_2_option_1_path" translatable="false">children.daughters</string>
@@ -50,9 +53,12 @@
     <!--Screen Title-->
     <string name="tier_1_screen_3_title">Spouse</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_3_description">Check whether samples were collected from Wife or Husband of the victim</string>
+    <string name="tier_1_screen_3_description">If the spouse of the missing person (other biological parent of the children) is available to collect BRS, select the available candidate.</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_3_pedigreeHelp">Check whether samples were collected from Wife or Husband of the victim</string>
+    <string name="tier_1_screen_3_pedigreeHelp">
+        While the spouse isn’t genetically related to the missing person, they are related through the shared children with the missing person.\n
+        \n
+        Samples from spouses are only collected when biological children are also available for collection.</string>
     <!--Wife-->
     <string name="tier_1_screen_3_option_1">Wife</string>
     <string name="tier_1_screen_3_option_1_path" translatable="false">spouses.wife</string>
@@ -63,9 +69,9 @@
     <!--Screen Title-->
     <string name="tier_1_screen_4_title">Children with second spouse</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_4_description">Introduce number of samples taken from children the victim had with a second spouse.</string>
+    <string name="tier_1_screen_4_description">If the missing person had children with a second spouse, and if these children of the second spouse are available to collect BRS, select the available candidate(s).</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_4_pedigreeHelp">Introduce number of samples taken from children the victim had with a second spouse.</string>
+    <string name="tier_1_screen_4_pedigreeHelp">Children from a second spouse must clearly be defined from those children from another spouse.</string>
     <!--Daughters 2nd spouse-->
     <string name="tier_1_screen_4_option_1">Daughters 2nd spouse</string>
     <string name="tier_1_screen_4_option_1_path" translatable="false">children.daughters2</string>
@@ -76,9 +82,13 @@
     <!--Screen Title-->
     <string name="tier_1_screen_5_title">Second spouse</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_5_description">Check whether samples were collected from second Wife or Husband of the victim</string>
+    <string name="tier_1_screen_5_description">If the additional spouse of the missing person (other biological parent of the children) is available to collect BRS, select the available candidate.</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_5_pedigreeHelp">Check whether samples were collected from second Wife or Husband of the victim</string>
+    <string name="tier_1_screen_5_pedigreeHelp">
+        While the spouse isn’t genetically related to the missing person, they are through the children.\n
+        \n
+        Samples from spouses are only collected when biological children are also available for collection.
+</string>
     <!--Wife #2-->
     <string name="tier_1_screen_5_option_1">Wife #2</string>
     <string name="tier_1_screen_5_option_1_path" translatable="false">spouses.wife2</string>
@@ -89,9 +99,17 @@
     <!--Screen Title-->
     <string name="tier_1_screen_6_title">Siblings</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_6_description">Introduce the number of siblings whose BRS can be collected (same biological parents)</string>
+    <string name="tier_1_screen_6_description">If full siblings (brothers and/or sisters) are available to collect BRS, select the available candidate(s).</string>
     <!--Screen Description-->
-    <string name="tier_1_screen_6_pedigreeHelp">Introduce the number of siblings whose BRS can be collected (same biological parents)</string>
+    <string name="tier_1_screen_6_pedigreeHelp">
+        Full siblings each have the same biological mother and father.\n
+        \n
+        A monozygotic twin is referred to as an identical twin, arising from the splitting of 1 zygote.\n
+        \n
+        Fraternal twins are not identical and can be selected as either a full brother or sister\n
+        \n
+        If uncertain, list twin as full sib
+    </string>
     <!--Full brother-->
     <string name="tier_1_screen_6_option_1">Full brother</string>
     <string name="tier_1_screen_6_option_1_path" translatable="false">siblings.fullBrothers</string>
@@ -106,9 +124,21 @@
     <!--Screen Title-->
     <string name="tier_2_screen_1_title">Grandparents</string>
     <!--Screen Description-->
-    <string name="tier_2_screen_1_description">Check whether BRS were collected from grand parents of the victim</string>
+    <string name="tier_2_screen_1_description">
+        If the biological grandparents (paternal or maternal) of the missing person are available to collect BRS, select the available candidate(s).
+    </string>
     <!--Screen Description-->
-    <string name="tier_2_screen_1_pedigreeHelp">Check whether BRS were collected from grand parents of the victim</string>
+    <string name="tier_2_screen_1_pedigreeHelp">
+        Ideally, all 4 grandparents would be collected.\n
+        \n
+        Sometimes referred to as:\n
+        - Mother’s Father\n
+        - Mother’s Mother\n
+        - Father’s Father\n
+        - Father’s Mother\n
+        \n
+        If BRS has been collected from the biological mother and biological father then it is not necessary to collect from the grandparents.
+    </string>
     <!--Maternal Grandmother-->
     <string name="tier_2_screen_1_option_1">Maternal Grandmother</string>
     <string name="tier_2_screen_1_option_1_path" translatable="false">grandparents.maternal.grandmother</string>
@@ -125,9 +155,19 @@
     <!--Screen Title-->
     <string name="tier_2_screen_2_title">Grandchildren</string>
     <!--Screen Description-->
-    <string name="tier_2_screen_2_description">Introduce the number of BRS collected from grand children of the victim</string>
+    <string name="tier_2_screen_2_description">
+        If the biological grandchild(ren) of the missing person are available to collect BRS, select the available candidate(s).
+    </string>
     <!--Screen Description-->
-    <string name="tier_2_screen_2_pedigreeHelp">Introduce the number of BRS collected from grand children of the victim</string>
+    <string name="tier_2_screen_2_pedigreeHelp">
+        Biological grandchild(ren) are the children of the children of the missing person.\n
+        \n
+        Sometimes referred to as:\n
+        - Daughter’s daughter\n
+        - Son’s daughter\n
+        - Daughter’s son\n
+        - Son’s son
+    </string>
     <!--Grandchildren (from all children)-->
     <string name="tier_2_screen_2_option_1">Grandchildren (from all children)</string>
     <string name="tier_2_screen_2_option_1_path" translatable="false">children.children</string>
@@ -135,9 +175,19 @@
     <!--Screen Title-->
     <string name="tier_2_screen_4_title">Cousins</string>
     <!--Screen Description-->
-    <string name="tier_2_screen_4_description">Introduce the number of BRS collected from cousins of the victim</string>
+    <string name="tier_2_screen_4_description">
+        If the biological cousin(s) of the missing person are available to collect BRS, select the available candidate(s).
+    </string>
     <!--Screen Description-->
-    <string name="tier_2_screen_4_pedigreeHelp">Introduce the number of BRS collected from cousins of the victim</string>
+    <string name="tier_2_screen_4_pedigreeHelp">
+        Biological cousin(s) are the children of the aunt/uncle of the missing person.\n
+        \n
+        Sometimes referred to as:\n
+        - Father’s sister’s son\n
+        - Father’s brother’s daughter\n
+        - Mother’s sister’s son\n
+        - Mother’s brother’s daughter\n
+    </string>
     <!--Cousins (from any aunts and uncles)-->
     <string name="tier_2_screen_4_option_1">Cousins (from any aunts and uncles)</string>
     <string name="tier_2_screen_4_option_1_path" translatable="false">auntsAndUncles.cousins</string>
@@ -145,9 +195,21 @@
     <!--Screen Title-->
     <string name="tier_2_screen_5_title">Aunts and Uncles</string>
     <!--Screen Description-->
-    <string name="tier_2_screen_5_description">Introduce the number of BRS collected from aunts and uncles of the victim</string>
+    <string name="tier_2_screen_5_description">
+        If the biological Aunt(s) or Uncle(s) of the missing person are available to collect BRS, select the available candidate(s).
+    </string>
     <!--Screen Description-->
-    <string name="tier_2_screen_5_pedigreeHelp">Introduce the number of BRS collected from aunts and uncles of the victim</string>
+    <string name="tier_2_screen_5_pedigreeHelp">
+        A biological aunt/uncle is the sibling (brother/sister) of each of the parents of the missing person.\n
+        \n
+        Maternal aunt/uncle is either the sister or brother of the missing person’s mother.\n
+        - Mother’s brother\n
+        - Mother’s sister\n
+        \n
+        Paternal aunt/uncle is either the sister or brother of the missing person’s father.\n
+        - Father’s brother\n
+        - Father’s sister
+    </string>
     <!--Maternal Aunt-->
     <string name="tier_2_screen_5_option_1">Maternal Aunt</string>
     <string name="tier_2_screen_5_option_1_path" translatable="false">auntsAndUncles.maternal.aunt</string>
@@ -164,9 +226,19 @@
     <!--Screen Title-->
     <string name="tier_2_screen_6_title">Nieces and Nephews</string>
     <!--Screen Description-->
-    <string name="tier_2_screen_6_description">Introduce the number of nieces and nephews whose BRS can be collected</string>
+    <string name="tier_2_screen_6_description">
+        If the biological Niece(s) or Nephew(s) of the missing person are available to collect BRS, select the available candidate(s).
+    </string>
     <!--Screen Description-->
-    <string name="tier_2_screen_6_pedigreeHelp">Introduce the number of nieces and nephews whose BRS can be collected</string>
+    <string name="tier_2_screen_6_pedigreeHelp">
+        Biological nieces/nephews are the children of the siblings of the missing person.\n
+        \n
+        Sometimes referred to as:\n
+        - Brother’s son\n
+        - Brother’s daughter\n
+        - Sister’s son\n
+        - Sister’s daughter\n
+    </string>
     <!--Nieces-->
     <string name="tier_2_screen_6_option_1">Nieces</string>
     <string name="tier_2_screen_6_option_1_path" translatable="false">siblings.children.nephews</string>
@@ -177,9 +249,17 @@
     <!--Screen Title-->
     <string name="tier_2_screen_8_title">Half-Siblings</string>
     <!--Screen Description-->
-    <string name="tier_2_screen_8_description">Introduce the number of half-siblings whose BRS can be collected (one common biological parent)</string>
+    <string name="tier_2_screen_8_description">
+        If biological half-sibling(s) of the missing person are available to collect BRS, select the available candidate(s).
+    </string>
     <!--Screen Description-->
-    <string name="tier_2_screen_8_pedigreeHelp">Introduce the number of half-siblings whose BRS can be collected (one common biological parent)</string>
+    <string name="tier_2_screen_8_pedigreeHelp">
+        Half-siblings share only 1 of the 2 biological parents. \n
+        \n
+        Paternal half siblings share the same father but different mothers\n
+        \n
+        Maternal half siblings share the same mother but different fathers
+    </string>
     <!--Paternal Half brother-->
     <string name="tier_2_screen_8_option_1">Paternal Half-brother</string>
     <string name="tier_2_screen_8_option_1_path" translatable="false">siblings.paternal.halfBrothers</string>
@@ -196,9 +276,15 @@
     <!--Screen Title-->
     <string name="tier_2_screen_9_title">Step-parents</string>
     <!--Screen Description-->
-    <string name="tier_2_screen_9_description">Check whether BRS was collected from step-parents of the victim</string>
+    <string name="tier_2_screen_9_description">
+        If the additional spouse(s) of the half-sibling(s) are available to collect BRS, select the available candidate(s).
+    </string>
     <!--Screen Description-->
-    <string name="tier_2_screen_9_pedigreeHelp">Check whether BRS was collected from step-parents of the victim</string>
+    <string name="tier_2_screen_9_pedigreeHelp">
+        The Step-Mother is not the biological mother of the missing person but is the mother of the paternal half-sibling. \n
+        \n
+        The Step-Father is not the biological father of the missing person but is the father of the maternal half-sibling.\n
+    </string>
     <!--Step-Mother-->
     <string name="tier_2_screen_9_option_1">Step-Mother</string>
     <string name="tier_2_screen_9_option_1_path" translatable="false">stepParents.mother</string>

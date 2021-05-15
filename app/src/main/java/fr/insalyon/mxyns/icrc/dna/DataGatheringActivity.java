@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -54,16 +56,24 @@ public class DataGatheringActivity extends AppCompatActivity {
 
         Log.d("data-oncreate", "CREATE DATAGATHERING");
 
+        setContentView(R.layout.activity_data_gathering);
+
+        TextView title = findViewById(R.id.title);
+
+        title.setText(FileUtils.nameCase(new File(getFilesDir(), getResources().getString(R.string.files_path)), this));
+
         // load case data from disk
         path = getIntent().getStringExtra("load");
-        if (path != null)
+        if (path != null) {
             data = loadDataFromFile(path);
-        else
+            JsonObject obj = FileUtils.loadJsonFromFile(path);
+            if (obj.has("displayName"))
+                title.setText(obj.get("displayName").getAsString());
+        } else
             data = new HashMap<>();
 
         Log.d("data-oncreate", "data = " + data);
 
-        setContentView(R.layout.activity_data_gathering);
         formScreenAdapter = new FormScreenAdapter(this, getSupportFragmentManager());
 
         // setup swipeable views

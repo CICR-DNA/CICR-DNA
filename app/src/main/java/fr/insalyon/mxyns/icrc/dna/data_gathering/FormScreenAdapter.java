@@ -64,7 +64,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Parents
         registerFormFragment(1, R.string.tier_1_screen_1_title,
                 R.string.tier_1_screen_1_description,
-                R.string.pedigree_help_template,
+                R.string.tier_1_screen_1_pedigreeHelp,
                 R.drawable.parents,
                 new InputDescription(InputType.Checkbox, R.string.tier_1_screen_1_option_1, r),
                 new InputDescription(InputType.Checkbox, R.string.tier_1_screen_1_option_2, r)
@@ -73,7 +73,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Children
         registerFormFragment(1, R.string.tier_1_screen_2_title,
                 R.string.tier_1_screen_2_description,
-                R.string.pedigree_help_template,
+                R.string.tier_1_screen_2_pedigreeHelp,
                 R.drawable.children,
                 new InputDescription(InputType.Spinner, R.string.tier_1_screen_2_option_1, r),
                 new InputDescription(InputType.Spinner, R.string.tier_1_screen_2_option_2, r)
@@ -82,7 +82,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Spouse
         registerFormFragment(1, R.string.tier_1_screen_3_title,
                 R.string.tier_1_screen_3_description,
-                R.string.pedigree_help_template,
+                R.string.tier_1_screen_3_pedigreeHelp,
                 R.drawable.spouse,
                 new InputDescription(InputType.Checkbox, R.string.tier_1_screen_3_option_1, r,
                         () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_1_screen_2_option_1, R.string.tier_1_screen_2_option_2)),
@@ -93,7 +93,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Children from second spouse
         registerFormFragment(1, R.string.tier_1_screen_4_title,
                 R.string.tier_1_screen_4_description,
-                R.string.pedigree_help_template,
+                R.string.tier_1_screen_4_pedigreeHelp,
                 R.drawable.children2,
                 new InputDescription(InputType.Spinner, R.string.tier_1_screen_4_option_1, r),
                 new InputDescription(InputType.Spinner, R.string.tier_1_screen_4_option_2, r)
@@ -102,7 +102,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Second spouse
         registerFormFragment(1, R.string.tier_1_screen_5_title,
                 R.string.tier_1_screen_5_description,
-                R.string.pedigree_help_template,
+                R.string.tier_1_screen_5_pedigreeHelp,
                 R.drawable.spouse2,
                 // TODO reset input value when disabled? => dialog
                 new InputDescription(InputType.Checkbox, R.string.tier_1_screen_5_option_1, r,
@@ -122,7 +122,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Siblings
         registerFormFragment(1, R.string.tier_1_screen_6_title,
                 R.string.tier_1_screen_6_description,
-                R.string.pedigree_help_template,
+                R.string.tier_1_screen_6_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Spinner, R.string.tier_1_screen_6_option_1, r),
                 new InputDescription(InputType.Spinner, R.string.tier_1_screen_6_option_2, r),
@@ -133,7 +133,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Grandparents
         registerFormFragment(2, R.string.tier_2_screen_1_title,
                 R.string.tier_2_screen_1_description,
-                R.string.pedigree_help_template,
+                R.string.tier_2_screen_1_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Checkbox, R.string.tier_2_screen_1_option_1, r),
                 new InputDescription(InputType.Checkbox, R.string.tier_2_screen_1_option_2, r),
@@ -144,7 +144,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Grandchildren
         registerFormFragment(2, R.string.tier_2_screen_2_title,
                 R.string.tier_2_screen_2_description,
-                R.string.pedigree_help_template,
+                R.string.tier_2_screen_2_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_2_option_1, r)
         );
@@ -152,7 +152,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Cousins
         registerFormFragment(2, R.string.tier_2_screen_4_title,
                 R.string.tier_2_screen_4_description,
-                R.string.pedigree_help_template,
+                R.string.tier_2_screen_4_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_4_option_1, r)
         );
@@ -160,7 +160,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Aunts and Uncles
         registerFormFragment(2, R.string.tier_2_screen_5_title,
                 R.string.tier_2_screen_5_description,
-                R.string.pedigree_help_template,
+                R.string.tier_2_screen_5_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_5_option_1, r),
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_5_option_2, r),
@@ -171,7 +171,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Nephews
         registerFormFragment(2, R.string.tier_2_screen_6_title,
                 R.string.tier_2_screen_6_description,
-                R.string.pedigree_help_template,
+                R.string.tier_2_screen_6_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_6_option_1, r),
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_6_option_2, r)
@@ -180,7 +180,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Half-siblings
         registerFormFragment(2, R.string.tier_2_screen_8_title,
                 R.string.tier_2_screen_8_description,
-                R.string.pedigree_help_template,
+                R.string.tier_2_screen_8_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_8_option_1, r),
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_8_option_2, r),
@@ -191,7 +191,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         // Step-parents
         registerFormFragment(2, R.string.tier_2_screen_9_title,
                 R.string.tier_2_screen_9_description,
-                R.string.pedigree_help_template,
+                R.string.tier_2_screen_9_pedigreeHelp,
                 R.drawable.ic_baseline_crop_square_24,
                 new InputDescription(InputType.Checkbox, R.string.tier_2_screen_9_option_1, r,
                         () -> InputTemplateFragment.atLeastOneDependency(r,
