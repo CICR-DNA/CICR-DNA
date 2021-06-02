@@ -94,7 +94,7 @@ public class RestSync extends Sync {
         Response rep = syncRequest(context, httpClient, req);
 
         Log.d("rest-api-login", rep != null ? " received code : " + rep.code() : "received null");
-        if (rep == null || rep.code() != 201) return false;
+        if (rep == null || (rep.code() != 201 && rep.code() != 200)) return false;
 
         String body_as_str = null;
         try {
