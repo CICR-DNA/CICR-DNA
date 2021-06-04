@@ -15,6 +15,7 @@ import fr.insalyon.mxyns.icrc.dna.R;
 import fr.insalyon.mxyns.icrc.dna.sync.RestSync;
 import fr.insalyon.mxyns.icrc.dna.sync.Sync;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -27,6 +28,7 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
     private final Context mContext;
     private OkHttpClient client;
     private Response response;
+    private String responseBody;
 
     public RestPostFileAsyncTask(Context context) {
 
@@ -45,26 +47,32 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
     @Override
     protected Boolean doInBackground(String... strings) {
 
+
         String url_str = strings[0],
                 token = strings[1],
                 filePath = strings[2];
 
+        Log.d("rest-sync", url_str + " " + token + " " + filePath);
         if (url_str == null || token == null || filePath == null) return false;
 
-        url_str += (url_str.endsWith("/") ? "" : "/") + mContext.getResources().getString(R.string.settings_default_restAPI_url_post_path);
+        url_str += (url_str.endsWith("/") ? "" : "/");
 
         RequestBody post_body;
-        if (filePath.endsWith(".json"))
+        if (filePath.endsWith(".json")) {
             post_body = RequestBody.create(
                     MediaType.parse("application/json"),
                     FileUtils.loadJsonFromFile(filePath).toString()
             );
-        else if (filePath.endsWith(".zip"))
-            post_body = RequestBody.create(
-                    MediaType.parse("application/zip"),
-                    new File(filePath)
-            );
-        else {
+            url_str += mContext.getResources().getString(R.string.settings_default_restAPI_url_post_json_path);
+        } else if (filePath.endsWith(".zip")) {
+            File file = new File(filePath);
+            post_body = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM)
+                    .addFormDataPart("sampleFile", file.getName(),
+                            RequestBody.create(MediaType.parse("application/zip"), file))
+                    .build();
+            url_str += mContext.getResources().getString(R.string.settings_default_restAPI_url_post_zip_path);
+        } else {
             Log.d("rest-sync", "file format not handled : " + new File(filePath).getName());
             return false;
         }
@@ -81,6 +89,7 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
             return false;
         }
 
+        Log.d("rest-sync", req.toString());
         response = RestSync.syncRequest(mContext, client, req);
 
         if (response == null) {
@@ -89,13 +98,21 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
         }
 
         Log.d("rest-sync", "response code : " + response.code());
-            ResponseBody body = response.body();
+        ResponseBody body = response.body();
 
-            if (body == null) {
-                Log.d("rest-sync", "no response body");
+        if (body == null) {
+            Log.d("rest-sync", "no response body");
+            super.cancel(true);
+            return false;
+        } else {
+            try {
+                this.responseBody = body.string();
+            } catch (IOException e) {
                 super.cancel(true);
+                e.printStackTrace();
                 return false;
             }
+        }
 
         return true;
     }
@@ -107,17 +124,18 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
         // TODO response code must be handled better, will see when this part of the server is done
         boolean success = response != null && (response.code() == 200 || response.code() == 201);
         String error = null;
-        ResponseBody body = response.body();
-        if (!success && body != null) {
-            try {
-                String body_as_str = body.string();
-                Log.d("server-error", body_as_str);
-                JsonObject json = new JsonParser().parse(body_as_str).getAsJsonObject();
-                error = json.get("error").getAsString();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+
+        if (!success) {
+            Log.d("server-error", responseBody);
+            JsonObject json = new JsonParser().parse(responseBody).getAsJsonObject();
+
+            error = json.get("error").getAsString();
+            if (json.get("err_type") != null)
+                error += "\n" + json.get("err_type").toString();
+        } else {
+            Log.d("rest-sync-success", responseBody);
         }
+
         Sync.showSyncResultDialog(mContext, success, error);
     }
 

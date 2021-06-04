@@ -2,7 +2,8 @@
 <resources>
 
     <string name="settings_default_restAPI_url_login_path">users/login</string>
-    <string name="settings_default_restAPI_url_post_path">cases/insertDatabase</string>
+    <string name="settings_default_restAPI_url_post_zip_path">cases/insertFileIntoDatabase</string>
+    <string name="settings_default_restAPI_url_post_json_path">cases/insertDatabase</string>
     <string name="settings_default_restAPI_body_login">
         {
             \"email\" : \"%s\",
