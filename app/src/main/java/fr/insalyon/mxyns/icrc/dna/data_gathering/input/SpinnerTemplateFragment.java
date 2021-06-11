@@ -62,6 +62,8 @@ public class SpinnerTemplateFragment extends InputTemplateFragment<Integer> {
     @Override
     protected void setEnabled(Boolean aBoolean) {
 
+        if (root == null) return;
+
         root.findViewById(R.id.input_template_integer_field).setEnabled(aBoolean);
         root.findViewById(R.id.input_template_integer_text).setEnabled(aBoolean);
     }

@@ -10,5 +10,8 @@
 
     <string name="datagathering_pedigree_help_dialog_title">Pedigree Help</string>
 
+    <string name="datagathering_pedigree_help_action">Help</string>
+    <string name="datagathering_pedigree_validate_case_action">Validate Case</string>
+
     <string name="datagathering_page_index">%d / %d</string>
 </resources>

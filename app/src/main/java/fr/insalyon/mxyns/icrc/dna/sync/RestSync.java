@@ -62,7 +62,6 @@ public class RestSync extends Sync {
 
     public static boolean login(Context context) {
 
-        if (url_str == null || username == null || password == null) return false;
         Log.d("rest-api-login", "attempt to login");
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

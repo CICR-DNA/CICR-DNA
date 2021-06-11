@@ -4,16 +4,22 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.JsonObject;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,6 +27,7 @@ import java.util.HashMap;
 
 import fr.insalyon.mxyns.icrc.dna.data_gathering.DataGatheringOnScreenChangeListener;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenAdapter;
+import fr.insalyon.mxyns.icrc.dna.data_gathering.FormScreenFragment;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.TabLayout;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputResult;
 import fr.insalyon.mxyns.icrc.dna.data_gathering.input.InputTemplateFragment;
@@ -59,7 +66,6 @@ public class DataGatheringActivity extends AppCompatActivity {
         setContentView(R.layout.activity_data_gathering);
 
         TextView title = findViewById(R.id.title);
-
         title.setText(FileUtils.nameCase(new File(getFilesDir(), getResources().getString(R.string.files_path)), this));
 
         // load case data from disk
@@ -83,18 +89,6 @@ public class DataGatheringActivity extends AppCompatActivity {
         tabs = findViewById(R.id.tabs);
         tabs.init(formScreenAdapter, viewPager);
 
-        // confirm fab behaviour
-        FloatingActionButton fab = findViewById(R.id.fab_confirm);
-        fab.setOnClickListener(view -> Snackbar.make(view, R.string.datagathering_fab_u_sure, Snackbar.LENGTH_LONG)
-                .setAction(R.string.datagathering_fab_accept, e -> {
-
-                    Intent intent = new Intent(DataGatheringActivity.this, ResultActivity.class);
-                    intent.putExtra("all-values", gatherValues());
-                    intent.putExtra("path", path);
-                    startActivity(intent);
-
-                }).show());
-
         // setup swipe buttons behaviour
         ImageButton left_swiper = findViewById(R.id.datagathering_left_chevron);
         left_swiper.setOnClickListener(e -> viewPager.setCurrentItem((viewPager.getCurrentItem() - 1 + formScreenAdapter.getCount()) % formScreenAdapter.getCount()));
@@ -112,6 +106,31 @@ public class DataGatheringActivity extends AppCompatActivity {
         DataGatheringOnScreenChangeListener longAssName;
         viewPager.addOnPageChangeListener(longAssName = new DataGatheringOnScreenChangeListener(findViewById(R.id.datagathering_page_index), left_swiper, right_swiper, formScreenAdapter, this));
         longAssName.onPageSelected(0);
+
+        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
+        setSupportActionBar(toolbar);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.datagathering_appbar_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // Handling Action Bar button click
+    @Override
+    public boolean onOptionsItemSelected(@NotNull MenuItem item) {
+        // Handle item selection
+        boolean result = super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_validate_case) {
+            validateCase();
+        } else if (item.getItemId() == R.id.action_help) {
+            openPedigreeHelpDialog();
+        }
+
+        return result;
     }
 
     @Override
@@ -145,6 +164,42 @@ public class DataGatheringActivity extends AppCompatActivity {
                     .show();
         else
             super.onBackPressed();
+    }
+
+    /**
+     * Shows a Snackbar popup that allows the user to pass the gathered data to the next (ResultActivity) screen
+     */
+    private void validateCase() {
+
+        Snackbar.make(findViewById(R.id.action_validate_case), R.string.datagathering_fab_u_sure, Snackbar.LENGTH_LONG)
+                .setAction(R.string.datagathering_fab_accept, e -> {
+
+                    Intent intent = new Intent(DataGatheringActivity.this, ResultActivity.class);
+                    intent.putExtra("all-values", gatherValues());
+                    intent.putExtra("path", path);
+                    startActivity(intent);
+
+                }).show();
+    }
+
+    /**
+     * Opens the help dialog
+     */
+    private void openPedigreeHelpDialog() {
+
+        Fragment frag = formScreenAdapter.tabs.get(viewPager.getCurrentItem());
+        FormScreenFragment formScreenFragment = (FormScreenFragment) frag;
+        Integer pedigreeHelpId = formScreenFragment.getPedigreeHelpId();
+        if (pedigreeHelpId == null) {
+            pedigreeHelpId = R.string.template_text;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.datagathering_pedigree_help_dialog_title)
+                .setMessage(pedigreeHelpId)
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(R.drawable.ic_baseline_help_outline_24)
+                .show();
     }
 
     /**

@@ -1,6 +1,5 @@
 package fr.insalyon.mxyns.icrc.dna.data_gathering;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -162,24 +160,6 @@ public class FormScreenFragment extends Fragment {
         windowManager.getDefaultDisplay().getSize(size);
         imageView.getLayoutParams().height = (int) (size.y * Constants.getFloat(getResources(), R.dimen.datagathering_image_screen_prop).getFloat());
 
-        final ImageButton helpButton = root.findViewById(R.id.pedigreeHelpButton);
-        helpButton.setOnClickListener(e -> {
-
-            Integer pedigreeHelpId = viewModel.getPedigreeHelp().getValue();
-            if (pedigreeHelpId == null) {
-                pedigreeHelpId = R.string.template_text;
-            }
-
-            new AlertDialog.Builder(getContext())
-                    .setTitle(R.string.datagathering_pedigree_help_dialog_title)
-                    .setMessage(pedigreeHelpId)
-                    .setPositiveButton(android.R.string.ok, null)
-                    .setIcon(R.drawable.ic_baseline_help_outline_24)
-                    .show();
-        });
-
-        // TODO put title in toolbar
-
         LinearLayout form = root.findViewById(R.id.input_list_lin_layout);
 
         Log.d("formscreen-insert", Arrays.toString(inputFragments.toArray()));
@@ -220,5 +200,10 @@ public class FormScreenFragment extends Fragment {
         for (InputTemplateFragment frag : inputFragments) {
             frag.onSwippedTo();
         }
+    }
+
+    public Integer getPedigreeHelpId() {
+
+        return viewModel != null ? viewModel.getPedigreeHelp().getValue() : null;
     }
 }

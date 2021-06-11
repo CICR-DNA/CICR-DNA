@@ -29,6 +29,8 @@ public abstract class ListTemplateFragment<T> extends InputTemplateFragment<List
     @Override
     protected void setEnabled(Boolean aBoolean) {
 
+        if (root == null) return;
+
         root.findViewById(R.id.input_template_list).setEnabled(aBoolean);
         root.findViewById(R.id.input_list_text).setEnabled(aBoolean);
     }
