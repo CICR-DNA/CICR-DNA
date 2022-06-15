@@ -1,11 +1,20 @@
 package fr.insalyon.mxyns.icrc.dna;
 
 import android.content.res.Resources;
+import android.util.Log;
 import android.util.TypedValue;
+import android.util.Xml;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DimenRes;
 import androidx.annotation.StringRes;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 
 public class Constants {
 
@@ -83,7 +92,93 @@ public class Constants {
         return value_holder;
     }
 
-    public static void loadScore(Resources res, TypedValue holder, String res_name) {
-        res.getValue(res.getIdentifier(res_name, "dimen", MainActivity.class.getPackage().getName()), holder, true);
+    public static HashMap<String, Float> loadScores(Resources res, String scoresFilename) {
+
+        int scoreFileResId = res.getIdentifier(scoresFilename, "raw", MainActivity.class.getPackage().getName());
+        try (InputStream is = res.openRawResource(scoreFileResId)) {
+//            Log.d("xml-parse-raw", new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8)).lines().collect(Collectors.joining("\n")));
+            return XmlScoreParser.parse(is);
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    private static class XmlScoreParser {
+
+        private final static String NAMESPACE = null;
+        private final static String ROOT_TAG = "resources";
+        private final static String SCORE_ENTRY_TAG = "score";
+        private final static String SCORE_ENTRY_NAME_ATTRIBUTE = "name";
+
+        public static HashMap<String, Float> parse(InputStream is) throws XmlPullParserException, IOException {
+
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+            parser.setInput(is, NAMESPACE);
+            parser.nextTag();
+            return readFeed(parser);
+        }
+
+        private static HashMap<String, Float> readFeed(XmlPullParser parser) throws XmlPullParserException, IOException {
+
+            HashMap<String, Float> entries = new HashMap<>();
+
+            parser.require(XmlPullParser.START_TAG, NAMESPACE, ROOT_TAG);
+            while (parser.next() != XmlPullParser.END_TAG) {
+                if (parser.getEventType() != XmlPullParser.START_TAG) {
+                    continue;
+                }
+                String tagName = parser.getName();
+
+                // Starts by looking for a score entry tag
+                if (tagName.equals(SCORE_ENTRY_TAG)) {
+                    String scoreName = parser.getAttributeValue(NAMESPACE, SCORE_ENTRY_NAME_ATTRIBUTE);
+                    parser.require(XmlPullParser.START_TAG, NAMESPACE, SCORE_ENTRY_TAG);
+                    String scoreValueRaw = readText(parser);
+                    parser.require(XmlPullParser.END_TAG, NAMESPACE, SCORE_ENTRY_TAG);
+
+                    try {
+                        Log.d("parse-score-xml-entry", "found entry : " + scoreName + " = " + scoreValueRaw);
+                        entries.put(scoreName, Float.parseFloat(scoreValueRaw));
+                    } catch (Exception ex) {
+                        Log.d("parse-score-xml", "error while parsing value with name " + scoreName);
+                    }
+
+                } else {
+                    skip(parser);
+                }
+            }
+
+            return entries;
+        }
+
+        private static void skip(XmlPullParser parser) throws XmlPullParserException, IOException {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                throw new IllegalStateException();
+            }
+            int depth = 1;
+            while (depth != 0) {
+                switch (parser.next()) {
+                    case XmlPullParser.END_TAG:
+                        depth--;
+                        break;
+                    case XmlPullParser.START_TAG:
+                        depth++;
+                        break;
+                }
+            }
+        }
+
+        private static String readText(XmlPullParser parser) throws IOException, XmlPullParserException {
+            String result = "";
+            if (parser.next() == XmlPullParser.TEXT) {
+                result = parser.getText();
+                parser.nextTag();
+            }
+            return result;
+        }
+
     }
 }

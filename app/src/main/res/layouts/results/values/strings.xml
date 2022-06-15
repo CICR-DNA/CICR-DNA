@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--The way it works : score in [-∞                => first_threshold]   -> first_step_label     -->
+    <!--                   score in [first_threshold   => second_threshold]  -> second_step_label    -->
+    <!--                   score in [second_threshold  => +∞]                -> third_step_label     -->
+    <item name="first_threshold" format="float" type="dimen">4</item>
+    <item name="second_threshold" format="float" type="dimen">15</item>
+
+    <item name="first_step_label" type="string">BAD</item>
+    <item name="first_step_info" type="string">None or only poor candidates available for
+        collection
+    </item>
+    <item name="second_step_label" type="string">DECENT</item>
+    <item name="second_step_info" type="string">Partial collection. Additional relatives
+        recommended
+    </item>
+    <item name="third_step_label" type="string">VALID!</item>
+    <item name="third_step_info" type="string">Minimum collection met. Consider still collecting
+        from all available relatives
+    </item>
+
     <string name="results_summary_title">Data collection summary</string>
     <string name="results_summary_tier_item">Tier %d :</string>
     <string name="results_summary_input_item">%s : %d</string>

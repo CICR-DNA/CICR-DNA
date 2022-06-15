@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,7 +64,12 @@ public class ResultActivity extends AppCompatActivity {
         FloatingActionButton go_back_fab = findViewById(R.id.go_back);
         go_back_fab.setOnClickListener(view -> finish());
 
+        // TODO handle score error (< 0)
         score = evaluateScore(values);
+
+        // toast popup score value
+        Toast.makeText(this, String.format(getResources().getString(R.string.results_score_toast_text), score), Toast.LENGTH_LONG).show();
+
 
         // update UI colors & text
         findViewById(R.id.result_content).setBackgroundColor(Constants.getStatusColor(getResources(), score));
@@ -137,12 +141,7 @@ public class ResultActivity extends AppCompatActivity {
      */
     private float evaluateScore(HashMap<Integer, ArrayList<InputResult>> values) {
 
-        float score = 0;
-
-        // used to get score corresponding to an input
-        TypedValue unit_score_holder = new TypedValue();
-
-        // First pass needed for bonuses
+        // First pass needed for bonuses : counting some relative type
         short grandparents = 0, niecesAndNephews = 0, grandChildren = 0, halfSiblings = 0;
         short[] children = new short[2]; // 2 maximum at the moment
         for (Integer tier : values.keySet())
@@ -165,32 +164,44 @@ public class ResultActivity extends AppCompatActivity {
                     halfSiblings += result.getCount();
             }
 
-        Log.d("results-counts", "grandparents="+grandparents);
-        Log.d("results-counts", "niecesAndNephews="+niecesAndNephews);
-        Log.d("results-counts", "grandChildren="+grandChildren);
-        Log.d("results-counts", "halfSiblings="+halfSiblings);
+        Log.d("results-counts", "grandparents=" + grandparents);
+        Log.d("results-counts", "niecesAndNephews=" + niecesAndNephews);
+        Log.d("results-counts", "grandChildren=" + grandChildren);
+        Log.d("results-counts", "halfSiblings=" + halfSiblings);
+
+        // case score
+        float score = 0;
+
+        String scoreFilename = "scores_kit1";
+        HashMap<String, Float> unitScores = Constants.loadScores(getResources(), scoreFilename);
+        if (unitScores == null) {
+            Log.d("load-xml-scores", "error while loading score file " + scoreFilename + ", aborting");
+            return -1;
+        }
+        Log.d("load-xml-scores", "found entries : " + unitScores);
 
         // Dumb sum
         for (Integer tier : values.keySet()) {
             Log.d("all-values", "Tier " + tier + " : ");
-            for (InputResult result : values.get(tier))
-                try {
-                    String lowercaseJsonPath = result.getJsonPath().toLowerCase();
+            for (InputResult result : values.get(tier)) {
+                String lowercaseJsonPath = result.getJsonPath().toLowerCase();
 
-                    // TODO those multiple ifs could be changed to a list of predicates to check
-                    if (lowercaseJsonPath.startsWith("spouses") && children[extractMarriageIndex(lowercaseJsonPath) - 1] < 1)
-                        continue;
+                // TODO those multiple ifs could be changed to a list of predicates to check
+                if (lowercaseJsonPath.startsWith("spouses") && children[extractMarriageIndex(lowercaseJsonPath) - 1] < 1)
+                    continue;
 
-                    if (halfSiblings < 1 && lowercaseJsonPath.startsWith("stepparents."))
-                        continue;
+                if (halfSiblings < 1 && lowercaseJsonPath.startsWith("stepparents."))
+                    continue;
 
-                    // load unit score of an input
-                    Constants.loadScore(getResources(), unit_score_holder, result.getInputName());
-                    score += unit_score_holder.getFloat() * result.getCount();
-
-                } catch (Exception e) {
+                // load unit score of an input
+                Float unitScore = unitScores.get(result.getInputName());
+                if (unitScore == null) {
                     Log.d("result-calc", "error while looking for unit_score of Input " + result.getInputName());
+                    continue;
                 }
+
+                score += unitScore * result.getCount();
+            }
         }
 
         // grandparents bonus
@@ -198,12 +209,12 @@ public class ResultActivity extends AppCompatActivity {
             score += 4;
 
         // limit score to 6 effective grandChildren
-        if (grandChildren >= 6) {
-            score -= (grandChildren - 6) * Constants.getFloat(getResources(), R.dimen.tier_2_screen_2_option_1).getFloat();
+        {
+            Float grandChildrenUnit = unitScores.get("tier_2_screen_2_option_1"); // grandchildren id, unsafe method i dont like it
+            if (grandChildren >= 6 && grandChildrenUnit != null) {
+                score -= (grandChildren - 6) * grandChildrenUnit;
+            }
         }
-
-        // toast popup score value
-        Toast.makeText(this, String.format(getResources().getString(R.string.results_score_toast_text), score), Toast.LENGTH_LONG).show();
 
         return score;
     }

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Parents-->
+    <!--Mother-->
+    <score
+        name="tier_1_screen_1_option_1"
+        format="float"
+        type="dimen">10
+    </score>
+    <!--Father-->
+    <score
+        name="tier_1_screen_1_option_2"
+        format="float"
+        type="dimen">10
+    </score>
+
+    <!--Children-->
+    <!--Daughters-->
+    <score
+        name="tier_1_screen_2_option_1"
+        format="float"
+        type="dimen">10
+    </score>
+    <!--Sons-->
+    <score
+        name="tier_1_screen_2_option_2"
+        format="float"
+        type="dimen">10
+    </score>
+
+    <!--Spouse-->
+    <!--Wife-->
+    <score
+        name="tier_1_screen_3_option_1"
+        format="float"
+        type="dimen">5
+    </score>
+    <!--Husband-->
+    <score
+        name="tier_1_screen_3_option_2"
+        format="float"
+        type="dimen">5
+    </score>
+
+    <!--Children from second spouse-->
+    <!--Daughters 2nd spouse-->
+    <score
+        name="tier_1_screen_4_option_1"
+        format="float"
+        type="dimen">10
+    </score>
+    <!--Sons 2nd spouse-->
+    <score
+        name="tier_1_screen_4_option_2"
+        format="float"
+        type="dimen">10
+    </score>
+
+    <!--Second spouse-->
+    <!--Wife #2-->
+    <score
+        name="tier_1_screen_5_option_1"
+        format="float"
+        type="dimen">5
+    </score>
+    <!--Husband #2-->
+    <score
+        name="tier_1_screen_5_option_2"
+        format="float"
+        type="dimen">5
+    </score>
+
+    <!--Siblings-->
+    <!--Full brother-->
+    <score
+        name="tier_1_screen_6_option_1"
+        format="float"
+        type="dimen">5
+    </score>
+    <!--Full sister-->
+    <score
+        name="tier_1_screen_6_option_2"
+        format="float"
+        type="dimen">5
+    </score>
+    <!--Monozygotic Twin-->
+    <score
+        name="tier_1_screen_6_option_3"
+        format="float"
+        type="dimen">15
+    </score>
+
+    <!--Grandparents-->
+    <!--Maternal Grandmother-->
+    <score
+        name="tier_2_screen_1_option_1"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Maternal Grandfather-->
+    <score
+        name="tier_2_screen_1_option_2"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Paternal Grandmother-->
+    <score
+        name="tier_2_screen_1_option_3"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Paternal Grandfather-->
+    <score
+        name="tier_2_screen_1_option_4"
+        format="float"
+        type="dimen">2
+    </score>
+
+    <!--Grandchildren (from any children)-->
+    <score
+        name="tier_2_screen_2_option_1"
+        format="float"
+        type="dimen">2
+    </score>
+
+    <!--Daughter/Son-in-law-->
+    <!--Daughter-in-law-->
+    <score
+        name="tier_2_screen_3_option_1"
+        format="float"
+        type="dimen">1
+    </score>
+    <!--Son-in-law-->
+    <score
+        name="tier_2_screen_3_option_2"
+        format="float"
+        type="dimen">1
+    </score>
+
+    <!--Cousins (from any aunts and uncles)-->
+    <score
+        name="tier_2_screen_4_option_1"
+        format="float"
+        type="dimen">1
+    </score>
+
+    <!--Aunts and uncles-->
+    <!--Maternal Aunt-->
+    <score
+        name="tier_2_screen_5_option_1"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Maternal Uncle-->
+    <score
+        name="tier_2_screen_5_option_2"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Paternal Aunt-->
+    <score
+        name="tier_2_screen_5_option_3"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Paternal Uncle-->
+    <score
+        name="tier_2_screen_5_option_4"
+        format="float"
+        type="dimen">2
+    </score>
+
+    <!--Nieces and Nephews-->
+    <!--Nieces-->
+    <score
+        name="tier_2_screen_6_option_1"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Nephews-->
+    <score
+        name="tier_2_screen_6_option_2"
+        format="float"
+        type="dimen">2
+    </score>
+
+    <!--Siblings spouses-->
+    <!--Wives-->
+    <score
+        name="tier_2_screen_7_option_1"
+        format="float"
+        type="dimen">0.5
+    </score>
+    <!--Husbands-->
+    <score
+        name="tier_2_screen_7_option_2"
+        format="float"
+        type="dimen">0.5
+    </score>
+
+    <!--Half-siblings-->
+    <!--Paternal Half-brother-->
+    <score
+        name="tier_2_screen_8_option_1"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Paternal Half-sister-->
+    <score
+        name="tier_2_screen_8_option_2"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Paternal Half-brother-->
+    <score
+        name="tier_2_screen_8_option_3"
+        format="float"
+        type="dimen">2
+    </score>
+    <!--Paternal Half-sister-->
+    <score
+        name="tier_2_screen_8_option_4"
+        format="float"
+        type="dimen">2
+    </score>
+
+    <!--Step-Parents-->
+    <!--Step-Mother-->
+    <score
+        name="tier_2_screen_9_option_1"
+        format="float"
+        type="dimen">0.75
+    </score>
+    <!--Step-Father-->
+    <score
+        name="tier_2_screen_9_option_2"
+        format="float"
+        type="dimen">0.75
+    </score>
+</resources>

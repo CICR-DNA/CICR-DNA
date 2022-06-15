@@ -53,6 +53,13 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
 
         Resources r = mContext.getResources();
 
+        registerFormFragment(0, R.string.tier_0_screen_0_title,
+                R.string.tier_0_screen_0_description,
+                R.string.pedigree_help_template,
+                R.drawable.ic_baseline_crop_square_24,
+                new InputDescription(InputType.StringList, R.string.tier_0_screen_0_option_1, r)
+        );
+
         // Missing person
         registerFormFragment(1, R.string.tier_0_screen_1_title,
                 R.string.tier_0_screen_1_description,

@@ -20,6 +20,7 @@ android {
     defaultConfig {
         applicationId "fr.insalyon.mxyns.icrc.dna"
         minSdkVersion 24
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -44,6 +45,7 @@ android {
                             file("src/main/res/layouts/").listFiles(),
                             'src/main/res/layouts/main/case_list',
                             'src/main/res/layouts',
+                            'src/main/res/scores',
                             'src/main/res'
                     ]
         }

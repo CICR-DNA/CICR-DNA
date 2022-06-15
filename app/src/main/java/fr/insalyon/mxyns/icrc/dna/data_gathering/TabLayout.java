@@ -18,6 +18,7 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
     private FormScreenAdapter adapter;
     private ViewPager viewPager;
     private boolean wannaFastMove = true;
+    private int firstTier;
 
     public TabLayout(@NonNull @NotNull Context context) {
         super(context);
@@ -36,13 +37,14 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
         this.viewPager = viewPager;
 
         TreeMap<Integer, Integer> firstScreens = makeTabs();
+        Log.d("tab-quickmove-indices", firstScreens.toString());
 
         addOnTabSelectedListener(new OnTabSelectedListener() {
             @Override
             public void onTabSelected(Tab tab) {
 
                 if (wannaFastMove) // is a click
-                    viewPager.setCurrentItem(firstScreens.get(tab.getPosition() + 1));
+                    viewPager.setCurrentItem(firstScreens.get(tab.getPosition() + firstTier));
 
                 tab.select();
                 wannaFastMove = true;
@@ -55,7 +57,7 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
             public void onTabReselected(Tab tab) {
 
                 if (wannaFastMove)
-                    viewPager.setCurrentItem(firstScreens.get(tab.getPosition() + 1));
+                    viewPager.setCurrentItem(firstScreens.get(tab.getPosition() + firstTier));
             }
         });
         viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -66,9 +68,9 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
                 FormScreenFragment frag = fragmentToFormFragment(adapter.tabs.get(position));
                 if (frag == null) return;
 
-                if (frag.tier != getSelectedTabPosition() + 1) {
+                if (frag.tier != getSelectedTabPosition() + firstTier) {
                     TabLayout.this.wannaFastMove = false;
-                    selectTab(getTabAt(frag.tier - 1), false);
+                    selectTab(getTabAt(frag.tier - firstTier), false);
                 }
             }
         });
@@ -76,7 +78,7 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
 
     private TreeMap<Integer, Integer> makeTabs() {
 
-        TreeMap<Integer, Integer> firstScreenOfTier = new TreeMap<>();
+        TreeMap<Integer, Integer> firstScreenOfTier = new TreeMap<>(); // keeps key ordering, important!
         for (int i = 0; i < adapter.tabs.size(); i++)
             if (adapter.tabs.get(i) instanceof FormScreenFragment) {
                 FormScreenFragment formFragment = (FormScreenFragment) adapter.tabs.get(i);
@@ -84,7 +86,7 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
                 firstScreenOfTier.put(formFragment.tier, i);
             }
 
-        int firstTier = firstScreenOfTier.firstKey();
+        this.firstTier = firstScreenOfTier.firstKey();
         for (Integer tier : firstScreenOfTier.keySet()) {
             Tab tab = newTab();
             tab.setText("Tier " + tier);
