@@ -1,243 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="kit_display_name">STR 20 LOCI</string>
-
     <!--Parents-->
     <!--Mother-->
-    <score
-        name="tier_1_screen_1_option_1"
-        format="float"
-        type="dimen">20010
-    </score>
+    <score name="tier_1_screen_1_option_1" format="float" type="dimen">12</score>
     <!--Father-->
-    <score
-        name="tier_1_screen_1_option_2"
-        format="float"
-        type="dimen">20010
-    </score>
+    <score name="tier_1_screen_1_option_2" format="float" type="dimen">12</score>
 
     <!--Children-->
     <!--Daughters-->
-    <score
-        name="tier_1_screen_2_option_1"
-        format="float"
-        type="dimen">20010
-    </score>
+    <score name="tier_1_screen_2_option_1" format="float" type="dimen">12</score>
     <!--Sons-->
-    <score
-        name="tier_1_screen_2_option_2"
-        format="float"
-        type="dimen">20010
-    </score>
+    <score name="tier_1_screen_2_option_2" format="float" type="dimen">12</score>
 
     <!--Spouse-->
     <!--Wife-->
-    <score
-        name="tier_1_screen_3_option_1"
-        format="float"
-        type="dimen">2005
-    </score>
+    <score name="tier_1_screen_3_option_1" format="float" type="dimen">9</score>
     <!--Husband-->
-    <score
-        name="tier_1_screen_3_option_2"
-        format="float"
-        type="dimen">2005
-    </score>
+    <score name="tier_1_screen_3_option_2" format="float" type="dimen">9</score>
 
     <!--Children from second spouse-->
     <!--Daughters 2nd spouse-->
-    <score
-        name="tier_1_screen_4_option_1"
-        format="float"
-        type="dimen">20010
-    </score>
+    <score name="tier_1_screen_4_option_1" format="float" type="dimen">10</score>
     <!--Sons 2nd spouse-->
-    <score
-        name="tier_1_screen_4_option_2"
-        format="float"
-        type="dimen">20010
-    </score>
+    <score name="tier_1_screen_4_option_2" format="float" type="dimen">10</score>
 
     <!--Second spouse-->
     <!--Wife #2-->
-    <score
-        name="tier_1_screen_5_option_1"
-        format="float"
-        type="dimen">2005
-    </score>
+    <score name="tier_1_screen_5_option_1" format="float" type="dimen">1.5</score>
     <!--Husband #2-->
-    <score
-        name="tier_1_screen_5_option_2"
-        format="float"
-        type="dimen">2005
-    </score>
+    <score name="tier_1_screen_5_option_2" format="float" type="dimen">1.5</score>
 
     <!--Siblings-->
     <!--Full brother-->
-    <score
-        name="tier_1_screen_6_option_1"
-        format="float"
-        type="dimen">2005
-    </score>
+    <score name="tier_1_screen_6_option_1" format="float" type="dimen">9</score>
     <!--Full sister-->
-    <score
-        name="tier_1_screen_6_option_2"
-        format="float"
-        type="dimen">2005
-    </score>
+    <score name="tier_1_screen_6_option_2" format="float" type="dimen">9</score>
     <!--Monozygotic Twin-->
-    <score
-        name="tier_1_screen_6_option_3"
-        format="float"
-        type="dimen">20015
-    </score>
+    <score name="tier_1_screen_6_option_3" format="float" type="dimen">17</score>
 
     <!--Grandparents-->
     <!--Maternal Grandmother-->
-    <score
-        name="tier_2_screen_1_option_1"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_1_option_1" format="float" type="dimen">4.5</score>
     <!--Maternal Grandfather-->
-    <score
-        name="tier_2_screen_1_option_2"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_1_option_2" format="float" type="dimen">4.5</score>
     <!--Paternal Grandmother-->
-    <score
-        name="tier_2_screen_1_option_3"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_1_option_3" format="float" type="dimen">4.5</score>
     <!--Paternal Grandfather-->
-    <score
-        name="tier_2_screen_1_option_4"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_1_option_4" format="float" type="dimen">4.5</score>
 
     <!--Grandchildren (from any children)-->
-    <score
-        name="tier_2_screen_2_option_1"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_2_option_1" format="float" type="dimen">2.5</score>
 
     <!--Daughter/Son-in-law-->
     <!--Daughter-in-law-->
-    <score
-        name="tier_2_screen_3_option_1"
-        format="float"
-        type="dimen">2001
-    </score>
+    <score name="tier_2_screen_3_option_1" format="float" type="dimen">1.25</score>
     <!--Son-in-law-->
-    <score
-        name="tier_2_screen_3_option_2"
-        format="float"
-        type="dimen">2001
-    </score>
+    <score name="tier_2_screen_3_option_2" format="float" type="dimen">1.25</score>
 
     <!--Cousins (from any aunts and uncles)-->
-    <score
-        name="tier_2_screen_4_option_1"
-        format="float"
-        type="dimen">2001
-    </score>
+    <score name="tier_2_screen_4_option_1" format="float" type="dimen">1.25</score>
 
     <!--Aunts and uncles-->
     <!--Maternal Aunt-->
-    <score
-        name="tier_2_screen_5_option_1"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_5_option_1" format="float" type="dimen">3.5</score>
     <!--Maternal Uncle-->
-    <score
-        name="tier_2_screen_5_option_2"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_5_option_2" format="float" type="dimen">3.5</score>
     <!--Paternal Aunt-->
-    <score
-        name="tier_2_screen_5_option_3"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_5_option_3" format="float" type="dimen">3.5</score>
     <!--Paternal Uncle-->
-    <score
-        name="tier_2_screen_5_option_4"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_5_option_4" format="float" type="dimen">3.5</score>
 
     <!--Nieces and Nephews-->
     <!--Nieces-->
-    <score
-        name="tier_2_screen_6_option_1"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_6_option_1" format="float" type="dimen">2.5</score>
     <!--Nephews-->
-    <score
-        name="tier_2_screen_6_option_2"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_6_option_2" format="float" type="dimen">2.5</score>
 
     <!--Siblings spouses-->
     <!--Wives-->
-    <score
-        name="tier_2_screen_7_option_1"
-        format="float"
-        type="dimen">2000.5
-    </score>
+    <score name="tier_2_screen_7_option_1" format="float" type="dimen">0.75</score>
     <!--Husbands-->
-    <score
-        name="tier_2_screen_7_option_2"
-        format="float"
-        type="dimen">2000.5
-    </score>
+    <score name="tier_2_screen_7_option_2" format="float" type="dimen">0.75</score>
 
     <!--Half-siblings-->
     <!--Paternal Half-brother-->
-    <score
-        name="tier_2_screen_8_option_1"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_8_option_1" format="float" type="dimen">2.5</score>
     <!--Paternal Half-sister-->
-    <score
-        name="tier_2_screen_8_option_2"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_8_option_2" format="float" type="dimen">2.5</score>
     <!--Paternal Half-brother-->
-    <score
-        name="tier_2_screen_8_option_3"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_8_option_3" format="float" type="dimen">2.5</score>
     <!--Paternal Half-sister-->
-    <score
-        name="tier_2_screen_8_option_4"
-        format="float"
-        type="dimen">2002
-    </score>
+    <score name="tier_2_screen_8_option_4" format="float" type="dimen">2.5</score>
 
     <!--Step-Parents-->
     <!--Step-Mother-->
-    <score
-        name="tier_2_screen_9_option_1"
-        format="float"
-        type="dimen">2000.75
-    </score>
+    <score name="tier_2_screen_9_option_1" format="float" type="dimen">0</score>
     <!--Step-Father-->
-    <score
-        name="tier_2_screen_9_option_2"
-        format="float"
-        type="dimen">2000.75
-    </score>
+    <score name="tier_2_screen_9_option_2" format="float" type="dimen">0</score>
 </resources>
