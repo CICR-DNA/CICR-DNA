@@ -26,7 +26,7 @@
             android:theme="@style/Theme.ICRC_DNA.NoActionBar" />
         <activity
             android:name=".DataGatheringActivity"
-            android:label="@string/title_activity_data_gathering"
+            android:label="@string/title_activity_data_gathering_new"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.ICRC_DNA.NoActionBar"
             android:windowSoftInputMode="adjustPan" />

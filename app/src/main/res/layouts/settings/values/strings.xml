@@ -40,7 +40,7 @@
     <string name="settings_misc_clear_zip_success_message">Cache successfully cleared</string>
     <string name="settings_misc_clear_zip_error_message">Couldn\'t clear cache</string>
 
-    <string name="settings_locale_title" translatable="false">Mission location</string>
+    <string name="settings_locale_title">Mission location</string>
     <string name="settings_local_key" translatable="false">settings_locale</string>
     <string name="settings_clear_zips_key" translatable="false">clear_zips</string>
 

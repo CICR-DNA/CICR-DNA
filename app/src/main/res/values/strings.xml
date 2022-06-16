@@ -3,7 +3,8 @@
     <string name="action_settings">Settings</string>
 
     <string name="title_activity_main">Cases</string>
-    <string name="title_activity_data_gathering">New Case</string>
+    <string name="title_activity_data_gathering_new">New Case</string>
+    <string name="title_activity_data_gathering_edit">Edit Case</string>
     <string name="title_activity_result">Results</string>
     <string name="title_activity_settings">Settings</string>
 

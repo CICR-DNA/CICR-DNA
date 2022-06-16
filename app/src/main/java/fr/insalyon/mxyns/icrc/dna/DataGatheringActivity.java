@@ -75,8 +75,11 @@ public class DataGatheringActivity extends AppCompatActivity {
             JsonObject obj = FileUtils.loadJsonFromFile(path);
             if (obj.has("displayName"))
                 title.setText(obj.get("displayName").getAsString());
-        } else
+            setTitle(R.string.title_activity_data_gathering_edit);
+        } else {
+            setTitle(R.string.title_activity_data_gathering_new);
             data = new HashMap<>();
+        }
 
         Log.d("data-oncreate", "data = " + data);
 
