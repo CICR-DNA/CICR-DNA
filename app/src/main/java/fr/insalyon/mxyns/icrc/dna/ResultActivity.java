@@ -143,11 +143,18 @@ public class ResultActivity extends AppCompatActivity {
 
         // First pass needed for bonuses : counting some relative type
         short grandparents = 0, niecesAndNephews = 0, grandChildren = 0, halfSiblings = 0;
-        short[] children = new short[2]; // 2 maximum at the moment
+        short[] children = new short[2]; // 2 marriages maximum at the moment
+        String scoreKitFilename = null;
+
         for (Integer tier : values.keySet())
             for (InputResult result : values.get(tier)) {
 
                 String lowerJsonPath = result.getJsonPath().toLowerCase();
+                if (lowerJsonPath.startsWith("case.kit_used")) {
+                    Log.d("score-kit", "" + result);
+                    scoreKitFilename = result.getRaw();
+                }
+
                 if (lowerJsonPath.startsWith("grandparents"))
                     grandparents += result.getCount();
 
@@ -172,10 +179,9 @@ public class ResultActivity extends AppCompatActivity {
         // case score
         float score = 0;
 
-        String scoreFilename = "scores_kit1";
-        HashMap<String, Float> unitScores = Constants.loadScores(getResources(), scoreFilename);
+        HashMap<String, Float> unitScores = Constants.loadScores(getResources(), scoreKitFilename);
         if (unitScores == null) {
-            Log.d("load-xml-scores", "error while loading score file " + scoreFilename + ", aborting");
+            Log.d("load-xml-scores", "error while loading score file " + scoreKitFilename + ", aborting");
             return -1;
         }
         Log.d("load-xml-scores", "found entries : " + unitScores);

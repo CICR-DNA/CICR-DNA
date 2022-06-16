@@ -31,17 +31,19 @@ public class InputDescription implements Serializable {
 
     private transient final Class input_template_class;
 
-    public enum InputType {
-        Checkbox,
-        Spinner,
-        StringList
-    }
-
     static {
         viewTemplatesMap = new HashMap<>();
         viewTemplatesMap.put(InputType.Checkbox, CheckboxTemplateFragment.class);
         viewTemplatesMap.put(InputType.Spinner, SpinnerTemplateFragment.class);
-        viewTemplatesMap.put(InputType.StringList, StringListTemplateFragment.class);
+        viewTemplatesMap.put(InputType.StringList, StringListTemplateFragment.ForList.class);
+        viewTemplatesMap.put(InputType.StringListForMap, StringListTemplateFragment.ForMap.class);
+    }
+
+    public enum InputType {
+        Checkbox,
+        Spinner,
+        StringList,
+        StringListForMap,
     }
 
     /**

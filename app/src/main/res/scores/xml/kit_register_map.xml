@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <map
+        name="kits_register_map"
+        linked="true">
+        <entry key="scores_kit13">STR KIT 13</entry>
+        <entry key="scores_kit15">STR KIT 15</entry>
+        <entry key="scores_kit20">STR KIT 20</entry>
+        <entry key="scores_kit20p">STR KIT 20+</entry>
+    </map>
+</resources>

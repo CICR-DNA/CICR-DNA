@@ -14,12 +14,8 @@
     <string name="tier_0_screen_0_pedigreeHelp">Check whether samples were collected from direct parents of the victim</string>
     <!--Sex-->
     <string name="tier_0_screen_0_option_1">Kit Used</string>
-    <string-array name="tier_0_screen_0_option_1_values">
-        <item>STR Kit 13</item>
-        <item>STR Kit 15</item>
-        <item>STR Kit 20</item>
-        <item>STR Kit 20+</item>
-    </string-array>
+    <xml name="tier_0_screen_0_option_1_map" translatable="false">@xml/kit_register_map</xml>
+    <string name="tier_0_screen_0_option_1_path" translatable="false">case.kit_used</string>
 
     <!--Screen Title-->
     <string name="tier_0_screen_1_title">Missing person</string>

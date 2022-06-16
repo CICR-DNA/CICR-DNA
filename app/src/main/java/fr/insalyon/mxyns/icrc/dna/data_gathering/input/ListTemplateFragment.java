@@ -15,6 +15,7 @@ import androidx.lifecycle.LifecycleOwner;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import fr.insalyon.mxyns.icrc.dna.R;
 
@@ -24,7 +25,8 @@ public abstract class ListTemplateFragment<T> extends InputTemplateFragment<List
     protected View root;
     private final ArrayList<ListOption<T>> values = new ArrayList<>();
 
-    public ListTemplateFragment() { }
+    public ListTemplateFragment() {
+    }
 
     @Override
     protected void setEnabled(Boolean aBoolean) {
@@ -56,9 +58,8 @@ public abstract class ListTemplateFragment<T> extends InputTemplateFragment<List
         initializeUIFromBundle(getArguments());
 
         // set array used by list
-        ArrayAdapter<ListOption<T>> spinnerArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, values);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
+        ArrayAdapter<T> spinnerArrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, values.stream().map(this::mapToDisplay).collect(Collectors.toList()));
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         list.setAdapter(spinnerArrayAdapter);
 
         TextView textView = root.findViewById(R.id.input_list_text);
@@ -81,7 +82,15 @@ public abstract class ListTemplateFragment<T> extends InputTemplateFragment<List
         return root;
     }
 
+    // this method must return the values to use as keys for the list
     protected abstract T[] getValuesArray();
+
+    // this method maps the value from the list given in getValuesArray() to the value to display
+    // this allows the list to contain complex data structs while having simple display
+    // by default the mapping is the identity function
+    protected T mapToDisplay(ListOption<T> input) {
+        return input.value;
+    }
 
     @Override
     public ListOption<T> parseValue(String value) {
@@ -100,7 +109,7 @@ public abstract class ListTemplateFragment<T> extends InputTemplateFragment<List
 
         // if was already created once (not putting default value)
         if (root != null) {
-            Spinner list = (Spinner) root.findViewById(R.id.input_template_list);
+            Spinner list = root.findViewById(R.id.input_template_list);
             ListOption<java.lang.String> selected = (ListOption<java.lang.String>) list.getSelectedItem();
             value = selected.value;
         }

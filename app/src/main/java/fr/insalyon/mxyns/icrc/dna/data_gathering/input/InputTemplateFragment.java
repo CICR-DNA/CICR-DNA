@@ -38,6 +38,15 @@ public abstract class InputTemplateFragment<T> extends Fragment {
 
     }
 
+    /**
+     * Util function used to make predicates that determine if a component should be enabled or not
+     * Returns true if at least one of the dependency is met (has a count > 1)
+     * ie the sum of the dependencies' values is superior to 0
+     *
+     * @param res                    instance of Resources
+     * @param dependency_input_names list of dependencies
+     * @return true if should be enabled
+     */
     public static boolean atLeastOneDependency(Resources res, @StringRes int... dependency_input_names) {
         int sum = 0;
         JsonObject data;

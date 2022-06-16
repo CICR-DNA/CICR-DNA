@@ -57,7 +57,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_0_screen_0_description,
                 R.string.pedigree_help_template,
                 R.drawable.ic_baseline_crop_square_24,
-                new InputDescription(InputType.StringList, R.string.tier_0_screen_0_option_1, r)
+                new InputDescription(InputType.StringListForMap, R.string.tier_0_screen_0_option_1, r)
         );
 
         // Missing person
