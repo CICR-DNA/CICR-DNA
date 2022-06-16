@@ -61,7 +61,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         );
 
         // Missing person
-        registerFormFragment(1, R.string.tier_0_screen_1_title,
+        registerFormFragment(0, R.string.tier_0_screen_1_title,
                 R.string.tier_0_screen_1_description,
                 R.string.pedigree_help_template,
                 R.drawable.sex,
