@@ -155,10 +155,14 @@ public class FormScreenFragment extends Fragment {
         final ImageView imageView = root.findViewById(R.id.relationshipRepresentation);
         viewModel.getImageId().observe(lifecycleOwner, imageView::setImageResource);
 
+        final TextView screenTitleView = root.findViewById(R.id.datagathering_screen_title);
+        viewModel.getTitle().observe(lifecycleOwner, screenTitleView::setText);
+
+        // set fragment image size proportional to the screen size
         WindowManager windowManager = (WindowManager) container.getContext().getSystemService(Context.WINDOW_SERVICE);
         Point size = new Point();
         windowManager.getDefaultDisplay().getSize(size);
-        imageView.getLayoutParams().height = (int) (size.y * Constants.getFloat(getResources(), R.dimen.datagathering_image_screen_prop).getFloat());
+        imageView.setMaxHeight((int) (size.y * Constants.getFloat(getResources(), R.dimen.datagathering_image_screen_prop).getFloat()));
 
         LinearLayout form = root.findViewById(R.id.input_list_lin_layout);
 
