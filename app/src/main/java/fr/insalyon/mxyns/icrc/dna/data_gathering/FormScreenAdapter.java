@@ -160,7 +160,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         registerFormFragment(2, R.string.tier_2_screen_3_title,
                 R.string.tier_2_screen_3_description,
                 R.string.tier_2_screen_3_pedigreeHelp,
-                R.drawable.grandchildren,
+                R.drawable.inlaws,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_3_option_1, r,
                         () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_2_option_1)),
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_3_option_2, r,
@@ -200,7 +200,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         registerFormFragment(2, R.string.tier_2_screen_7_title,
                 R.string.tier_2_screen_7_description,
                 R.string.tier_2_screen_7_pedigreeHelp,
-                R.drawable.nieces_nephews,
+                R.drawable.siblings_spouses,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_7_option_1, r,
                         () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_6_option_1, R.string.tier_2_screen_6_option_2)),
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_7_option_2, r,
@@ -223,18 +223,14 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.string.tier_2_screen_9_description,
                 R.string.tier_2_screen_9_pedigreeHelp,
                 R.drawable.step_parents,
-                new InputDescription(InputType.Checkbox, R.string.tier_2_screen_9_option_1, r,
+                new InputDescription(InputType.Spinner, R.string.tier_2_screen_9_option_1, r,
                         () -> InputTemplateFragment.atLeastOneDependency(r,
                                 R.string.tier_2_screen_8_option_1,
-                                R.string.tier_2_screen_8_option_2,
-                                R.string.tier_2_screen_8_option_3,
-                                R.string.tier_2_screen_8_option_4
+                                R.string.tier_2_screen_8_option_2
                         )
                 ),
-                new InputDescription(InputType.Checkbox, R.string.tier_2_screen_9_option_2, r,
+                new InputDescription(InputType.Spinner, R.string.tier_2_screen_9_option_2, r,
                         () -> InputTemplateFragment.atLeastOneDependency(r,
-                                R.string.tier_2_screen_8_option_1,
-                                R.string.tier_2_screen_8_option_2,
                                 R.string.tier_2_screen_8_option_3,
                                 R.string.tier_2_screen_8_option_4
                         )
