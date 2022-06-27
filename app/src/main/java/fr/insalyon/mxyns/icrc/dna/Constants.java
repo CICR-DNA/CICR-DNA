@@ -102,4 +102,12 @@ public class Constants {
 
         return null;
     }
+
+    public static String getTierTabDisplayName(Resources res, Integer tier) {
+
+        String overrideResPrefix = res.getResourceEntryName(R.string.datagathering_tab_tier_display);
+        int id = res.getIdentifier(overrideResPrefix + "_" + tier + "_override", "string", res.getResourcePackageName(R.string.datagathering_tab_tier_display));
+
+        return res.getString(id != 0 ? id : R.string.datagathering_tab_tier_display, tier);
+    }
 }

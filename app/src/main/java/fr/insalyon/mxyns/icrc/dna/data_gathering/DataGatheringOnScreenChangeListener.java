@@ -30,8 +30,8 @@ public class DataGatheringOnScreenChangeListener extends ViewPager.SimpleOnPageC
 
     @Override
     public void onPageSelected(int position) {
-        left_swiper.setVisibility(position == 0 ? View.INVISIBLE : View.VISIBLE);
-        right_swiper.setVisibility(position == screenAdapter.getCount() - 1 ? View.INVISIBLE : View.VISIBLE);
+        left_swiper.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
+        right_swiper.setVisibility(position == screenAdapter.getCount() - 1 ? View.GONE : View.VISIBLE);
         page_index_text.setText(context.getResources().getString(R.string.datagathering_page_index, 1 + position, screenAdapter.getCount()));
 
         if (currentlyDisplayedToast != null && currentlyDisplayedToast.getView().getVisibility() == View.VISIBLE)

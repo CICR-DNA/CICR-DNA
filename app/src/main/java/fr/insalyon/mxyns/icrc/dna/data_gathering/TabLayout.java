@@ -13,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.TreeMap;
 
+import fr.insalyon.mxyns.icrc.dna.Constants;
+
 public class TabLayout extends com.google.android.material.tabs.TabLayout {
 
     private FormScreenAdapter adapter;
@@ -89,8 +91,11 @@ public class TabLayout extends com.google.android.material.tabs.TabLayout {
         this.firstTier = firstScreenOfTier.firstKey();
         for (Integer tier : firstScreenOfTier.keySet()) {
             Tab tab = newTab();
-            tab.setText("Tier " + tier);
-            Log.d("tabs", "Tier " + tier);
+
+            String tierDisplayName = Constants.getTierTabDisplayName(getResources(), tier);
+            tab.setText(tierDisplayName);
+
+            Log.d("tabs", tierDisplayName);
             addTab(tab, tier - firstTier, false);
         }
         if (getChildCount() > 0)

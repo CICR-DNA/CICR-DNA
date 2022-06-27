@@ -14,4 +14,7 @@
     <string name="datagathering_pedigree_validate_case_action">Validate Case</string>
 
     <string name="datagathering_page_index">%d / %d</string>
+
+    <string name="datagathering_tab_tier_display">Tier %d</string>
+    <string name="datagathering_tab_tier_display_0_override">Missing Person</string>
 </resources>

@@ -95,7 +95,7 @@
 
     <!--Step-Parents-->
     <!--Step-Mother-->
-    <score name="tier_2_screen_9_option_1" format="float" type="dimen">0</score>
+    <score name="tier_2_screen_9_option_1" format="float" type="dimen">1</score>
     <!--Step-Father-->
-    <score name="tier_2_screen_9_option_2" format="float" type="dimen">0</score>
+    <score name="tier_2_screen_9_option_2" format="float" type="dimen">1</score>
 </resources>

@@ -184,6 +184,31 @@
     <string name="tier_2_screen_2_option_1_path" translatable="false">children.children</string>
 
     <!--Screen Title-->
+    <string name="tier_2_screen_3_title">Daughter/Son In-Law</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_3_description">
+        If the daughter or son in-law of the missing person are available to collect BRS, select the available candidate(s)
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_3_pedigreeHelp">
+        Daughters in-law and sons in-law are spouses of the children of the missing person.\n
+        They are the biological parents of the grandchildren of the missing person.\n
+        \n
+        Requires grandchild(ren) to be useful.
+        \n
+        Sometimes referred to as:\n
+        - Child’s spouse\n
+        - Daughter’s husband\n
+        - Son’s wife\n
+        - Grandchild(ren)’s 2nd biological parent\n
+    </string>
+    <!--Grandchildren (from all children)-->
+    <string name="tier_2_screen_3_option_1">Son In-Law</string>
+    <string name="tier_2_screen_3_option_2">Daughter In-Law</string>
+    <string name="tier_2_screen_3_option_1_path" translatable="false">children.husbands</string>
+    <string name="tier_2_screen_3_option_2_path" translatable="false">children.wives</string>
+
+    <!--Screen Title-->
     <string name="tier_2_screen_4_title">Cousins</string>
     <!--Screen Description-->
     <string name="tier_2_screen_4_description">
@@ -220,6 +245,9 @@
         Paternal aunt/uncle is either the sister or brother of the missing person’s father.\n
         - Father’s brother\n
         - Father’s sister
+        \n
+        It is better to collect both paternal and maternal aunts/uncles versus only collecting from one side. \n
+        Example: If you have the option of only collecting from 2 aunts, collect one paternal and one maternal.
     </string>
     <!--Maternal Aunt-->
     <string name="tier_2_screen_5_option_1">Maternal Aunt</string>
@@ -256,6 +284,37 @@
     <!--Nephews-->
     <string name="tier_2_screen_6_option_2">Nephews</string>
     <string name="tier_2_screen_6_option_2_path" translatable="false">siblings.children.nieces</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_7_title">Siblings spouses</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_7_description">
+        If the spouses of the siblings of the missing person are available to collect BRS, select the available candidate(s).
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_7_pedigreeHelp">
+        Biological siblings’ spouses of the missing person are the biological parents of the nieces and nephews of the missing person.
+        \n
+        While they are not biologically related to the missing person, they are related through the child(ren) of the missing person’s sibling.
+        \n
+        Requires Niece(s) or Nephew(s) to be useful.\n
+        \n
+        Sometimes referred to as:\n
+        - Brother’s wife\n
+        - Sister’s husband\n
+        - Niece’s father\n
+        - Brother’s father\n
+        - Sister’s mother\n
+        - Sister’s daughter\n
+        - Parent of the missing person’s niece(s)\n
+        - Parent of the missing person’s nephew(s)\n
+    </string>
+    <!--Siblings spouse-->
+    <string name="tier_2_screen_7_option_1">Siblings’ Husbands</string>
+    <string name="tier_2_screen_7_option_1_path" translatable="false">siblings.spouses.husbands</string>
+    <!--Nephews-->
+    <string name="tier_2_screen_7_option_2">Siblings’ Wives</string>
+    <string name="tier_2_screen_7_option_2_path" translatable="false">siblings.spouses.wives</string>
 
     <!--Screen Title-->
     <string name="tier_2_screen_8_title">Half-Siblings</string>

@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintBottom_toTopOf="@+id/tabs"
+        app:layout_constraintBottom_toTopOf="@+id/datagathering_tab_swiper_linear_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appbar">
@@ -51,46 +51,51 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageButton
-        android:id="@+id/datagathering_left_chevron"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@null"
-        android:scaleType="fitXY"
-        android:translationZ="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager"
-        app:srcCompat="@drawable/ic_baseline_chevron_left_24_white_stroke" />
-
-    <ImageButton
-        android:id="@+id/datagathering_right_chevron"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@null"
-        android:scaleType="fitXY"
-        android:translationZ="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintEnd_toEndOf="@+id/tabs"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager"
-        app:srcCompat="@drawable/ic_baseline_chevron_right_24_white_stroke" />
-
-    <fr.insalyon.mxyns.icrc.dna.data_gathering.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/datagathering_tab_swiper_linear_layout"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/datagathering_navbar_height"
-        android:background="?attr/colorPrimary"
+        android:orientation="horizontal"
+        android:animateLayoutChanges="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:tabGravity="center"
-        app:tabIndicatorColor="@color/icrc_primary_red_variant"
-        app:tabMode="auto"
-        app:tabPaddingEnd="6dp"
-        app:tabPaddingStart="6dp"
-        app:tabTextColor="@color/icrc_white" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/datagathering_left_chevron"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:background="@color/icrc_primary_red"
+            android:backgroundTint="@color/icrc_primary_red"
+            android:scaleType="fitXY"
+            android:translationZ="10dp"
+            app:srcCompat="@drawable/ic_baseline_chevron_left_24_white_stroke" />
+
+        <fr.insalyon.mxyns.icrc.dna.data_gathering.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/datagathering_navbar_height"
+            android:layout_weight="1"
+            android:background="?attr/colorPrimary"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/icrc_primary_red_variant"
+            app:tabMode="auto"
+            app:tabPaddingEnd="6dp"
+            app:tabPaddingStart="6dp"
+            app:tabTextColor="@color/icrc_white" />
+
+        <ImageButton
+            android:id="@+id/datagathering_right_chevron"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:background="@color/icrc_primary_red"
+            android:backgroundTint="@color/icrc_primary_red"
+            android:scaleType="fitXY"
+            android:translationZ="50dp"
+            app:srcCompat="@drawable/ic_baseline_chevron_right_24_white_stroke" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/datagathering_page_index"

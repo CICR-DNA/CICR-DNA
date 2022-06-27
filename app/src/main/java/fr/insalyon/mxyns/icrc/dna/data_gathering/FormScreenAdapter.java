@@ -156,6 +156,17 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_2_option_1, r)
         );
 
+        // Daughter/Son In Law
+        registerFormFragment(2, R.string.tier_2_screen_3_title,
+                R.string.tier_2_screen_3_description,
+                R.string.tier_2_screen_3_pedigreeHelp,
+                R.drawable.grandchildren,
+                new InputDescription(InputType.Spinner, R.string.tier_2_screen_3_option_1, r,
+                        () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_2_option_1)),
+                new InputDescription(InputType.Spinner, R.string.tier_2_screen_3_option_2, r,
+                        () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_2_option_1))
+        );
+
         // Cousins
         registerFormFragment(2, R.string.tier_2_screen_4_title,
                 R.string.tier_2_screen_4_description,
@@ -175,6 +186,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_5_option_4, r)
         );
 
+
         // Nephews
         registerFormFragment(2, R.string.tier_2_screen_6_title,
                 R.string.tier_2_screen_6_description,
@@ -182,6 +194,17 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
                 R.drawable.nieces_nephews,
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_6_option_1, r),
                 new InputDescription(InputType.Spinner, R.string.tier_2_screen_6_option_2, r)
+        );
+
+        // Siblings Spouses
+        registerFormFragment(2, R.string.tier_2_screen_7_title,
+                R.string.tier_2_screen_7_description,
+                R.string.tier_2_screen_7_pedigreeHelp,
+                R.drawable.nieces_nephews,
+                new InputDescription(InputType.Spinner, R.string.tier_2_screen_7_option_1, r,
+                        () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_6_option_1, R.string.tier_2_screen_6_option_2)),
+                new InputDescription(InputType.Spinner, R.string.tier_2_screen_7_option_2, r,
+                        () -> InputTemplateFragment.atLeastOneDependency(r, R.string.tier_2_screen_6_option_1, R.string.tier_2_screen_6_option_2))
         );
 
         // Half-siblings
