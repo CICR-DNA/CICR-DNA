@@ -4,7 +4,7 @@
     <string name="template_text">placeholder</string>
     <string name="pedigree_help_template">In the following screens, this section will contain more information and details about the required inputs.</string>
 
-    <string name="wrong_integer_input_error">please enter a valid integer value</string>
+    <string name="wrong_integer_input_error">Please enter a valid integer value</string>
 
     <!--Screen Title-->
     <string name="tier_0_screen_0_title">Kit Selection</string>
