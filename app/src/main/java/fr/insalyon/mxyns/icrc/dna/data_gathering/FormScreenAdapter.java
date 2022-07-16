@@ -56,7 +56,7 @@ public class FormScreenAdapter extends FragmentPagerAdapter {
         registerFormFragment(0, R.string.tier_0_screen_0_title,
                 R.string.tier_0_screen_0_description,
                 R.string.pedigree_help_template,
-                R.drawable.ic_baseline_crop_square_24,
+                R.drawable.medkit_7__1_,
                 new InputDescription(InputType.StringListForMap, R.string.tier_0_screen_0_option_1, r)
         );
 
