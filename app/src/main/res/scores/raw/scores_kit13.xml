@@ -27,9 +27,9 @@
 
     <!--Second spouse-->
     <!--Wife #2-->
-    <score name="tier_1_screen_5_option_1" format="float" type="dimen">0.75</score>
+    <score name="tier_1_screen_5_option_1" format="float" type="dimen">5</score>
     <!--Husband #2-->
-    <score name="tier_1_screen_5_option_2" format="float" type="dimen">0.75</score>
+    <score name="tier_1_screen_5_option_2" format="float" type="dimen">5</score>
 
     <!--Siblings-->
     <!--Full brother-->

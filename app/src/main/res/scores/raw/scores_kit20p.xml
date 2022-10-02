@@ -21,15 +21,15 @@
 
     <!--Children from second spouse-->
     <!--Daughters 2nd spouse-->
-    <score name="tier_1_screen_4_option_1" format="float" type="dimen">10</score>
+    <score name="tier_1_screen_4_option_1" format="float" type="dimen">13</score>
     <!--Sons 2nd spouse-->
-    <score name="tier_1_screen_4_option_2" format="float" type="dimen">10</score>
+    <score name="tier_1_screen_4_option_2" format="float" type="dimen">13</score>
 
     <!--Second spouse-->
     <!--Wife #2-->
-    <score name="tier_1_screen_5_option_1" format="float" type="dimen">2</score>
+    <score name="tier_1_screen_5_option_1" format="float" type="dimen">10</score>
     <!--Husband #2-->
-    <score name="tier_1_screen_5_option_2" format="float" type="dimen">2</score>
+    <score name="tier_1_screen_5_option_2" format="float" type="dimen">10</score>
 
     <!--Siblings-->
     <!--Full brother-->
