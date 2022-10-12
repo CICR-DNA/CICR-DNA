@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="settings_default_restAPI_url_login_path">users/login</string>
-    <string name="settings_default_restAPI_url_post_zip_path">cases/insertFileIntoDatabase</string>
-    <string name="settings_default_restAPI_url_post_json_path">cases/insertDatabase</string>
-    <string name="settings_default_restAPI_body_login">
+    <string name="settings_default_restAPI_url_login_path" translatable="false">users/login</string>
+    <string name="settings_default_restAPI_url_post_zip_path" translatable="false">cases/insertFileIntoDatabase</string>
+    <string name="settings_default_restAPI_url_post_json_path" translatable="false">cases/insertDatabase</string>
+    <string name="settings_default_restAPI_body_login" translatable="false">
         {
             \"email\" : \"%s\",
             \"password\" : \"%s\"
