@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Preference Titles -->
+
+    <string name="settings_default_restAPI_try_pending_title">Autenticación…</string>
+    <string name="settings_default_restAPI_try_pending_message">Intentando contactar con el servidor de envío remoto para su autenticación…</string>
+    <string name="settings_default_restAPI_try_error_title">Error de autenticación</string>
+    <string name="settings_default_restAPI_try_error_message">Se ha producido un error durante el proceso de autenticación.\nPor favor, compruebe la dirección del servidor, el nombre de usuario (correo electrónico) y la contraseña que proporcionó y vuelva a intentarlo.</string>
+    <string name="settings_default_restAPI_try_success_title">Conectado con éxito</string>
+    <string name="settings_default_restAPI_try_success_message">Se ha conectado con éxito al servidor de envío remoto.</string>
+
+    <string name="settings_sync_email_header">Ajustes de envío de correo electrónico</string>
+    <string name="settings_default_email_title">Dirección de correo electrónico</string>
+
+    <string name="sync_rest_settings_header">Ajustes de envío al servidor</string>
+    <string name="settings_default_restAPI_url_title">Dirección del servidor</string>
+
+
+    <string name="settings_default_restAPI_usr_title">Nombre de usuario</string>
+    <string name="settings_default_restAPI_pwd_title">Contraseña</string>
+    <string name="settings_try_rest_sync_title">Inicio de sesión</string>
+
+    <string name="settings_default_restAPI_pwd_hashing_pending_title">Proteger su contraseña…</string>
+    <string name="settings_default_restAPI_pwd_hashing_pending_message">Su contraseña está siendo asegurada y guardada, por favor espere…</string>
+    <string name="settings_default_restAPI_pwd_hashing_error_title">Error de hashing</string>
+    <string name="settings_default_restAPI_pwd_hashing_error_message">Se ha producido un error al intentar asegurar y guardar su contraseña.</string>
+    <string name="settings_default_restAPI_pwd_hashing_success_title">Recordar contraseña</string>
+    <string name="settings_default_restAPI_pwd_hashing_success_message">Su contraseña ha sido asegurada y guardada con éxito.</string>
+
+
+    <string name="settings_misc_header">Varios</string>
+    <string name="settings_misc_clear_zip">Borrar la memoria caché</string>
+    <string name="settings_misc_clear_zip_warning_message">Atención, esto puede invalidar los borradores de correos electrónicos no enviados que contengan archivos zip adjuntos</string>
+    <string name="settings_misc_clear_zip_success_message">Memoria caché borrada con éxito</string>
+    <string name="settings_misc_clear_zip_error_message">No se puede borrar la memoria caché</string>
+
+    <string name="settings_locale_title">Lugar de la misión</string>
+
+</resources>

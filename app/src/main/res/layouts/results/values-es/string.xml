@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--The way it works : score in [-∞                => first_threshold]   -> first_step_label     -->
+    <!--                   score in [first_threshold   => second_threshold]  -> second_step_label    -->
+    <!--                   score in [second_threshold  => +∞]                -> third_step_label     -->
+    <item name="first_threshold" format="float" type="dimen">4</item>
+    <item name="second_threshold" format="float" type="dimen">15</item>
+
+    <item name="first_step_label" type="string">MALO</item>
+    <item name="first_step_info" type="string">Ninguno o sólo candidatos pobres disponibles para
+        la toma demuestras
+    </item>
+
+    <item name="second_step_label" type="string">ADECUADO</item>
+    <item name="second_step_info" type="string">Colección parcial. Se recomienda la toma de muestras de familiares adicionales
+    </item>
+    <item name="third_step_label" type="string">VALIDO</item>
+    <item name="third_step_info" type="string">Se ha cumplido la toma minima de muestras. Considere la posibilidad de seguir tomando muestras 
+        de todos los familiares disponibles
+    </item>
+
+    <string name="results_summary_title">Resumen del recojo de datos</string>
+    <string name="results_summary_tier_item">Tier %d :</string>
+    <string name="results_summary_input_item">%s : %d</string>
+    <string name="results_score_toast_text">Score : %.2f</string>
+    <string name="results_fab_save_and_quit">Guardar y salir?</string>
+    <string name="results_fab_finish">TERMINAR</string>
+
+    <string name="results_no_data_to_analyse_error">No hay datos para analizar</string>
+</resources>

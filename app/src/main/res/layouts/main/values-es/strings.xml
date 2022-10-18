@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="go_to_settings">CAMBIAR PARAMETROS</string>
+
+    <string name="main_sync_success_title">Enviado con éxito</string>
+    <string name="main_sync_success_msg">Sus casos fueron enviados con éxito</string>
+
+    <string name="main_sync_failure_title">Fracaso en el envio</string>
+    <string name="main_sync_failure_msg">Los casos no han sido enviados, compruebe la configuración, acceso a Internet e inténtalo de nuevo.</string>
+    <string name="main_sync_failure_msg_with_error">Sus casos han sido enviados. El siguiente error puede ayudar a resolver la situacion :\n\n%s</string>
+
+    <string name="main_sync_selection_title">Método de envío</string>
+    <string-array name="main_sync_selection_values">
+        <item>Email</item>
+        <item>Servidor</item>
+    </string-array>
+</resources>

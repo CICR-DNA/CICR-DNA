@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="mainactivity_incompatible_json_version_title">Versión del caso incompatible</string>
+    <string name="mainactivity_incompatible_json_version_msg">Este caso no se puede editar porque es incompatible con la versión actual de la aplicación. No obstante, puede presentar su caso.\n(Esto puede haber sido causado por una actualización reciente del programa)</string>
+
+    <string name="mainactivity_delete_case_title">Borrar el caso</string>
+    <string name="mainactivity_delete_case_msg">Está a punto de eliminar un caso del sistema. Esta operación borrará cualquier rastro del caso y los datos asociados. Esta acción es irreversible, ¿está seguro de que quiere proceder?</string>
+</resources>

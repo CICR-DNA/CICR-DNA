@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="menu_edit">Editar</string>
+    <string name="menu_sync">Sync</string>
+    <string name="menu_rename">Cambiar el nombre</string>
+    <string name="menu_delete">Borrar</string>
+</resources>

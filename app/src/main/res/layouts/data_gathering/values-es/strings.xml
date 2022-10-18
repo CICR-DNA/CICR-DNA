@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="datagathering_fab_u_sure">Esta seguro?</string>
+    <string name="datagathering_fab_accept">Confirmar</string>
+
+    <string name="datagathering_warning_contains_conditional_fields">Tenga cuidado, esta pantalla contiene campos condicionales! Revise el menu de Ayuda para mas informacion</string>
+
+    <string name="datagathering_exit_without_saving_title">Cambios no guardados</string>
+    <string name="datagathering_exit_without_saving_msg">Has modificado datos y no los has guardado antes de salir. Los cambios no guardados se perderán.</string>
+
+    <string name="datagathering_pedigree_help_dialog_title">Ayuda con el pedigrí</string>
+
+    <string name="datagathering_pedigree_help_action">Ayuda</string>
+    <string name="datagathering_pedigree_validate_case_action">Validación del caso</string>
+
+    <string name="datagathering_page_index">%d / %d</string>
+
+    <string name="datagathering_tab_tier_display">Tier %d</string>
+    <string name="datagathering_tab_tier_display_0_override">Persona desaparecida</string>
+</resources>

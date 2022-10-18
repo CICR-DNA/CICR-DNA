@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BRSSA</string>
+    <string name="action_settings">Ajustes</string>
+
+    <string name="title_activity_main">Casos</string>
+    <string name="title_activity_data_gathering_new">Nuevo caso</string>
+    <string name="title_activity_data_gathering_edit">Editar caso</string>
+    <string name="title_activity_result">Resultados</string>
+    <string name="title_activity_settings">Ajustes</string>
+
+</resources>

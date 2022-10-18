@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="template_text">placeholder</string>
+    <string name="pedigree_help_template">En las siguientes pantallas, esta sección contendrá más información y detalles sobre las entradas requeridas.</string>
+
+    <string name="wrong_integer_input_error">Por favor, introduzca un valor entero válido</string>
+
+    <!--Screen Title-->
+    <string name="tier_0_screen_0_title">Selección de kits</string>
+    <!--Screen Description-->
+    <string name="tier_0_screen_0_description">Seleccione el kit de STR utilizado para este caso :</string>
+    <!--Screen Description-->
+    <string name="tier_0_screen_0_pedigreeHelp">Comprobar si las muestras se recogieron de los familiares directos de la víctima</string>
+    <!--Sex-->
+    <string name="tier_0_screen_0_option_1">Kit utilizado</string>
+    <xml name="tier_0_screen_0_option_1_map" translatable="false">@xml/kit_register_map</xml>
+
+    <!--Screen Title-->
+    <string name="tier_0_screen_1_title">Persona desaparecida</string>
+    <!--Screen Description-->
+    <string name="tier_0_screen_1_description">Es la persona desaparecida:</string>
+    <!--Screen Description-->
+    <string name="tier_0_screen_1_pedigreeHelp">Comprobar si las muestras se recogieron de los familiares directos de la víctima</string>
+    <!--Sex-->
+    <string name="tier_0_screen_1_option_1">Sexo</string>
+    <string-array name="tier_0_screen_1_option_1_values">
+        <item>Unknown</item>
+        <item>Hombre</item>
+        <item>Mujer</item>
+    </string-array>
+
+    <!--Screen Title-->
+    <string name="tier_1_screen_1_title">Padres</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_1_description">Si el padre y/o la madre biológica de la persona desaparecida están disponibles, seleccione los candidatos necesarios</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_1_pedigreeHelp">
+        Un padre biológico es el que dio a luz (madre) o la persona que engendró al niño. A veces se denominan "padres naturales".\n
+        \n
+        Los padres biológicos no siempre son los padres legales.</string>
+    <!--Mother-->
+    <string name="tier_1_screen_1_option_1">Madre</string>
+    <!--Father-->
+    <string name="tier_1_screen_1_option_2">Padre</string>
+
+    <!--Screen Title-->
+    <string name="tier_1_screen_2_title">Hijos</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_2_description">Si los hijos biológicos de la persona desaparecida están disponibles, seleccione los candidatos necesarios.</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_2_pedigreeHelp">Un hijo biológico es hijo de la madre biológica o de la persona que lo engendró.</string>
+    <!--Daughters-->
+    <string name="tier_1_screen_2_option_1">Hijas</string>
+    <!--Sons-->
+    <string name="tier_1_screen_2_option_2">Hijos</string>
+
+    <!--Screen Title-->
+    <string name="tier_1_screen_3_title">Esposa</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_3_description">Si el cónyuge de la persona desaparecida (otro progenitor biológico de los hijos) está disponible para recoger la muestra, seleccione el candidato disponible.</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_3_pedigreeHelp">
+        Aunque el cónyuge no está relacionado genéticamente con la persona desaparecida, sí lo está a través de los hijos que comparte con ella.\n
+        \n
+        Las muestras de los cónyuges sólo se recogen cuando los hijos biológicos también están disponibles.</string>
+    <!--Wife-->
+    <string name="tier_1_screen_3_option_1">Esposa</string>
+    <!--Husband-->
+    <string name="tier_1_screen_3_option_2">Esposo</string>
+
+    <!--Screen Title-->
+    <string name="tier_1_screen_4_title">Hijos con la segunda esposa</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_4_description">Si la persona desaparecida tenía hijos con un segundo cónyuge y, si estos hijos están disponibles, seleccione el o los candidatos disponibles.</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_4_pedigreeHelp">Los hijos de un segundo cónyuge deben estar claramente diferenciados de los hijos de otro cónyuge.</string>
+    <!--Daughters 2nd spouse-->
+    <string name="tier_1_screen_4_option_1">Hijas y 2da esposa</string>
+    <!--Sons 2nd spouse-->
+    <string name="tier_1_screen_4_option_2">Hijos y 2da esposa</string>
+
+    <!--Screen Title-->
+    <string name="tier_1_screen_5_title">Segunda esposa</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_5_description">Si el cónyuge adicional de la persona desaparecida (otro progenitor biológico de los hijos) está disponible, seleccionelo.</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_5_pedigreeHelp">
+        Aunque el cónyuge no está relacionado genéticamente con la persona desaparecida, sí lo está a través de los hijos.\n
+        \n
+        Las muestras de los cónyuges sólo se recogen cuando los hijos biológicos también están disponibles.
+</string>
+    <!--Wife #2-->
+    <string name="tier_1_screen_5_option_1">Esposa #2</string>
+    <!--Husband #2-->
+    <string name="tier_1_screen_5_option_2">Esposo #2</string>
+
+    <!--Screen Title-->
+    <string name="tier_1_screen_6_title">Hermanos(as)</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_6_description">Si hermanos y hermanas de padre y madre están disponibles seleccione el/los candidato/s disponible/s.</string>
+    <!--Screen Description-->
+    <string name="tier_1_screen_6_pedigreeHelp">
+        Los hermanos tienen la misma madre y el mismo padre biológicos.\n
+        \n
+        Se denomina gemelo monocigótico al gemelo idéntico que surge de la división de un cigoto.\n
+        \n
+        Los gemelos fraternos no son idénticos y pueden ser seleccionados como hermanos completos\n
+        \n
+        Si no está seguro, anote el gemelo como hermano completo
+    </string>
+    <!--Full brother-->
+    <string name="tier_1_screen_6_option_1">Hermano</string>
+    <!--Full sister-->
+    <string name="tier_1_screen_6_option_2">Hermana</string>
+    <!--Monozygotic Twin-->
+    <string name="tier_1_screen_6_option_3">Gemelo monocigótico</string>
+
+    <!--Tier 2 -->
+    <!--Screen Title-->
+    <string name="tier_2_screen_1_title">Abuelos</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_1_description">
+        Si los abuelos biológicos (paternos o maternos) de la persona desaparecida están disponibles seleccione el o los candidatos disponibles.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_1_pedigreeHelp">
+        Lo ideal sería tomar muestras de los 4 abuelos.\n
+        \n
+        A veces se les denomina:\n
+        - Padre de la madre\n
+        - Madre de la madre\n
+        - Padre del padre\n
+        - Madre del padre\n
+        \n
+        Si se han tomado muestras de los padres biologicos, no es necesario tomar las de los abuelos.
+    </string>
+    <!--Maternal Grandmother-->
+    <string name="tier_2_screen_1_option_1">Abuela materna</string>
+    <!--Maternal Grandfather-->
+    <string name="tier_2_screen_1_option_2">Abuelo materno</string>
+    <!--Paternal Grandmother-->
+    <string name="tier_2_screen_1_option_3">Abuela paterna</string>
+    <!--Paternal Grandfather-->
+    <string name="tier_2_screen_1_option_4">Abuelo paterno</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_2_title">Nietos(as)</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_2_description">
+        Si los nietos biológicos de la persona desaparecida están disponibles, seleccione el o los candidatos adecuados.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_2_pedigreeHelp">
+        Los nietos biológicos son los hijos de los hijos de la persona desaparecida.\n
+        \n
+        A veces se les denomina:\n
+        - Hija de la hija\n
+        - Hijo de la hija\n
+        - Hija del hijo\n
+        - Hijo del hijo
+    </string>
+    <!--Grandchildren (from all children)-->
+    <string name="tier_2_screen_2_option_1">Nietos(as) (de todos los hijos(as))</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_3_title">Hija/yerno</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_3_description">
+        Si la hija o el yerno de la persona desaparecida están disponibles, seleccione el o los candidatos adecuados
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_3_pedigreeHelp">
+        Las nueras y los yernos son los cónyuges de los hijos de la persona desaparecida.\n
+        Son los padres biológicos de los nietos de la persona desaparecida.\n
+        \n
+        Requiere nietos para que sean de utilidad.
+        \n
+        A veces se les denomina:\n
+        - Esposa del hijo\n
+        - Esposo de la hija\n
+        - Esposa del hijo\n
+        - Nietos(as) del 2do padre/madre biologico\n
+    </string>
+    <!--Nietos(as) (de todos los hijos(as))-->
+    <string name="tier_2_screen_3_option_1">Yerno</string>
+    <string name="tier_2_screen_3_option_2">Nuera</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_4_title">Primos(as)</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_4_description">
+        Si los primos biológicos de la persona desaparecida están disponibles, seleccione los candidatos adecuados.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_4_pedigreeHelp">
+        Los primos biológicos son los hijos del tío o tía de la persona desaparecida.\n
+        \n
+        A veces se les denomina:\n
+        - Hijo de la hermana del padre\n
+        - Hija del hermano del padre\n
+        - Hijo de la hermana de la madre\n
+        - Hija del hermano de la madre\n
+    </string>
+    <!--Primos(as) (de cualquier tio o tia-->
+    <string name="tier_2_screen_4_option_1">Primos(as) (de cualquier tío o tía)</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_5_title">Tias y tios</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_5_description">
+        Si la(s) tía(s) o tío(s) biológico(s) de la persona desaparecida está(n) disponible(s), seleccione el(los) candidato(s) adecuados.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_5_pedigreeHelp">
+        Un tío biológico es el hermano (hermano/hermana) de cada uno de los padres de la persona desaparecida.\n
+        \n
+        El tío materno es la hermana o el hermano de la madre de la persona desaparecida.\n
+        - Hermano de la madre\n
+        - Hermana de la madre\n
+        \n
+        El tío/tia paterno es la hermana o el hermano del padre de la persona desaparecida.\n
+        - Hermano del padre\n
+        - Hermana del padre
+        \n
+        Es mejor tomar muestras tanto de las tías/tíos paternos como de los maternos en lugar de tomar muestras de sólo de un lado. \n
+        Ejemplo: Si tiene la opción de tomar muestras sólo a 2 tías, tome de una paterna y otra materna.
+    </string>
+    <!--Maternal Aunt-->
+    <string name="tier_2_screen_5_option_1">Tía materna</string>
+    <!--Maternal Uncle-->
+    <string name="tier_2_screen_5_option_2">Tío materno</string>
+    <!--Paternal Aunt-->
+    <string name="tier_2_screen_5_option_3">Tía paterna</string>
+    <!--Paternal Uncle-->
+    <string name="tier_2_screen_5_option_4">Tío paterno</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_6_title">Sobrinas y sobrinos</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_6_description">
+        Si la(s) sobrina(s) y sobrinos biológicos de la persona desaparecida están disponibles, seleccione los candidatos adecuados.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_6_pedigreeHelp">
+        Los sobrinos biológicos son los hijos de los hermanos de la persona desaparecida.\n
+        \n
+        A veces se les denomina:\n
+        - Hijo del hermano\n
+        - Hija del hermano\n
+        - Hijo de la hermana\n
+        - Hija de la hermana\n
+    </string>
+    <!--Nieces-->
+    <string name="tier_2_screen_6_option_1">Sobrinas</string>
+    <!--Nephews-->
+    <string name="tier_2_screen_6_option_2">Sobrinos</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_7_title">Esposas(os) de los hijos(as)</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_7_description">
+        Si los cónyuges de los hermanos(as) de la persona desaparecida están disponibles, seleccione el o las candidatas adecuadas.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_7_pedigreeHelp">
+        Los cónyuges de los hermanos biológicos del desaparecido son los padres biológicos de los sobrinos del desaparecido.
+        \n
+        Si bien no están emparentados biológicamente con la persona desaparecida, sí lo están a través de los hijos del hermano de la persona desaparecida.
+        \n
+        Se requieren a los sobrinos y sobrinas para que sean de utilidad.\n
+        \n
+        A veces se les deomina:\n
+        - Esposa del hermano\n
+        - Esposo de la hermana\n
+        - Padre de la sobrina\n
+        - Padre del hermano\n
+        - Madre de la hermana\n
+        - Hija d ela hermana\n
+        - Padre/madre de la(s) sobrina(s) de la persona desaparecida\n
+        - Padre/madre del o los sobrinos de la persona desaparecida\n
+    </string>
+    <!--Siblings spouse-->
+    <string name="tier_2_screen_7_option_1">Esposos de los hijos</string>
+    <!--Nephews-->
+    <string name="tier_2_screen_7_option_2">Esposas de los hijos</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_8_title">Medios hermanos(as)</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_8_description">
+        Si los medios hermanos(as) biológicos de la persona desaparecida están disponibles, seleccione el candidato(a) o los candidatos(as) adecuados.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_8_pedigreeHelp">
+        Los medios hermanos(as) sólo comparten uno de los dos padres biológicos. \n
+        \n
+        Los medios hermanos paternos comparten el mismo padre pero diferentes madres\n
+        \n
+        Los medios hermanos maternos comparten la misma madre pero diferentes padres
+    </string>
+    <!--Paternal Half brother-->
+    <string name="tier_2_screen_8_option_1">Medio hermano paterno</string>
+    <!--Paternal Half sister-->
+    <string name="tier_2_screen_8_option_2">Media hermana paterna</string>
+    <!--Maternal Half brother-->
+    <string name="tier_2_screen_8_option_3">Medio hermano materno</string>
+    <!--Maternal Half sister-->
+    <string name="tier_2_screen_8_option_4">Media hermana materna</string>
+
+    <!--Screen Title-->
+    <string name="tier_2_screen_9_title">Padrastros/madastras</string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_9_description">
+        Si el/los cónyuge(s) de los medio hermano(as) está(n) disponible(s) , seleccione el/los candidato(as) adecuados.
+    </string>
+    <!--Screen Description-->
+    <string name="tier_2_screen_9_pedigreeHelp">
+        La madrastra no es la madre biológica de la persona desaparecida, pero es la madre del medio hermano paterno. \n
+        \n
+        El padrastro no es el padre biológico de la persona desaparecida pero es el padre del medio hermano materno.\n
+    </string>
+    <!--Step-Mother-->
+    <string name="tier_2_screen_9_option_1">Madastra</string>
+    <!--Step-Father-->
+    <string name="tier_2_screen_9_option_2">Padrastro</string>
+</resources>
