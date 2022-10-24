@@ -25,7 +25,7 @@
     <!--Sex-->
     <string name="tier_0_screen_1_option_1">Sexo</string>
     <string-array name="tier_0_screen_1_option_1_values">
-        <item>Unknown</item>
+        <item>Desconocido</item>
         <item>Hombre</item>
         <item>Mujer</item>
     </string-array>
