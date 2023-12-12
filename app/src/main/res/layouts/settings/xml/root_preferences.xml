@@ -19,22 +19,26 @@
             app:title="@string/settings_default_restAPI_url_title"
             app:useSimpleSummaryProvider="true"
             android:lines="1"
+            app:enabled="false"
             />
         <EditTextPreference
             app:key="@string/settings_default_restAPI_usr_key"
             app:title="@string/settings_default_restAPI_usr_title"
             app:useSimpleSummaryProvider="true"
             android:lines="1"
+            app:enabled="false"
             />
         <EditTextPreference
             app:key="@string/settings_default_restAPI_pwd_key"
             app:title="@string/settings_default_restAPI_pwd_title"
             app:useSimpleSummaryProvider="false"
             android:lines="1"
+            app:enabled="false"
             />
         <Preference
             app:key="@string/settings_try_rest_sync_key"
             app:title="@string/settings_try_rest_sync_title"
+            app:enabled="false"
             />
 
     </PreferenceCategory>

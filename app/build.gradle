@@ -15,13 +15,13 @@ android {
             keyPassword parsedJson.keyPassword
         }
     }
-    compileSdkVersion 29
+
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "fr.insalyon.mxyns.icrc.dna"
         minSdkVersion 24
-        //noinspection ExpiredTargetSdkVersion
-        targetSdkVersion 29
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -50,6 +50,7 @@ android {
                     ]
         }
     }
+    namespace 'fr.insalyon.mxyns.icrc.dna'
 }
 
 dependencies {
