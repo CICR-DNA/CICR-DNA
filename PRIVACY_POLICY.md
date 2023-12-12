@@ -33,7 +33,7 @@ While the app includes a login feature, it is disabled, and users cannot use thi
 Users can remove saved forms from the main menu and clear app data from Android settings. This provides users with control over their data.
 
 11. Contact Information:
-For privacy concerns or queries, users can contact us via email at icrc.genoscore@gmail.com.
+For privacy concerns or queries, users can contact us via email at contact.genoscore@gmail.com.
 
 ## Hosting on GitHub:
 This privacy policy is hosted on the open-source repository of GenoScore on GitHub. Users are encouraged to review this policy on the repository for the latest updates.
