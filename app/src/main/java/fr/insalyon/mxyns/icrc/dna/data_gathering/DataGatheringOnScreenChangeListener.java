@@ -34,8 +34,10 @@ public class DataGatheringOnScreenChangeListener extends ViewPager.SimpleOnPageC
         right_swiper.setVisibility(position == screenAdapter.getCount() - 1 ? View.GONE : View.VISIBLE);
         page_index_text.setText(context.getResources().getString(R.string.datagathering_page_index, 1 + position, screenAdapter.getCount()));
 
-        if (currentlyDisplayedToast != null && currentlyDisplayedToast.getView().getVisibility() == View.VISIBLE)
+        if (currentlyDisplayedToast != null) {
             currentlyDisplayedToast.cancel();
+            currentlyDisplayedToast = null;
+        }
 
         if (screenAdapter.tabs.get(position) instanceof FormScreenFragment
                 && ((FormScreenFragment) screenAdapter.tabs.get(position)).doesContainConditional()) {
