@@ -8,7 +8,7 @@ android {
     signingConfigs {
         release {
             storeFile file('../keystore.jks')
-            def signingConfig = file('../signingconfigs.json')
+            def signingConfig = file('../signingconfig.json')
             def parsedJson = new JsonSlurper().parseText(signingConfig.text)
             storePassword parsedJson.storePassword
             keyAlias parsedJson.keyAlias
@@ -16,12 +16,11 @@ android {
         }
     }
 
-    compileSdkVersion 33
-
     defaultConfig {
         applicationId "fr.insalyon.mxyns.icrc.dna"
         minSdkVersion 24
-        targetSdkVersion 33
+        targetSdkVersion 35
+        compileSdk 35
         versionCode 2
         versionName "1.0"
 
@@ -32,6 +31,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
