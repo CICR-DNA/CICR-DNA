@@ -18,11 +18,11 @@ android {
 
     defaultConfig {
         applicationId "fr.insalyon.mxyns.icrc.dna"
-        minSdkVersion 24
+        minSdk 35
         targetSdkVersion 35
         compileSdk 35
-        versionCode 3
-        versionName "1.0.1"
+        versionCode 4
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,7 +63,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.7'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.recyclerview:recyclerview:1.4.0'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
