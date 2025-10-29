@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -122,21 +123,37 @@ public class RestPostFileAsyncTask extends AsyncTask<String, Void, Boolean> {
         super.onPostExecute(result);
 
         // TODO response code must be handled better, will see when this part of the server is done
-        boolean success = response != null && (response.code() == 200 || response.code() == 201);
-        String error = null;
+        boolean request_success = response != null && (response.code() == 200 || response.code() == 201);
 
-        if (!success) {
+        String error = "no error?";
+
+        if (responseBody == null) {
+            Log.d("server-error", "empty response body");
+            error = "empty response body";
+        }
+        else if (!request_success) {
             Log.d("server-error", responseBody);
-            JsonObject json = new JsonParser().parse(responseBody).getAsJsonObject();
-
-            error = json.get("error").getAsString();
-            if (json.get("err_type") != null)
-                error += "\n" + json.get("err_type").toString();
+            JsonObject json;
+            if ((json = JsonParser.parseString(responseBody).getAsJsonObject()) == null) {
+                error =  "unexpected JSON responseBody: " + responseBody;
+            } else {
+                JsonElement el;
+                error = "";
+                if ((el = json.get("err_type")) != null) {
+                    error += "err_type: " + el.getAsString() + "\n";
+                }
+                if ((el = json.get("error")) != null) {
+                    error += "err: " + el.getAsString() + "\n";
+                }
+                if (error.isEmpty()) {
+                    error = "unexpected server error response";
+                }
+            }
         } else {
             Log.d("rest-sync-success", responseBody);
         }
 
-        Sync.showSyncResultDialog(mContext, success, error);
+        Sync.showSyncResultDialog(mContext, request_success, error);
     }
 
     @Override
